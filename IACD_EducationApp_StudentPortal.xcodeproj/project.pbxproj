@@ -11,6 +11,8 @@
 		5AC2E0C8286338BB009A0CA2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC2E0C7286338BB009A0CA2 /* ContentView.swift */; };
 		5AC2E0CA286338BC009A0CA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AC2E0C9286338BC009A0CA2 /* Assets.xcassets */; };
 		5AC2E0CD286338BC009A0CA2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AC2E0CC286338BC009A0CA2 /* Preview Assets.xcassets */; };
+		5AC2E0D428634054009A0CA2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC2E0D328634053009A0CA2 /* HomeView.swift */; };
+		5AC2E0D6286340FD009A0CA2 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC2E0D5286340FD009A0CA2 /* CalendarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		5AC2E0C7286338BB009A0CA2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5AC2E0C9286338BC009A0CA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5AC2E0CC286338BC009A0CA2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5AC2E0D328634053009A0CA2 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		5AC2E0D5286340FD009A0CA2 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 			children = (
 				5AC2E0C5286338BB009A0CA2 /* IACD_EducationApp_StudentPortalApp.swift */,
 				5AC2E0C7286338BB009A0CA2 /* ContentView.swift */,
+				5AC2E0D5286340FD009A0CA2 /* CalendarView.swift */,
+				5AC2E0D328634053009A0CA2 /* HomeView.swift */,
 				5AC2E0C9286338BC009A0CA2 /* Assets.xcassets */,
 				5AC2E0CB286338BC009A0CA2 /* Preview Content */,
 			);
@@ -137,7 +143,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AC2E0D428634054009A0CA2 /* HomeView.swift in Sources */,
 				5AC2E0C8286338BB009A0CA2 /* ContentView.swift in Sources */,
+				5AC2E0D6286340FD009A0CA2 /* CalendarView.swift in Sources */,
 				5AC2E0C6286338BB009A0CA2 /* IACD_EducationApp_StudentPortalApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
