@@ -13,9 +13,11 @@
 		5AC2E0CD286338BC009A0CA2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AC2E0CC286338BC009A0CA2 /* Preview Assets.xcassets */; };
 		5AC2E0D428634054009A0CA2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC2E0D328634053009A0CA2 /* HomeView.swift */; };
 		5AC2E0D6286340FD009A0CA2 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC2E0D5286340FD009A0CA2 /* CalendarView.swift */; };
+		96AFC7F33E77C61CFF0F0B1E /* Pods_IACD_EducationApp_StudentPortal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B149739D65B41B1A2140E1 /* Pods_IACD_EducationApp_StudentPortal.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1BF643E09FB5B438EE4DBD33 /* Pods-IACD_EducationApp_StudentPortal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IACD_EducationApp_StudentPortal.release.xcconfig"; path = "Target Support Files/Pods-IACD_EducationApp_StudentPortal/Pods-IACD_EducationApp_StudentPortal.release.xcconfig"; sourceTree = "<group>"; };
 		5AC2E0C2286338BB009A0CA2 /* IACD_EducationApp_StudentPortal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IACD_EducationApp_StudentPortal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AC2E0C5286338BB009A0CA2 /* IACD_EducationApp_StudentPortalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IACD_EducationApp_StudentPortalApp.swift; sourceTree = "<group>"; };
 		5AC2E0C7286338BB009A0CA2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -23,6 +25,8 @@
 		5AC2E0CC286338BC009A0CA2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5AC2E0D328634053009A0CA2 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5AC2E0D5286340FD009A0CA2 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		B830B4E1F01248BD0D3371A1 /* Pods-IACD_EducationApp_StudentPortal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IACD_EducationApp_StudentPortal.debug.xcconfig"; path = "Target Support Files/Pods-IACD_EducationApp_StudentPortal/Pods-IACD_EducationApp_StudentPortal.debug.xcconfig"; sourceTree = "<group>"; };
+		F9B149739D65B41B1A2140E1 /* Pods_IACD_EducationApp_StudentPortal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IACD_EducationApp_StudentPortal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,17 +34,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96AFC7F33E77C61CFF0F0B1E /* Pods_IACD_EducationApp_StudentPortal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02EE188F718D19315009C12A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B830B4E1F01248BD0D3371A1 /* Pods-IACD_EducationApp_StudentPortal.debug.xcconfig */,
+				1BF643E09FB5B438EE4DBD33 /* Pods-IACD_EducationApp_StudentPortal.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		5AC2E0B9286338BB009A0CA2 = {
 			isa = PBXGroup;
 			children = (
 				5AC2E0C4286338BB009A0CA2 /* IACD_EducationApp_StudentPortal */,
 				5AC2E0C3286338BB009A0CA2 /* Products */,
+				02EE188F718D19315009C12A /* Pods */,
+				C62E5F69C3D14C49AB6E4D2D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +90,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		C62E5F69C3D14C49AB6E4D2D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F9B149739D65B41B1A2140E1 /* Pods_IACD_EducationApp_StudentPortal.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,9 +105,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5AC2E0D0286338BC009A0CA2 /* Build configuration list for PBXNativeTarget "IACD_EducationApp_StudentPortal" */;
 			buildPhases = (
+				BFB95F6F7974AFADAD2177CA /* [CP] Check Pods Manifest.lock */,
 				5AC2E0BE286338BB009A0CA2 /* Sources */,
 				5AC2E0BF286338BB009A0CA2 /* Frameworks */,
 				5AC2E0C0286338BB009A0CA2 /* Resources */,
+				1C9F3AE5DA2077D3486B70A5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -137,6 +164,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1C9F3AE5DA2077D3486B70A5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IACD_EducationApp_StudentPortal/Pods-IACD_EducationApp_StudentPortal-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IACD_EducationApp_StudentPortal/Pods-IACD_EducationApp_StudentPortal-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IACD_EducationApp_StudentPortal/Pods-IACD_EducationApp_StudentPortal-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BFB95F6F7974AFADAD2177CA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IACD_EducationApp_StudentPortal-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5AC2E0BE286338BB009A0CA2 /* Sources */ = {
@@ -271,6 +340,7 @@
 		};
 		5AC2E0D1286338BC009A0CA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B830B4E1F01248BD0D3371A1 /* Pods-IACD_EducationApp_StudentPortal.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -300,6 +370,7 @@
 		};
 		5AC2E0D2286338BC009A0CA2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1BF643E09FB5B438EE4DBD33 /* Pods-IACD_EducationApp_StudentPortal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
