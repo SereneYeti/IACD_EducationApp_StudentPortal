@@ -9,7 +9,7 @@ import SwiftUI
 public enum tabs : Hashable{
     case Home
     case Calendar
-    case Account
+    case Account    
 }
 //NavigationLink("Go to Other Page", destination: //ContenvtViewB()).tabItem
 struct ContentView: View {
