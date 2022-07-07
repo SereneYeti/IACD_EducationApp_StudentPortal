@@ -8,8 +8,36 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var viewModel: AppViewModel
+    
     var body: some View {
-        Text("This is the Home View!")
+        NavigationView {
+            VStack{
+                HStack{
+                    Text("User signed in")
+                    
+                    Button(action:{
+                        if viewModel.signedIn {
+                            viewModel.signOut()
+                            
+                        }
+                    }){                        
+                        Text("Sign out")
+                            .foregroundColor(Color.white)
+                            .frame(width: 100, height: 50)
+                            .cornerRadius(8)
+                            .background(Color.blue)
+                    }
+                    .padding()
+                }
+                
+                Spacer()
+                
+                Text("This is the Home View!")
+            }
+            
+        }
+        
     }
 }
 

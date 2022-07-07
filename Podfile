@@ -6,6 +6,7 @@ target 'IACD_EducationApp_StudentPortal' do
   use_frameworks!
 
   # Pods for IACD_EducationApp_StudentPortal
+pod 'Firebase/Core'
 pod 'FirebaseUI/Auth'
 pod 'Firebase/Firestore'
 
