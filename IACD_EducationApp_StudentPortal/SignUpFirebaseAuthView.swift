@@ -1,13 +1,16 @@
 //
-//  SignInFirebaseAuthView.swift
+//  SignUpFirebaseAuthView.swift
 //  IACD_EducationApp_StudentPortal
 //
-//  Created by IACD-011 on 2022/07/06.
+//  Created by IACD-011 on 2022/07/13.
 //
 
 import SwiftUI
 
-struct SignInFirebaseAuthView: View {
+
+import SwiftUI
+
+struct SignUpFirebaseAuthView: View {
     @EnvironmentObject var viewModel:AppViewModel
     
     @State var email = ""
@@ -69,37 +72,6 @@ struct SignInFirebaseAuthView: View {
                 }
                 .padding()
                 Button(action: {
-                    
-                    guard !email.isEmpty, !pass.isEmpty else {
-                        return
-                    }
-                    
-                    btnSignIn()
-                }) {
-                    if(viewModel.signedIn){
-                        NavigationLink(destination: ContentView()) {
-                            Text("Sign In")
-                                .foregroundColor(Color.white)
-                                .frame(width: 200, height: 50)
-                                .cornerRadius(8)
-                                .background(Color.blue)
-                        }
-                    }
-                    else{
-                        Text("Sign In")
-                            .foregroundColor(Color.white)
-                            .frame(width: 200, height: 50)
-                            .cornerRadius(8)
-                            .background(Color.blue)
-                    }
-                    
-                }
-                .padding()
-                
-                //Spacer()
-                Divider()
-                
-                Button(action: {
                     //code
                     guard !email.isEmpty, !pass.isEmpty else {
                         return
@@ -125,21 +97,14 @@ struct SignInFirebaseAuthView: View {
                     }
                 }
                 .padding()
-
             }
-            .navigationTitle("Sign in")
-        }
-        .onAppear{
-            viewModel.signedIn = viewModel.isSignedIn
-        }
-    }
-}
-    
-struct SignInFirebaseAuthView_Previews: PreviewProvider {    
-    static var previews: some View {
-        StartView().environmentObject(AppViewModel())
-        SignInFirebaseAuthView().environmentObject(AppViewModel())
-            
+            .navigationTitle("Sign Up")
+        }        
     }
 }
 
+struct SignUpFirebaseAuthView_Previews: PreviewProvider {
+    static var previews: some View {
+        SignUpFirebaseAuthView().environmentObject(AppViewModel())
+    }
+}
