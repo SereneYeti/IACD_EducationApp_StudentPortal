@@ -11,7 +11,8 @@ import SwiftUI
 struct IACD_EducationApp_StudentPortalApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//            ContentView()
+            CalendarHome()
         }
     }
 }
