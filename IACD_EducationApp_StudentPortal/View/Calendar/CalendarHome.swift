@@ -66,7 +66,9 @@ struct CalendarHome: View {
                     }
                     TasksView()
                 } header: {
-                    HeaderView()
+                        //MARK: Header
+                    CalendarHeaderView()
+                    
                 }
             }
         }
@@ -75,7 +77,7 @@ struct CalendarHome: View {
         //MARK: Tasks View
         ///update when another date is pressed
     func TasksView() -> some View{
-        LazyVStack(spacing: 10){
+        LazyVStack(spacing: 20){
             
             if let tasks = taskModel.filteredTasks{
                 if tasks.isEmpty{
@@ -96,7 +98,7 @@ struct CalendarHome: View {
             }
         }
         .padding()
-        .padding(.top)
+        
             //MARK: Updating Tasks
         .onChange(of: taskModel.currentDay) { newValue in
             taskModel.filterTodayTasks()
@@ -106,15 +108,16 @@ struct CalendarHome: View {
     func TaskCardView(task: Task) -> some View {
         HStack(alignment: .top, spacing: 30){
             
-            VStack(spacing: 10){
+            VStack(spacing: 15){
                 Circle()
-                    .fill(.black)
+                    .fill(taskModel.isCurrentHour(date: task.taskDate) ? .black : .clear)
                     .frame(width: 15, height: 15)
                     .background(
                         Circle()
                             .stroke(.black,lineWidth: 1)
                             .padding(-3)
                     )
+                    .scaleEffect(!taskModel.isCurrentHour(date: task.taskDate) ? 0.7 : 1)
                 Rectangle()
                     .fill(.black)
                     .frame(width:3)
@@ -133,44 +136,51 @@ struct CalendarHome: View {
                         Text(task.taskDate.formatted(date: .omitted, time: .shortened))
                     }
                     
+                    //MARK: Team Members or others
+                    ///If statement removes team members and the check if the task is complete
+                    if taskModel.isCurrentHour(date: task.taskDate){
+                    HStack(spacing: 0) {
+                        HStack(spacing: -10){
+                            ForEach(0 ..< 3) { item in
+                                Image("Avatar")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 45, height: 45)
+                                    .clipShape(Circle())
+                                    .background(
+                                        Circle()
+                                            .stroke(.black,lineWidth: 5)
+                                    )
+                            }
+                        }
+                        .hLeading()
+                        
+                        //MARK: Check Button
+                        Button{
+                            
+                        }label: {
+                            Image(systemName: "checkmark")
+                                .foregroundStyle(.black)
+                                .padding(10)
+                                .background(Color.white, in: RoundedRectangle(cornerRadius: 20))
+                        }
+                    }
+                    .padding(.top)
+                    }
+                    
                 }
-                .foregroundStyle(.white)
-                .padding()
+                .foregroundStyle(taskModel.isCurrentHour(date: task.taskDate) ? .white : .black.opacity(0.9))
+                .padding(taskModel.isCurrentHour(date: task.taskDate) ? 15 : 0)
+                .padding(.bottom, taskModel.isCurrentHour(date: task.taskDate) ? 0 : 10 )
                 .hLeading()
                 .background(
                     Color.black
                         .cornerRadius(25)
+                        .opacity(taskModel.isCurrentHour(date: task.taskDate) ? 1 : 0)
                 )
         }
         .hLeading()
-    }
-    
-        //MARK: Header
-    func HeaderView()->some View{
-        
-        HStack(spacing: 10){
-            VStack(alignment: .leading, spacing: 15) {
-                Text(Date().formatted(date: .abbreviated, time: .omitted))
-                    .foregroundColor(.gray)
-                
-                Text("Today")
-                    .font(.largeTitle.bold())
-            }
-            .hLeading()
-            
-            Button {
-                
-            } label: {
-                Image("Avatar")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 45, height: 45)
-                    .clipShape(Circle())
-            }
-            
-        }
-        .padding()
-        .background(Color.white)
+        .padding(.vertical,5)
     }
 }
 
