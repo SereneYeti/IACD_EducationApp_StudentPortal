@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5A8D787E2875E1C000CFA3F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A8D787D2875E1C000CFA3F5 /* GoogleService-Info.plist */; };
 		5A8D78802875E2CB00CFA3F5 /* SignInFirebaseAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8D787F2875E2CB00CFA3F5 /* SignInFirebaseAuthView.swift */; };
+		5A8D7882287C2B0F00CFA3F5 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8D7881287C2B0F00CFA3F5 /* AppViewModel.swift */; };
 		5AC2E0C6286338BB009A0CA2 /* IACD_EducationApp_StudentPortalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC2E0C5286338BB009A0CA2 /* IACD_EducationApp_StudentPortalApp.swift */; };
 		5AC2E0C8286338BB009A0CA2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC2E0C7286338BB009A0CA2 /* ContentView.swift */; };
 		5AC2E0CA286338BC009A0CA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AC2E0C9286338BC009A0CA2 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 		1BF643E09FB5B438EE4DBD33 /* Pods-IACD_EducationApp_StudentPortal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IACD_EducationApp_StudentPortal.release.xcconfig"; path = "Target Support Files/Pods-IACD_EducationApp_StudentPortal/Pods-IACD_EducationApp_StudentPortal.release.xcconfig"; sourceTree = "<group>"; };
 		5A8D787D2875E1C000CFA3F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5A8D787F2875E2CB00CFA3F5 /* SignInFirebaseAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFirebaseAuthView.swift; sourceTree = "<group>"; };
+		5A8D7881287C2B0F00CFA3F5 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		5AC2E0C2286338BB009A0CA2 /* IACD_EducationApp_StudentPortal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IACD_EducationApp_StudentPortal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AC2E0C5286338BB009A0CA2 /* IACD_EducationApp_StudentPortalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IACD_EducationApp_StudentPortalApp.swift; sourceTree = "<group>"; };
 		5AC2E0C7286338BB009A0CA2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				5AC2E0C5286338BB009A0CA2 /* IACD_EducationApp_StudentPortalApp.swift */,
 				5AC2E0C7286338BB009A0CA2 /* ContentView.swift */,
 				5A8D787F2875E2CB00CFA3F5 /* SignInFirebaseAuthView.swift */,
+				5A8D7881287C2B0F00CFA3F5 /* AppViewModel.swift */,
 				5AC2E0D5286340FD009A0CA2 /* CalendarView.swift */,
 				5AC2E0D328634053009A0CA2 /* HomeView.swift */,
 				5AC2E0C9286338BC009A0CA2 /* Assets.xcassets */,
@@ -220,6 +223,7 @@
 			files = (
 				5AC2E0D428634054009A0CA2 /* HomeView.swift in Sources */,
 				5A8D78802875E2CB00CFA3F5 /* SignInFirebaseAuthView.swift in Sources */,
+				5A8D7882287C2B0F00CFA3F5 /* AppViewModel.swift in Sources */,
 				5AC2E0C8286338BB009A0CA2 /* ContentView.swift in Sources */,
 				5AC2E0D6286340FD009A0CA2 /* CalendarView.swift in Sources */,
 				5AC2E0C6286338BB009A0CA2 /* IACD_EducationApp_StudentPortalApp.swift in Sources */,

@@ -8,48 +8,6 @@
 import SwiftUI
 import FirebaseAuth
 
-class AppViewModel:ObservableObject {
-    let auth = Auth.auth()
-    
-    @Published var signedIn = false
-    
-    var isSignedIn:Bool  {
-        return auth.currentUser != nil
-    }
-    
-    func signIn(email:String, password:String){
-        auth.signIn(withEmail: email, password: password) { [weak self] result, error in
-            guard result != nil, error == nil else {
-                return
-            }
-            //Success
-            DispatchQueue.main.async {
-                self?.signedIn = true
-                print("Sign In successfull...")
-            }
-        }
-    }
-    
-    func signUp(email:String, password:String){
-        auth.createUser(withEmail: email, password: password) { [weak self] result, error in
-            guard result != nil, error == nil else {
-                return
-            }
-            //Success
-            DispatchQueue.main.async {
-                self?.signedIn = true
-                print("Sign Up successfull...")
-            }
-        }
-    }
-    
-    func signOut(){
-        try? auth.signOut()
-        
-        self.signedIn = false
-    }
-}
-
 struct StartView: View {
     @EnvironmentObject var viewModel:AppViewModel
     
@@ -67,10 +25,12 @@ struct StartView: View {
 }
 
 struct SignInFirebaseAuthView: View {
+    @EnvironmentObject var viewModel:AppViewModel
+    
     @State var email = ""
     @State var pass = ""
         
-    @EnvironmentObject var viewModel:AppViewModel
+    
     
     
     fileprivate func btnSignUp() {
@@ -192,10 +152,10 @@ struct SignInFirebaseAuthView: View {
     }
 }
     
-struct SignInFirebaseAuthView_Previews: PreviewProvider {
+struct SignInFirebaseAuthView_Previews: PreviewProvider {    
     static var previews: some View {
-        StartView()
-        SignInFirebaseAuthView()
+        StartView().environmentObject(AppViewModel())
+        SignInFirebaseAuthView().environmentObject(AppViewModel())
             
     }
 }
