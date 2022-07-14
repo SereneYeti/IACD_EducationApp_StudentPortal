@@ -48,7 +48,7 @@ struct AccountWorkoutView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-        HomeView()
+        HomeView().environmentObject(AppViewModel())
         CalendarView()
         AccountWorkoutView()
         

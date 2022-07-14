@@ -12,9 +12,11 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            VStack{
+            VStack(alignment: .leading){
                 HStack{
                     Text("User signed in")
+                    
+                    Spacer()
                     
                     Button(action:{
                         if viewModel.signedIn {
@@ -27,13 +29,21 @@ struct HomeView: View {
                             .frame(width: 100, height: 50)
                             .cornerRadius(8)
                             .background(Color.blue)
+                        }
+                        .padding()
                     }
-                    .padding()
-                }
                 
                 Spacer()
                 
                 Text("This is the Home View!")
+                
+                UpcomingProjects()
+                    .frame(width: .infinity, height:250)
+                
+                Text("Map View: ")
+                
+                MapView()
+                    .frame(height:250)
             }
             
         }
