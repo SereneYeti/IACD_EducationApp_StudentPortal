@@ -1,23 +1,25 @@
-//
-//  NewTask.swift
-//  IACD_EducationApp_StudentPortal
-//
-//  Created by IACD-013 on 2022/07/15.
-//
+    //
+    //  NewTask.swift
+    //  IACD_EducationApp_StudentPortal
+    //
+    //  Created by IACD-013 on 2022/07/15.
+    //
 
 import SwiftUI
-//MARK: View for user to define the new task they'll be adding
+    //MARK: View for user to define the new task they'll be adding
 
 struct NewTask: View {
     @Environment(\.dismiss) var dismiss
     
-    //MARK: Task Values
+        //MARK: Task Values
     @State var taskTitle: String = ""
     @State var taskDescription: String = ""
     @State var taskDate: Date = Date()
     
-    //MARK: Core data Context
+        //MARK: Core data Context
     @Environment(\.managedObjectContext) var context
+    
+    @EnvironmentObject var taskModel: TaskViewModel
     
     var body: some View {
         
@@ -33,12 +35,15 @@ struct NewTask: View {
                 } header: {
                     Text("Task Description")
                 }
-                Section {
-                    DatePicker("", selection: $taskDate)
-                        .datePickerStyle(.graphical)
-                        .labelsHidden()
-                } header: {
-                    Text("Task Date")
+                    //Disable when editing
+                if taskModel.editTask == nil {
+                    Section {
+                        DatePicker("", selection: $taskDate)
+                            .datePickerStyle(.graphical)
+                            .labelsHidden()
+                    } header: {
+                        Text("Task Date")
+                    }
                 }
                 
             }
@@ -46,20 +51,26 @@ struct NewTask: View {
             .navigationTitle("Add New task")
             .navigationBarTitleDisplayMode(.inline)
             
-            //MARK: Disabling the view with swipe action
+                //MARK: Disabling the view with swipe action
             .interactiveDismissDisabled()
             
-            //MARK: Action Buttons
+                //MARK: Action Buttons
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save"){
-                        //MARK: Create a new entity , which will create our new object in core Date
-                        let task = Task(context: context)
-                        task.taskTitle = taskTitle
-                        task.taskDescription = taskDescription
-                        task.taskDate = taskDate
+                        if let task  = taskModel.editTask{
+                            task.taskTitle = taskTitle
+                            task.taskDescription = taskDescription
+                            
+                        }else {
+                                //MARK: Create a new entity , which will create our new object in core Date
+                            let task = Task(context: context)
+                            task.taskTitle = taskTitle
+                            task.taskDescription = taskDescription
+                            task.taskDate = taskDate
+                        }
                         
-                        //Saving
+                            //Saving
                         try? context.save()
                         dismiss()
                     }
@@ -69,6 +80,14 @@ struct NewTask: View {
                     Button("Canel"){
                         dismiss()
                     }
+                }
+            }
+                // loading task data if from edit
+            .onAppear{
+                if let task = taskModel.editTask {
+                    taskTitle = task.taskTitle ?? ""
+                    taskDescription = task.taskDescription ?? ""
+                    
                 }
             }
         }

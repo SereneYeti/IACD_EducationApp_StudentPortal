@@ -16,6 +16,9 @@ struct CalendarHome: View {
     //MARK: Core Data Context
     @Environment(\.managedObjectContext) var context
     
+    //MARK: Edit button Context
+    @Environment(\.editMode) var editButton
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false){
             LazyVStack(spacing: 15, pinnedViews: [.sectionHeaders]) {
@@ -91,8 +94,13 @@ struct CalendarHome: View {
             alignment: .bottomTrailing
         )
         .sheet(isPresented: $taskModel.addNewTask) {
+            //Clear task
+            taskModel.editTask = nil
+        } content: {
             NewTask()
+                .environmentObject(taskModel)
         }
+
     }
         //MARK: Tasks View
         ///update when another date is pressed
@@ -113,20 +121,56 @@ struct CalendarHome: View {
         
         //MARK: CoreData Will give optional data
         
-        HStack(alignment: .top, spacing: 30){
-            VStack(spacing: 15){
-                Circle()
-                    .fill(taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? (task.isCompleted ? .green : .black ) : .clear)
-                    .frame(width: 15, height: 15)
-                    .background(
-                        Circle()
-                            .stroke(.black,lineWidth: 1)
-                            .padding(-3)
-                    )
-                    .scaleEffect(!taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? 0.7 : 1)
-                Rectangle()
-                    .fill(.black)
-                    .frame(width:3)
+        HStack(alignment: editButton?.wrappedValue == .active ? .center : .top, spacing: 30){
+            //If edit mode is enabled show delete button
+            if editButton?.wrappedValue == .active{
+                
+                // Edit button for now and future
+                VStack( spacing: 10) {
+                    
+                    if task.taskDate?.compare(Date()) == .orderedAscending || Calendar.current.isDateInToday(task.taskDate ?? Date()){
+                        Button {
+                            taskModel.editTask = task
+                            taskModel.addNewTask.toggle()
+                            
+                        } label: {
+                            Image(systemName: "pencil.circle.fill")
+                                .font(.title)
+                                .foregroundColor(.primary)
+                        }
+                    }
+                    
+                    Button {
+                        //deleting task
+                        context.delete(task)
+                        
+                        //Saving delete
+                        try? context.save()
+                        
+                    } label: {
+                        Image(systemName: "minus.circle.fill")
+                            .font(.title2)
+                            .foregroundColor(.red)
+                    }
+                }
+                
+
+            }
+            else{
+                VStack(spacing: 15){
+                    Circle()
+                        .fill(taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? (task.isCompleted ? .green : .black ) : .clear)
+                        .frame(width: 15, height: 15)
+                        .background(
+                            Circle()
+                                .stroke(.black,lineWidth: 1)
+                                .padding(-3)
+                        )
+                        .scaleEffect(!taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? 0.7 : 1)
+                    Rectangle()
+                        .fill(.black)
+                        .frame(width:3)
+                }
             }
                 VStack{
                     HStack(alignment: .top, spacing: 10) {
@@ -150,7 +194,7 @@ struct CalendarHome: View {
                         //MARK: Check Button
                         if !task.isCompleted {
                             Button{
-                                //update status
+                                //update task status
                                 task.isCompleted = true
                                 
                                 //saving information

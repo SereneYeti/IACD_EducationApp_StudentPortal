@@ -10,6 +10,15 @@ import SwiftUI
 struct CalendarHeaderView: View {
     var body: some View {
         HStack(spacing: 10){
+            Button {
+                
+            } label: {
+                Image("Avatar")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 55, height: 55)
+                    .clipShape(Circle())
+            }.padding(10)
             VStack(alignment: .leading, spacing: 15) {
                 Text(Date().formatted(date: .abbreviated, time: .omitted))
                     .foregroundColor(.gray)
@@ -19,15 +28,10 @@ struct CalendarHeaderView: View {
             }
             .hLeading()
             
-            Button {
-                
-            } label: {
-                Image("Avatar")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 45, height: 45)
-                    .clipShape(Circle())
-            }
+            //MARK: Edit Button
+            EditButton()
+            
+         
             
         }
         .padding()
