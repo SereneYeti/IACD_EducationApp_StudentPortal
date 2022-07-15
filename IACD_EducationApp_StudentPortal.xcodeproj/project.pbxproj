@@ -14,7 +14,8 @@
 		5A8D7888287F0A4A00CFA3F5 /* SignUpFirebaseAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8D7887287F0A4A00CFA3F5 /* SignUpFirebaseAuthView.swift */; };
 		5A8D788A287F116700CFA3F5 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8D7889287F116600CFA3F5 /* StartView.swift */; };
 		5A8D790C2880472600CFA3F5 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8D790B2880472600CFA3F5 /* MapView.swift */; };
-		5A8D790E2880480500CFA3F5 /* UpcomingProjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8D790D2880480500CFA3F5 /* UpcomingProjects.swift */; };
+		5A8D791028804F2700CFA3F5 /* CurrentModulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8D790F28804F2700CFA3F5 /* CurrentModulesView.swift */; };
+		5A8D791228804F6200CFA3F5 /* UpcomingProjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8D791128804F6200CFA3F5 /* UpcomingProjectsView.swift */; };
 		5AC2E0C6286338BB009A0CA2 /* IACD_EducationApp_StudentPortalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC2E0C5286338BB009A0CA2 /* IACD_EducationApp_StudentPortalApp.swift */; };
 		5AC2E0C8286338BB009A0CA2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC2E0C7286338BB009A0CA2 /* ContentView.swift */; };
 		5AC2E0CA286338BC009A0CA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AC2E0C9286338BC009A0CA2 /* Assets.xcassets */; };
@@ -33,7 +34,8 @@
 		5A8D7887287F0A4A00CFA3F5 /* SignUpFirebaseAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFirebaseAuthView.swift; sourceTree = "<group>"; };
 		5A8D7889287F116600CFA3F5 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		5A8D790B2880472600CFA3F5 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		5A8D790D2880480500CFA3F5 /* UpcomingProjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingProjects.swift; sourceTree = "<group>"; };
+		5A8D790F28804F2700CFA3F5 /* CurrentModulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentModulesView.swift; sourceTree = "<group>"; };
+		5A8D791128804F6200CFA3F5 /* UpcomingProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingProjectsView.swift; sourceTree = "<group>"; };
 		5AC2E0C2286338BB009A0CA2 /* IACD_EducationApp_StudentPortal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IACD_EducationApp_StudentPortal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AC2E0C5286338BB009A0CA2 /* IACD_EducationApp_StudentPortalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IACD_EducationApp_StudentPortalApp.swift; sourceTree = "<group>"; };
 		5AC2E0C7286338BB009A0CA2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -66,6 +68,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		5A8D7913288195EF00CFA3F5 /* Sign In & Sign Up */ = {
+			isa = PBXGroup;
+			children = (
+				5A8D787F2875E2CB00CFA3F5 /* SignInFirebaseAuthView.swift */,
+				5A8D7887287F0A4A00CFA3F5 /* SignUpFirebaseAuthView.swift */,
+				5A8D7883287F072A00CFA3F5 /* SignInSignUpChoiceView.swift */,
+			);
+			path = "Sign In & Sign Up";
+			sourceTree = "<group>";
+		};
 		5AC2E0B9286338BB009A0CA2 = {
 			isa = PBXGroup;
 			children = (
@@ -90,14 +102,13 @@
 			children = (
 				5AC2E0C5286338BB009A0CA2 /* IACD_EducationApp_StudentPortalApp.swift */,
 				5AC2E0C7286338BB009A0CA2 /* ContentView.swift */,
-				5A8D787F2875E2CB00CFA3F5 /* SignInFirebaseAuthView.swift */,
-				5A8D7887287F0A4A00CFA3F5 /* SignUpFirebaseAuthView.swift */,
-				5A8D7883287F072A00CFA3F5 /* SignInSignUpChoiceView.swift */,
+				5A8D7913288195EF00CFA3F5 /* Sign In & Sign Up */,
 				5A8D7889287F116600CFA3F5 /* StartView.swift */,
 				5A8D7881287C2B0F00CFA3F5 /* AppViewModel.swift */,
 				5AC2E0D5286340FD009A0CA2 /* CalendarView.swift */,
+				5A8D790F28804F2700CFA3F5 /* CurrentModulesView.swift */,
 				5AC2E0D328634053009A0CA2 /* HomeView.swift */,
-				5A8D790D2880480500CFA3F5 /* UpcomingProjects.swift */,
+				5A8D791128804F6200CFA3F5 /* UpcomingProjectsView.swift */,
 				5A8D790B2880472600CFA3F5 /* MapView.swift */,
 				5AC2E0C9286338BC009A0CA2 /* Assets.xcassets */,
 				5AC2E0CB286338BC009A0CA2 /* Preview Content */,
@@ -244,8 +255,9 @@
 				5AC2E0C8286338BB009A0CA2 /* ContentView.swift in Sources */,
 				5AC2E0D6286340FD009A0CA2 /* CalendarView.swift in Sources */,
 				5A8D790C2880472600CFA3F5 /* MapView.swift in Sources */,
+				5A8D791228804F6200CFA3F5 /* UpcomingProjectsView.swift in Sources */,
 				5AC2E0C6286338BB009A0CA2 /* IACD_EducationApp_StudentPortalApp.swift in Sources */,
-				5A8D790E2880480500CFA3F5 /* UpcomingProjects.swift in Sources */,
+				5A8D791028804F2700CFA3F5 /* CurrentModulesView.swift in Sources */,
 				5A8D7884287F072A00CFA3F5 /* SignInSignUpChoiceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

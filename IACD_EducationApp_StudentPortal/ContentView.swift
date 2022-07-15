@@ -9,12 +9,15 @@ import SwiftUI
 public enum tabs : Hashable{
     case Home
     case Calendar
+    case Modules
+    case Clubs
     case Account    
 }
 //NavigationLink("Go to Other Page", destination: //ContenvtViewB()).tabItem
 struct ContentView: View {
-    
+    @EnvironmentObject var viewModel: AppViewModel
     @State var selectedItem:tabs = .Home
+    @State var showWelcomeScreen: Bool = false
     
     var body: some View {
         NavigationView{
@@ -35,7 +38,12 @@ struct ContentView: View {
                 }.tag(tabs.Account)
             }.onAppear(){
                 UITabBar.appearance().backgroundColor = .lightGray
+                print("View Model Sign In: \(viewModel.firstTimeSignIn)")
+                showWelcomeScreen = viewModel.firstTimeSignIn
             }.accentColor(.blue)
+                .sheet(isPresented: $showWelcomeScreen, content: {
+                CalendarView()
+            })
         }
     }
 }
@@ -47,7 +55,7 @@ struct AccountWorkoutView: View {
 }
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().environmentObject(AppViewModel())
         HomeView().environmentObject(AppViewModel())
         CalendarView()
         AccountWorkoutView()

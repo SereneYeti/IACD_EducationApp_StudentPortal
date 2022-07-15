@@ -1,5 +1,5 @@
 //
-//  UpcomingProjects.swift
+//  UpcomingProjectsView.swift
 //  IACD_EducationApp_StudentPortal
 //
 //  Created by IACD-011 on 2022/07/14.
@@ -7,9 +7,13 @@
 
 import SwiftUI
 
-struct UpcomingProjects: View {
+struct UpcomingProjectsView: View {
     var body: some View {
         VStack{
+            Text("Upcoming Tasks")
+                .font(.title)
+                .padding()
+            
             HStack{
                 Text("1...")
                 
@@ -39,19 +43,19 @@ struct UpcomingProjects: View {
                 
                 Spacer()
                 
-                Text("8...")               
+                Text("8...")
                 
             }
         }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+        .padding()
         .background(.blue)
-        
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+              
     }
-    
 }
 
-struct UpcomingProjects_Previews: PreviewProvider {
+struct UpcomingProjectsView_Previews: PreviewProvider {
     static var previews: some View {
-        UpcomingProjects()
+        UpcomingProjectsView()
     }
 }

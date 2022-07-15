@@ -12,6 +12,7 @@ class AppViewModel:ObservableObject {
     let auth = Auth.auth()
     
     @Published var signedIn = false
+    @Published var firstTimeSignIn = false;
     
     var isSignedIn:Bool  {
         return auth.currentUser != nil
@@ -25,6 +26,7 @@ class AppViewModel:ObservableObject {
             //Success
             DispatchQueue.main.async {
                 self?.signedIn = true
+                self?.firstTimeSignIn = false;
                 print("Sign In successfull...")
             }
         }
@@ -38,6 +40,7 @@ class AppViewModel:ObservableObject {
             //Success
             DispatchQueue.main.async {
                 self?.signedIn = true
+                self?.firstTimeSignIn = true;
                 print("Sign Up successfull...")
             }
         }
