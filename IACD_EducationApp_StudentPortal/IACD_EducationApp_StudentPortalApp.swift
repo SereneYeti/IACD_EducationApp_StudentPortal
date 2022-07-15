@@ -9,10 +9,13 @@ import SwiftUI
 
 @main
 struct IACD_EducationApp_StudentPortalApp: App {
+    let persistenceController = PersistenceController.shared
+    
     var body: some Scene {
         WindowGroup {
 //            ContentView()
             CalendarHome()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

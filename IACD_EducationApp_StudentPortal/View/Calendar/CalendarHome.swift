@@ -12,6 +12,10 @@ import SwiftUI
 struct CalendarHome: View {
     @StateObject var taskModel: TaskViewModel = TaskViewModel()
     @Namespace var animation
+    
+    //MARK: Core Data Context
+    @Environment(\.managedObjectContext) var context
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false){
             LazyVStack(spacing: 15, pinnedViews: [.sectionHeaders]) {
@@ -73,51 +77,53 @@ struct CalendarHome: View {
             }
         }
         .ignoresSafeArea(.container, edges: .top)
+        //MARK: Add Button
+        .overlay(
+            Button(action: {
+                taskModel.addNewTask.toggle()
+            }, label: {
+                Image(systemName: "plus")
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.black, in: Circle())
+            })
+            .padding(),
+            alignment: .bottomTrailing
+        )
+        .sheet(isPresented: $taskModel.addNewTask) {
+            NewTask()
+        }
     }
         //MARK: Tasks View
         ///update when another date is pressed
     func TasksView() -> some View{
         LazyVStack(spacing: 20){
             
-            if let tasks = taskModel.filteredTasks{
-                if tasks.isEmpty{
-                    Text("You have no Tasks")
-                        .font(.system(size: 16))
-                        .fontWeight(.light)
-                        .offset(y: 100)
-                } else{
-                    ForEach(tasks){ task in
-                        TaskCardView(task: task)
-                    }
-                }
+            //Converting object as our task model
+            DynamicFilteredView(dateToFilter: taskModel.currentDay) { (object : Task) in
                 
-            }else{
-                    //MARK: No tasks for today
-                ProgressView()
-                    .offset(y: 100)
+                TaskCardView(task: object)
             }
         }
         .padding()
-        
-            //MARK: Updating Tasks
-        .onChange(of: taskModel.currentDay) { newValue in
-            taskModel.filterTodayTasks()
-        }
+        .padding(.top)
     }
         //MARK: Task Card View
     func TaskCardView(task: Task) -> some View {
+        
+        //MARK: CoreData Will give optional data
+        
         HStack(alignment: .top, spacing: 30){
-            
             VStack(spacing: 15){
                 Circle()
-                    .fill(taskModel.isCurrentHour(date: task.taskDate) ? .black : .clear)
+                    .fill(taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? (task.isCompleted ? .green : .black ) : .clear)
                     .frame(width: 15, height: 15)
                     .background(
                         Circle()
                             .stroke(.black,lineWidth: 1)
                             .padding(-3)
                     )
-                    .scaleEffect(!taskModel.isCurrentHour(date: task.taskDate) ? 0.7 : 1)
+                    .scaleEffect(!taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? 0.7 : 1)
                 Rectangle()
                     .fill(.black)
                     .frame(width:3)
@@ -125,59 +131,55 @@ struct CalendarHome: View {
                 VStack{
                     HStack(alignment: .top, spacing: 10) {
                         VStack(alignment: .leading, spacing: 12) {
-                            Text(task.taskTitle)
+                            Text(task.taskTitle ?? "")
                                 .font(.title2.bold())
                             
-                            Text(task.taskDescription)
+                            Text(task.taskDescription ?? "")
                                 .font(.callout)
                                 .foregroundStyle(.secondary)
                         }
                         .hLeading()
-                        Text(task.taskDate.formatted(date: .omitted, time: .shortened))
+                        Text(task.taskDate?.formatted(date: .omitted, time: .shortened) ?? "")
                     }
                     
                     //MARK: Team Members or others
                     ///If statement removes team members and the check if the task is complete
-                    if taskModel.isCurrentHour(date: task.taskDate){
-                    HStack(spacing: 0) {
-                        HStack(spacing: -10){
-                            ForEach(0 ..< 3) { item in
-                                Image("Avatar")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 45, height: 45)
-                                    .clipShape(Circle())
-                                    .background(
-                                        Circle()
-                                            .stroke(.black,lineWidth: 5)
-                                    )
+                    if taskModel.isCurrentHour(date: task.taskDate ?? Date()){
+                    HStack(spacing: 12) {
+             
+                        //MARK: Check Button
+                        if !task.isCompleted {
+                            Button{
+                                //update status
+                                task.isCompleted = true
+                                
+                                //saving information
+                                try? context.save()
+                            }label: {
+                                Image(systemName: "checkmark")
+                                    .foregroundStyle(.black)
+                                    .padding(10)
+                                    .background(Color.white, in: RoundedRectangle(cornerRadius: 20))
                             }
                         }
-                        .hLeading()
                         
-                        //MARK: Check Button
-                        Button{
-                            
-                        }label: {
-                            Image(systemName: "checkmark")
-                                .foregroundStyle(.black)
-                                .padding(10)
-                                .background(Color.white, in: RoundedRectangle(cornerRadius: 20))
-                        }
+                        Text(task.isCompleted ? "Completed" : "Check to complete")
+                            .font(.system(size: task.isCompleted ? 14 : 16, weight: .light))
+                            .foregroundColor(task.isCompleted ? .gray :.white)
+                            .hLeading()
                     }
                     .padding(.top)
                     }
                     
                 }
-                .foregroundStyle(taskModel.isCurrentHour(date: task.taskDate) ? .white : .black.opacity(0.9))
-                .padding(taskModel.isCurrentHour(date: task.taskDate) ? 15 : 0)
-                .padding(.bottom, taskModel.isCurrentHour(date: task.taskDate) ? 0 :
-                            10 )
+                .foregroundStyle(taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? .white : .black.opacity(0.9))
+                .padding(taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? 15 : 0)
+                .padding(.bottom, taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? 0 :10 )
                 .hLeading()
                 .background(
                     Color.black
                         .cornerRadius(25)
-                        .opacity(taskModel.isCurrentHour(date: task.taskDate) ? 1 : 0)
+                        .opacity(taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? 1 : 0)
                 )
         }
         .hLeading()
