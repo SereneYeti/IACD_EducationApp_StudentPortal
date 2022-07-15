@@ -78,6 +78,17 @@
 			path = "Sign In & Sign Up";
 			sourceTree = "<group>";
 		};
+		5A8D793F2881A0D500CFA3F5 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				5A8D790F28804F2700CFA3F5 /* CurrentModulesView.swift */,
+				5A8D790B2880472600CFA3F5 /* MapView.swift */,
+				5AC2E0D328634053009A0CA2 /* HomeView.swift */,
+				5A8D791128804F6200CFA3F5 /* UpcomingProjectsView.swift */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
 		5AC2E0B9286338BB009A0CA2 = {
 			isa = PBXGroup;
 			children = (
@@ -106,10 +117,7 @@
 				5A8D7889287F116600CFA3F5 /* StartView.swift */,
 				5A8D7881287C2B0F00CFA3F5 /* AppViewModel.swift */,
 				5AC2E0D5286340FD009A0CA2 /* CalendarView.swift */,
-				5A8D790F28804F2700CFA3F5 /* CurrentModulesView.swift */,
-				5AC2E0D328634053009A0CA2 /* HomeView.swift */,
-				5A8D791128804F6200CFA3F5 /* UpcomingProjectsView.swift */,
-				5A8D790B2880472600CFA3F5 /* MapView.swift */,
+				5A8D793F2881A0D500CFA3F5 /* HomeView */,
 				5AC2E0C9286338BC009A0CA2 /* Assets.xcassets */,
 				5AC2E0CB286338BC009A0CA2 /* Preview Content */,
 			);
