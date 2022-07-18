@@ -19,7 +19,7 @@ struct CalendarView: View {
 struct CalendarView_Previews: PreviewProvider {
     
     static var previews: some View {
-        HomeView()
+        ContentView().environmentObject(AppViewModel())
         
         CalendarView()
             .environment(\.managedObjectContext, persistenceController.container.viewContext)
