@@ -12,6 +12,7 @@ struct CalendarView: View {
     var body: some View {
         CalendarHome()
             .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            .navigationBarHidden(true)
     }
 }
 

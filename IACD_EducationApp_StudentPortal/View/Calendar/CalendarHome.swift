@@ -78,6 +78,7 @@ struct CalendarHome: View {
                     
                 }
             }
+            .environment(\.editMode, editButton)
         }
         .ignoresSafeArea(.container, edges: .top)
         //MARK: Add Button
@@ -100,7 +101,6 @@ struct CalendarHome: View {
             NewTask()
                 .environmentObject(taskModel)
         }
-
     }
         //MARK: Tasks View
         ///update when another date is pressed
@@ -228,7 +228,9 @@ struct CalendarHome: View {
         }
         .hLeading()
         .padding(.vertical,5)
+        .navigationBarHidden(true)
     }
+        
 }
 
 
