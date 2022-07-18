@@ -12,13 +12,14 @@ struct CalendarView: View {
     var body: some View {
         CalendarHome()
             .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            .navigationBarHidden(true)
     }
 }
 
 struct CalendarView_Previews: PreviewProvider {
     
     static var previews: some View {
-        HomeView()
+        ContentView().environmentObject(AppViewModel())
         
         CalendarView()
             .environment(\.managedObjectContext, persistenceController.container.viewContext)

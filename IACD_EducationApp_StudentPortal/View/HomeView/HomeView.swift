@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject var viewModel: AppViewModel   
+    @EnvironmentObject var viewModel: AppViewModel
+    @State var showWelcomeScreen: Bool = false
     
     var body: some View {
         NavigationView {
@@ -50,6 +51,12 @@ struct HomeView: View {
                         .frame(height:250)
                 }
             }
+            .navigationBarHidden(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+            .sheet(isPresented: $showWelcomeScreen, content: {
+            CalendarView() })
+        }.onAppear{
+            print("View Model Sign In: \(viewModel.firstTimeSignIn)")
+            showWelcomeScreen = viewModel.firstTimeSignIn
         }
     }
 }

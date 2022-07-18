@@ -16,11 +16,9 @@ public enum tabs : Hashable{
 //NavigationLink("Go to Other Page", destination: //ContenvtViewB()).tabItem
 struct ContentView: View {
     @EnvironmentObject var viewModel: AppViewModel
-    @State var selectedItem:tabs = .Home
-    @State var showWelcomeScreen: Bool = false
+    @State var selectedItem:tabs = .Home    
     
-    var body: some View {
-        NavigationView{
+    var body: some View {        
             TabView(selection: $selectedItem) {
                 HomeView().tabItem
                 {
@@ -37,14 +35,8 @@ struct ContentView: View {
                     Text("Account").bold()
                 }.tag(tabs.Account)
             }.onAppear(){
-                UITabBar.appearance().backgroundColor = .lightGray
-                print("View Model Sign In: \(viewModel.firstTimeSignIn)")
-                showWelcomeScreen = viewModel.firstTimeSignIn
-            }.accentColor(.blue)
-                .sheet(isPresented: $showWelcomeScreen, content: {
-                CalendarView()
-            })
-        }
+                UITabBar.appearance().backgroundColor = .lightGray                
+            }.accentColor(.blue)                
     }
 }
 
