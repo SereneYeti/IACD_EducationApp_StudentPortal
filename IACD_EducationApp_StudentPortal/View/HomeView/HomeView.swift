@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject var viewModel: AppViewModel   
+    @EnvironmentObject var viewModel: AppViewModel
+    
+    @State private var enlargeMapScreen:Bool = false;
     
     var body: some View {
         NavigationView {
@@ -39,17 +41,23 @@ struct HomeView: View {
                     Text("This is the Home View!")
                     
                     CurrentModulesView()
-                        .frame(width: .infinity, height:100)
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0,  maxHeight: 100)
+                        
                     
                     UpcomingProjectsView()
-                        .frame(width: .infinity, height:200)
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0,  maxHeight: 200)
                     
                     Text("Map View: ")
                     
                     MapView()
                         .frame(height:250)
+                        .onTapGesture {
+                            enlargeMapScreen = true; }
                 }
             }
+            .navigationBarHidden(/*@START_MENU_TOKEN@*/false/*@END_MENU_TOKEN@*/)
+            .navigationTitle("Home")
+            .sheet(isPresented: $enlargeMapScreen, content: { MapView() })
         }
     }
 }

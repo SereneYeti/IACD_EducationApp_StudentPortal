@@ -12,10 +12,8 @@ struct CurrentModulesView: View {
     var body: some View {
         ScrollView(.horizontal) {
             HStack{
-                ForEach(0..<10) {
-                    
-                    Text("Row \($0)")
-                    
+                ForEach(0..<10) { index in
+                    ModuleCardView(moduleID: index)
                 }
             }
         }
@@ -23,16 +21,41 @@ struct CurrentModulesView: View {
 }
 
 struct ModuleCardView: View{
+    @State private var showModuleSheet = false
     @State var module:String = ""
+    @State var moduleID:Int = -1; // -1 means no module selected
     
     var body: some View{
-        Text("Hello, World!")
+        VStack{
+            Text("Module Card")
+                .font(.headline)
+            Text("Module Name")
+                .font(.subheadline)
+                .foregroundColor(.indigo)
+            Button(action: {
+                print("ModuleID: \(moduleID)")
+                showModuleSheet = true
+            }){
+                Text("Module Information")
+                    .font(.callout)
+                    .bold()
+                    .foregroundColor(.blue)
+            }
+        }
+        .frame(width: 200, height: 100)
+        .background(.gray)
+        .foregroundColor(.black)
+        .cornerRadius(45)
+        .sheet(isPresented: $showModuleSheet,
+                content: { SelectedModuleView() })
     }
 }
 
 struct CurrentModulesView_Previews: PreviewProvider {
     static var previews: some View {
+        HomeView()
         CurrentModulesView()
         ModuleCardView()
+        SelectedModuleView()
     }
 }
