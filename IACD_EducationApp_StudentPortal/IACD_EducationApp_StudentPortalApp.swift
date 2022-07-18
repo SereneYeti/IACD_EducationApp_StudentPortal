@@ -3,6 +3,12 @@
 //  IACD_EducationApp_StudentPortal
 //
 //  Created by IACD-011 on 2022/06/22.
+
+///
+///    let persistenceController = PersistenceController.shared
+
+
+///
 //
 import SwiftUI
 import Firebase
@@ -11,7 +17,8 @@ import Firebase
 struct IACD_EducationApp_StudentPortalApp: App {
     
     // register app delegate for Firebase setup
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    let persistenceController = PersistenceController.shared
     
     var body: some Scene {
         WindowGroup {

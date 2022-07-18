@@ -8,14 +8,21 @@
 import SwiftUI
 
 struct CalendarView: View {
+    let persistenceController = PersistenceController.shared
     var body: some View {
         CalendarHome()
+            .environment(\.managedObjectContext, persistenceController.container.viewContext)
     }
 }
 
 struct CalendarView_Previews: PreviewProvider {
+    
     static var previews: some View {
         HomeView()
+        
         CalendarView()
+            .environment(\.managedObjectContext, persistenceController.container.viewContext)
+          
     }
 }
+let persistenceController = PersistenceController.shared

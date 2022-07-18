@@ -58,6 +58,7 @@ struct ContentView_Previews: PreviewProvider {
         ContentView().environmentObject(AppViewModel())
         HomeView().environmentObject(AppViewModel())
         CalendarView()
+            .environment(\.managedObjectContext, persistenceController.container.viewContext)
         AccountWorkoutView()
         
     }
