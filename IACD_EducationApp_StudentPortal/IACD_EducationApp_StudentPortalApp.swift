@@ -25,6 +25,8 @@ struct IACD_EducationApp_StudentPortalApp: App {
             let viewModel = AppViewModel()
             StartView()
                 .environmentObject(viewModel)
+//            CalendarView()
+//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

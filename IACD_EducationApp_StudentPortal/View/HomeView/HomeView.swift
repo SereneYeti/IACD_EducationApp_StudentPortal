@@ -39,10 +39,10 @@ struct HomeView: View {
                     Text("This is the Home View!")
                     
                     CurrentModulesView()
-                        .frame(width: .infinity, height:100)
+                        .frame(height:100)
                     
                     UpcomingProjectsView()
-                        .frame(width: .infinity, height:200)
+                        .frame(height:200)
                     
                     Text("Map View: ")
                     
