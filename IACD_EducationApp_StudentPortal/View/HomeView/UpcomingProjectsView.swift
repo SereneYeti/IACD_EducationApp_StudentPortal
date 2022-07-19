@@ -33,17 +33,17 @@ struct UpcomingProjectsView: View {
                 
                 Spacer()
                 
-                Text("6...")
+                Text("5...")
             }
             
             Spacer()
             
             HStack{
-                Text("7...")
+                Text("6...")
                 
                 Spacer()
                 
-                Text("8...")
+                Text("7...")
                 
             }
         }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18F1EEF12886EA5D00D3384D /* onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F1EEF02886EA5D00D3384D /* onboarding.swift */; };
 		5A71A9DB288591A1006CC56B /* SelectedModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A71A9DA288591A1006CC56B /* SelectedModuleView.swift */; };
 		5A71A9E12886D094006CC56B /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A71A9E02886D094006CC56B /* AccountView.swift */; };
 		5A8D787E2875E1C000CFA3F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A8D787D2875E1C000CFA3F5 /* GoogleService-Info.plist */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18F1EEF02886EA5D00D3384D /* onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboarding.swift; sourceTree = "<group>"; };
 		1BF643E09FB5B438EE4DBD33 /* Pods-IACD_EducationApp_StudentPortal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IACD_EducationApp_StudentPortal.release.xcconfig"; path = "Target Support Files/Pods-IACD_EducationApp_StudentPortal/Pods-IACD_EducationApp_StudentPortal.release.xcconfig"; sourceTree = "<group>"; };
 		5A71A9DA288591A1006CC56B /* SelectedModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedModuleView.swift; sourceTree = "<group>"; };
 		5A71A9E02886D094006CC56B /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				5A8D787F2875E2CB00CFA3F5 /* SignInFirebaseAuthView.swift */,
 				5A8D7887287F0A4A00CFA3F5 /* SignUpFirebaseAuthView.swift */,
 				5A8D7883287F072A00CFA3F5 /* SignInSignUpChoiceView.swift */,
+				18F1EEF02886EA5D00D3384D /* onboarding.swift */,
 			);
 			path = "Sign In & Sign Up";
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				6A2F98212881A6B6001844CC /* TaskManagementCoreData.xcdatamodeld in Sources */,
 				5A71A9DB288591A1006CC56B /* SelectedModuleView.swift in Sources */,
 				5A8D791228804F6200CFA3F5 /* UpcomingProjectsView.swift in Sources */,
+				18F1EEF12886EA5D00D3384D /* onboarding.swift in Sources */,
 				5AC2E0C6286338BB009A0CA2 /* IACD_EducationApp_StudentPortalApp.swift in Sources */,
 				6A2F982E2881A71E001844CC /* DynamicFilteredView.swift in Sources */,
 				6A2F98242881A6DB001844CC /* TaskViewModel.swift in Sources */,

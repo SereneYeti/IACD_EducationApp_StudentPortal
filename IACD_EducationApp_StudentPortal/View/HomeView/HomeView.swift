@@ -33,7 +33,7 @@ struct HomeView: View {
                 }
             }
             .navigationBarHidden(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-            .sheet(isPresented: $showWelcomeScreen, content: {CalendarView() })
+            .sheet(isPresented: $showWelcomeScreen, content: {onboarding() })
             .sheet(isPresented: $showMapView, content: {  MapView() })
             .sheet(isPresented: $showCalendarView, content: { CalendarView() })
         }.onAppear{
