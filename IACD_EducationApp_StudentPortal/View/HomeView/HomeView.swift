@@ -18,26 +18,6 @@ struct HomeView: View {
         NavigationView {
             ScrollView(.vertical) {
                 VStack(alignment: .leading){
-                    HStack{
-                        Text("User signed in")
-                        
-                        Spacer()
-                        
-                        Button(action:{
-                            if viewModel.signedIn {
-                                viewModel.signOut()
-                                
-                            }
-                        }){
-                            Text("Sign out")
-                                .foregroundColor(Color.white)
-                                .frame(width: 100, height: 50)
-                                .cornerRadius(8)
-                                .background(Color.blue)
-                        }
-                        .padding()
-                    }
-                    
                     Spacer()
                     
                     Text("This is the Home View!")
@@ -49,14 +29,6 @@ struct HomeView: View {
                         .frame(height:200)
                         .onTapGesture {
                             showCalendarView = true
-                        }
-                    
-                    Text("Map View: ")
-                    
-                    MapView()
-                        .frame(height:250)
-                        .onTapGesture {
-                            showMapView = true
                         }
                 }
             }

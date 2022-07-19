@@ -39,7 +39,7 @@ struct ContentView: View {
                 Image(systemName: "map.circle")
                 Text("Map").bold()
             }.tag(tabs.Map)
-            AccountWorkoutView().tabItem{
+            AccountView().tabItem{
                 Image(systemName: "person.crop.circle.fill")
                 Text("Account").bold()
             }.tag(tabs.Account)
@@ -55,19 +55,12 @@ struct ContentView: View {
     }
 }
 
-struct AccountWorkoutView: View {
-    var body: some View{
-        Text("This is the account view.")
-    }
-}
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().environmentObject(AppViewModel())
 //        HomeView().environmentObject(AppViewModel())
 //        CalendarView()
 //            .environment(\.managedObjectContext, persistenceController.container.viewContext)
-//        AccountWorkoutView()
-        
     }
 }
 
