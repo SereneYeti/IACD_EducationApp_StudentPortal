@@ -9,6 +9,7 @@ import SwiftUI
 public enum tabs : Hashable{
     case Home
     case Calendar
+    case Map
     case Modules
     case Clubs
     case Account
@@ -34,6 +35,10 @@ struct ContentView: View {
                 Image(systemName: "calendar.circle.fill")
                 Text("Calendar").bold()
             }.tag(tabs.Calendar)
+            MapView().tabItem{
+                Image(systemName: "map.circle")
+                Text("Map").bold()
+            }.tag(tabs.Map)
             AccountWorkoutView().tabItem{
                 Image(systemName: "person.crop.circle.fill")
                 Text("Account").bold()
