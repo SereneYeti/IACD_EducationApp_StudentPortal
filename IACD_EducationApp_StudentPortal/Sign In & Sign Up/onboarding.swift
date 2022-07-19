@@ -33,12 +33,7 @@ struct onboarding: View {
                
                 Button(action: {
                     self.currentStep =  onBoardingSteps.count - 1
-                }){
-                
-                Text("Skip")
-                        .padding(16)
-                        .foregroundColor(.gray)
-                }
+                }){ }
             }
             
             TabView(selection: $currentStep) {
