@@ -27,7 +27,7 @@ struct ModuleCardView: View{
     
     var body: some View{
         VStack{
-            Text("Module Card")
+            Text("Module Card: \(moduleID)")
                 .font(.headline)
             Text("Module Name")
                 .font(.subheadline)
@@ -53,7 +53,7 @@ struct ModuleCardView: View{
 
 struct CurrentModulesView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        //HomeView()
         CurrentModulesView()
         ModuleCardView()
         SelectedModuleView()
