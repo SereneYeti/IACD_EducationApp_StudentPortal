@@ -20,6 +20,7 @@ private let onBoardingSteps = [
 ]
 
 struct onboarding: View {
+    @EnvironmentObject var viewModel: AppViewModel
     @State private var currentStep = 0
     
     init(){
@@ -31,9 +32,6 @@ struct onboarding: View {
             HStack{
                 Spacer()
                
-                Button(action: {
-                    self.currentStep =  onBoardingSteps.count - 1
-                }){ }
             }
             
             TabView(selection: $currentStep) {
@@ -80,6 +78,8 @@ struct onboarding: View {
                     //get started
                 }
                 
+                viewModel.firstTimeSignIn = false;
+                
             }){
                 Text(currentStep < onBoardingSteps.count - 1 ? "Next" : "Get started")
                     .padding(16)
@@ -97,6 +97,6 @@ struct onboarding: View {
 
 struct onboarding_Previews: PreviewProvider {
     static var previews: some View {
-        onboarding()
+        onboarding().environmentObject(AppViewModel())
     }
 }
