@@ -8,8 +8,16 @@
 import SwiftUI
 
 struct SelectedModuleView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            .overlay(Button(action: {presentationMode.wrappedValue.dismiss()}, label: {
+                Text("Dismiss")
+                    .font(.headline)
+                    .bold()
+                    .padding()
+            }), alignment: .topLeading)
     }
 }
 
