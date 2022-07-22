@@ -21,7 +21,7 @@ struct RandomNumberGenerator{
                                 
         randomNumberGenerated = Int.random(in: min...max)
         
-        print("Random Number: \(randomNumberGenerated)")
+        //print("Random Number: \(randomNumberGenerated)")
         
         var inArray = true
         
@@ -32,6 +32,7 @@ struct RandomNumberGenerator{
             print("Re-running number generation. Current Number Generated \(randomNumberGenerated)")
             GenerateRanodmNumber(numberOfDigits: numberOfDigits, arrayToCheck: arrayToCheck)
         }
+        
     }
     
     private static func GenerateRequiredDigits(iToEdit:Int, numberOfDigitsRequired:Int) -> Int{
