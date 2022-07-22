@@ -22,7 +22,7 @@ struct RandomNumberGenerator{
 
         print(testArr)
     */
-    static var randomNumberGenerated:Int = -1
+    public static var randomNumberGenerated:Int = -1
     private var arrayToCheck:[Int] = []
     
         
