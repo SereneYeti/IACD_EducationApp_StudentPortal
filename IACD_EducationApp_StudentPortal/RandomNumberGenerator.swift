@@ -9,31 +9,29 @@ import Foundation
 import SwiftUI
 
 struct RandomNumberGenerator{
+    //NOTE: When using the random number generator Call the random number generator first. Then to store the value from randomNumberGenerated
     static var randomNumberGenerated:Int = -1
     private var arrayToCheck:[Int] = []
     
         
-    public static func GenerateRanodmNumber(numberOfDigits:Int, arrayToCheck:[Int]) -> Int{
-        
-        var min = GenerateRequiredDigits(iToEdit: 1, numberOfDigitsRequired: numberOfDigits)
-        var max = GenerateRequiredDigits(iToEdit: 9, numberOfDigitsRequired: numberOfDigits)
+    public static func GenerateRanodmNumber(numberOfDigits:Int, arrayToCheck:[Int]){
+                
+        let min = GenerateRequiredDigits(iToEdit: 1, numberOfDigitsRequired: numberOfDigits)
+        let max = GenerateRequiredDigits(iToEdit: 9, numberOfDigitsRequired: numberOfDigits)
                                 
         randomNumberGenerated = Int.random(in: min...max)
         
+        print("Random Number: \(randomNumberGenerated)")
+        
         var inArray = true
+        
         inArray = CheckForInteger(integerToFind: randomNumberGenerated,arrayToCheck: arrayToCheck)
         
-        if(!inArray)
+        if(inArray)
         {
-            return randomNumberGenerated
-        }
-        else
-        {
+            print("Re-running number generation. Current Number Generated \(randomNumberGenerated)")
             GenerateRanodmNumber(numberOfDigits: numberOfDigits, arrayToCheck: arrayToCheck)
         }
-        
-        return -1;
-        
     }
     
     private static func GenerateRequiredDigits(iToEdit:Int, numberOfDigitsRequired:Int) -> Int{
@@ -46,15 +44,16 @@ struct RandomNumberGenerator{
         return iEdited;
     }
     
+    //true = in array ; false = not in array
     private static func CheckForInteger(integerToFind:Int,arrayToCheck:[Int]) -> Bool{
         var ans = false
-        
+       
         for index in arrayToCheck{
             if(integerToFind != index)  { ans = false }
             else
             {
                 ans = true
-                break;
+                return ans
             }
         }
         
