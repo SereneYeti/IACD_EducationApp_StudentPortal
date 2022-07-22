@@ -158,7 +158,6 @@
 				5A8D7881287C2B0F00CFA3F5 /* AppViewModel.swift */,
 				5AC2E0C9286338BC009A0CA2 /* Assets.xcassets */,
 				5AC2E0CB286338BC009A0CA2 /* Preview Content */,
-				5A71A9E72889A66C006CC56B /* RandomNumberGenerator.swift */,
 			);
 			path = IACD_EducationApp_StudentPortal;
 			sourceTree = "<group>";
@@ -176,6 +175,7 @@
 			children = (
 				6A2F981B2881A6B6001844CC /* Persistence.swift */,
 				6A2F981C2881A6B6001844CC /* extensions.swift */,
+				5A71A9E72889A66C006CC56B /* RandomNumberGenerator.swift */,
 				6A2F981D2881A6B6001844CC /* TaskManagementCoreData.xcdatamodeld */,
 			);
 			path = Utils;

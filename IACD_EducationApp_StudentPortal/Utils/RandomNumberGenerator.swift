@@ -9,8 +9,10 @@ import Foundation
 import SwiftUI
 
 struct RandomNumberGenerator{
-    //NOTE: When using the random number generator Call the random number generator first. Then to store the value from randomNumberGenerated
-    /* EXAMPLE TEST CODE
+    /*
+     NOTE: When using the random number generator Call the random number generator first.
+     Then to store the value from randomNumberGenerated in the variable or array you wish to store the generated number in.
+    EXAMPLE TEST CODE
         var testArr:[Int] = []
 
         for _ in 1...100{
@@ -48,8 +50,10 @@ struct RandomNumberGenerator{
     private static func GenerateRequiredDigits(iToEdit:Int, numberOfDigitsRequired:Int) -> Int{
         var iEdited = iToEdit
         
-        for _ in (1...numberOfDigitsRequired){
-            iEdited = iEdited*10
+        if(numberOfDigitsRequired > 0){
+            for _ in (1...numberOfDigitsRequired){
+                iEdited = iEdited*10
+            }
         }
         
         return iEdited;
