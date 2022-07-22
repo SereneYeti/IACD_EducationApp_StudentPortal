@@ -54,6 +54,12 @@ struct RandomNumberGenerator{
             for _ in (1...numberOfDigitsRequired){
                 iEdited = iEdited*10
             }
+            
+            if(numberOfDigitsRequired >= 1 && iToEdit == 9){
+                let temp = String(iEdited)
+                let tempUpdated = temp.replacingOccurrences(of: "0", with: "9")
+                iEdited = Int(tempUpdated) ?? iEdited
+            }
         }
         
         return iEdited;
