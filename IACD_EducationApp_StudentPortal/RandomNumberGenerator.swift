@@ -10,6 +10,16 @@ import SwiftUI
 
 struct RandomNumberGenerator{
     //NOTE: When using the random number generator Call the random number generator first. Then to store the value from randomNumberGenerated
+    /* EXAMPLE TEST CODE
+        var testArr:[Int] = []
+
+        for _ in 1...100{
+            RandomNumberGenerator.GenerateRanodmNumber(numberOfDigits: 6, arrayToCheck: testArr)
+            testArr.append(RandomNumberGenerator.randomNumberGenerated)
+        }
+
+        print(testArr)
+    */
     static var randomNumberGenerated:Int = -1
     private var arrayToCheck:[Int] = []
     
