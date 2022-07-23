@@ -12,7 +12,7 @@ struct SignInFirebaseAuthView: View {
     
     @State var email = ""
     @State var pass = ""
-        
+    
     
     
     
@@ -21,63 +21,75 @@ struct SignInFirebaseAuthView: View {
         viewModel.signUp(email: email, password: pass)
         
         if(viewModel.signedIn)
-            {
+        {
             print("Loading Home Page Now...")
             email = ""
             pass = ""
         }
         else
-            {print("An error occured.")}
+        {print("An error occured.")}
     }
     
     fileprivate func btnSignIn(){
         
         viewModel.signIn(email: email, password: pass)
-                
+        
         if(viewModel.signedIn)
-            {
+        {
             print("Loading Home Page Now...")
             email = ""
             pass = ""
         }
         else
-            {print("An error occured.")}
-       
+        {print("An error occured.")}
+        
         
         
     }
     
     var body: some View {
         NavigationView{
-            VStack{
-                Image(systemName: "person")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 150, height: 150)
+            ZStack{
+                Color.indigo.ignoresSafeArea(.all)
                 
                 VStack{
-                    TextField("Email Address", text:  $email)
-                        .disableAutocorrection(true)
-                        .autocapitalization(.none)
-                        .padding()
-                        .background(Color(.secondarySystemBackground))
-                    SecureField("Password", text:  $pass)
-                        .disableAutocorrection(true)
-                        .autocapitalization(.none)
-                        .padding()
-                        .background(Color(.secondarySystemBackground))
-                }
-                .padding()
-                Button(action: {
+                    Image(systemName: "person")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 150, height: 150)
                     
-                    guard !email.isEmpty, !pass.isEmpty else {
-                        return
+                    VStack{
+                        TextField("Email Address", text:  $email)
+                            .disableAutocorrection(true)
+                            .autocapitalization(.none)
+                            .padding()
+                            .background(Color(.secondarySystemBackground))
+                        SecureField("Password", text:  $pass)
+                            .disableAutocorrection(true)
+                            .autocapitalization(.none)
+                            .padding()
+                            .background(Color(.secondarySystemBackground))
                     }
-                    
-                    btnSignIn()
-                }) {
-                    if(viewModel.signedIn){
-                        NavigationLink(destination: ContentView()) {
+                    .padding()
+                    Button(action: {
+                        
+                        guard !email.isEmpty, !pass.isEmpty else {
+                            return
+                        }
+                        
+                        btnSignIn()
+                    }) {
+                        if(viewModel.signedIn){
+                            NavigationLink(destination: ContentView()) {
+                                Text("Sign In")
+                                    .foregroundColor(Color.white)
+                                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                                    .padding(.horizontal, 60)
+                                    .padding(.vertical, 15)
+                                    .background(.blue, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                            }
+                        }
+                        else{
                             Text("Sign In")
                                 .foregroundColor(Color.white)
                                 .font(.system(size: 20, weight: .bold, design: .rounded))
@@ -85,32 +97,32 @@ struct SignInFirebaseAuthView: View {
                                 .padding(.vertical, 15)
                                 .background(.blue, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                         }
+                        
                     }
-                    else{
-                        Text("Sign In")
-                            .foregroundColor(Color.white)
-                            .font(.system(size: 20, weight: .bold, design: .rounded))
-                            .padding(.horizontal, 60)
-                            .padding(.vertical, 15)
-                            .background(.blue, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-                    }
+                    .padding()
                     
-                }
-                .padding()
-                
-                //Spacer()
-                Divider()
-                
-                Button(action: {
-                    //code
-                    guard !email.isEmpty, !pass.isEmpty else {
-                        return
-                    }
+                    //Spacer()
+                    Divider()
                     
-                    btnSignUp()
-                }) {
-                    if(viewModel.signedIn){
-                        NavigationLink(destination: ContentView()) {
+                    Button(action: {
+                        //code
+                        guard !email.isEmpty, !pass.isEmpty else {
+                            return
+                        }
+                        
+                        btnSignUp()
+                    }) {
+                        if(viewModel.signedIn){
+                            NavigationLink(destination: ContentView()) {
+                                Text("Sign Up")
+                                    .foregroundColor(Color.white)
+                                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                                    .padding(.horizontal, 60)
+                                    .padding(.vertical, 15)
+                                    .background(.blue, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                            }
+                        }
+                        else{
                             Text("Sign Up")
                                 .foregroundColor(Color.white)
                                 .font(.system(size: 20, weight: .bold, design: .rounded))
@@ -119,18 +131,12 @@ struct SignInFirebaseAuthView: View {
                                 .background(.blue, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                         }
                     }
-                    else{
-                        Text("Sign Up")
-                            .foregroundColor(Color.white)
-                            .font(.system(size: 20, weight: .bold, design: .rounded))
-                            .padding(.horizontal, 60)
-                            .padding(.vertical, 15)
-                            .background(.blue, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-                    }
+                    .padding()
+                    
                 }
-                .padding()
-
             }
+            
+            
             .navigationTitle("Sign in")
         }
         .onAppear{
@@ -138,12 +144,12 @@ struct SignInFirebaseAuthView: View {
         }
     }
 }
-    
+
 struct SignInFirebaseAuthView_Previews: PreviewProvider {    
     static var previews: some View {
         StartView().environmentObject(AppViewModel())
         SignInFirebaseAuthView().environmentObject(AppViewModel())
-            
+        
     }
 }
 

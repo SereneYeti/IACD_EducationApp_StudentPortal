@@ -43,16 +43,17 @@ struct MapView: View {
 private struct MainView: View {
     @Binding var showMenu: Bool
     
+    
     @State private var scale: CGFloat = 1.0
     @State private var lastScale: CGFloat = 1.0
     @State private var viewState = CGSize.zero
     
     var body: some View {
         
-        Image("mapExample1")
+        Image("mapExample3")
             .resizable()
-            .aspectRatio(contentMode: .fit)
-        /*
+            .aspectRatio(contentMode: .fill)
+            .ignoresSafeArea()
             .offset(x: viewState.width, y: viewState.height)
             .gesture(DragGesture()
                 .onChanged { val in
@@ -73,7 +74,6 @@ private struct MainView: View {
                 }
             )
             .scaleEffect(scale)
-            */
     }
 }
 
