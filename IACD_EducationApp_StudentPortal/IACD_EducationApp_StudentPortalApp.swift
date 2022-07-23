@@ -20,13 +20,15 @@ struct IACD_EducationApp_StudentPortalApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     let persistenceController = PersistenceController.shared
     
+    
+    
     var body: some Scene {
         WindowGroup {
             let viewModel = AppViewModel()
-            StartView()
-                .environmentObject(viewModel)
-//            CalendarView()
-//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+//            StartView()
+//                .environmentObject(viewModel)
+        ProfileView()
+                
         }
     }
 }
