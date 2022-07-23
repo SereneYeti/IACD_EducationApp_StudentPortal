@@ -14,7 +14,7 @@ struct SignInSignUpChoiceView: View {
         NavigationView{
             ZStack{
                 
-                Color.purple.ignoresSafeArea(.all)
+                Color.indigo.ignoresSafeArea(.all)
                 
                 VStack{
                     Text("📚")
