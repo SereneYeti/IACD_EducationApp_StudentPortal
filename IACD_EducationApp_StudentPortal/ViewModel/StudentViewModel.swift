@@ -10,34 +10,30 @@ import Foundation
 import Firebase
 
 class StudentModel: ObservableObject {
-    @Published var students = [Student]()
+    @Published var student: String = ""
  
 
     init(){
-        getStudentData()
+        fetchData()
     }
     
         //MARK: Fetch data items
-    func getStudentData(){
-            //get refrence to data
+    func fetchData(){
         let db = Firestore.firestore()
-            //read documents at a path
-        db.collection("Student").getDocuments { snapshot, error in
-            if error == nil{
-                if let snapshot = snapshot{
-                            //get documents and create students
-                        self.students = snapshot.documents.map { doc  in
-                            //Create student
-                            return Student(id: doc.documentID,
-                                           studentNum: doc["studentNum"] as? Int ?? 0,
-                                           studentID: doc["studentID"] as? Int ?? 0,
-                                           firstName: doc["firstName"] as? String ?? "",
-                                           lastName: doc["lastName"] as? String ?? "" )
-                        }
+        
+        let docRef = db.collection("Student").document("studentOne")
+        docRef.getDocument { document, error in
+            guard error == nil else {
+                print("error", error ?? "")
+                return
+            }
+            
+            if let document = document, document.exists {
+                let data = document.data()
+                if let data = data {
+                    print("data", data)
+                    self.student = data["name"] as? String ?? ""
                 }
-            }else{
-                    //handle error
-
             }
         }
     }

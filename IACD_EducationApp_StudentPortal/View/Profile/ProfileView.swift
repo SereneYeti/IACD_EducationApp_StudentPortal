@@ -67,7 +67,7 @@ struct StudentProfileView: View{
                     
                     VStack {
                         HStack() {
-                            Text("\(stu.students.count)")
+                            Text("\(stu.student)")
                                 .bold()
                             Text(testStu.lastName)
                         }

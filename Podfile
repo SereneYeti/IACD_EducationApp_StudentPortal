@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+# platform :ios, '15.0'
 
 target 'IACD_EducationApp_StudentPortal' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -8,7 +8,7 @@ target 'IACD_EducationApp_StudentPortal' do
   # Pods for IACD_EducationApp_StudentPortal
 pod 'Firebase/Core'
 pod 'FirebaseUI/Auth'
-pod 'Firebase/Firestore'
+pod 'FirebaseFirestore'
 
 
 end
