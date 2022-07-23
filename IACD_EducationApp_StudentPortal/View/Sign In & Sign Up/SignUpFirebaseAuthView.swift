@@ -53,6 +53,7 @@ struct SignUpFirebaseAuthView: View {
     var body: some View {
         NavigationView{
             VStack{
+                
                 Image(systemName: "person")
                     .resizable()
                     .scaledToFit()
