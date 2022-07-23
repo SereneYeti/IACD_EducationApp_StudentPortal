@@ -534,7 +534,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"IACD_EducationApp_StudentPortal/Preview Content\"";
-				DEVELOPMENT_TEAM = TGGDTMFZ2S;
+				DEVELOPMENT_TEAM = 8K52FAQ674;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -547,7 +547,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vieyra01.IACD-EducationApp-StudentPortal";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pae.IACD-EducationApp-StudentPortal";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -564,7 +564,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"IACD_EducationApp_StudentPortal/Preview Content\"";
-				DEVELOPMENT_TEAM = TGGDTMFZ2S;
+				DEVELOPMENT_TEAM = 8K52FAQ674;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -577,7 +577,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vieyra01.IACD-EducationApp-StudentPortal";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pae.IACD-EducationApp-StudentPortal";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
