@@ -21,6 +21,7 @@ private let onBoardingSteps = [
 
 struct onboarding: View {
     @EnvironmentObject var viewModel: AppViewModel
+    @Environment(\.presentationMode) var presentationMode
     @State private var currentStep = 0
     
     init(){
@@ -76,9 +77,9 @@ struct onboarding: View {
                     self.currentStep += 1
                 } else {
                     //get started
-                }
-                
-                viewModel.firstTimeSignIn = false;
+                    viewModel.firstTimeSignIn = false;
+                    presentationMode.wrappedValue.dismiss()
+                }    
                 
             }){
                 Text(currentStep < onBoardingSteps.count - 1 ? "Next" : "Get started")

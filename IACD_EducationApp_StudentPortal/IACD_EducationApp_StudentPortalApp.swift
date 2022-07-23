@@ -25,9 +25,9 @@ struct IACD_EducationApp_StudentPortalApp: App {
     var body: some Scene {
         WindowGroup {
             let viewModel = AppViewModel()
-//            StartView()
-//                .environmentObject(viewModel)
-        ProfileView()
+            StartView()
+                .environmentObject(viewModel)
+        //ProfileView()
                 
         }
     }
