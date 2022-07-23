@@ -16,32 +16,14 @@ class StudentModel: ObservableObject {
     private let db = Firestore.firestore()
     init(){
         getStudentData()
+        FirebaseApp.configure()
     }
     
         //MARK: Fetch data items
     func getStudentData(){
-
         
             //read documents at a path
         db.collection("Student").getDocuments { snapshot, error in
-                //Error check
-//            guard let documents  = snapshot?.documents else {
-//                print("no students")
-//                return
-//            }
-//
-//            self.students = documents.map { (QueryDocumentSnapshot) -> Student in
-//                let data = QueryDocumentSnapshot.data()
-//
-//                let docID = QueryDocumentSnapshot.documentID
-//                let stuID = data["studentID"] as? Int ?? 0
-//                let firstN = data["firstName"] as? String ?? ""
-//                let lastN = data["lastName"] as? String ?? ""
-//                let stuNum = data["studentNum"] as? Int ?? 0
-//
-//                return Student(id: docID, studentNum: stuNum, studentID: stuID, firstName: firstN, lastName: lastN)
-//            }
-
             if error == nil{
                 if let snapshot = snapshot{
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {

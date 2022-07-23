@@ -20,12 +20,14 @@ struct IACD_EducationApp_StudentPortalApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     let persistenceController = PersistenceController.shared
     
-    
+    init(){
+        FirebaseApp.configure()
+    }
     
     var body: some Scene {
         WindowGroup {
             let viewModel = AppViewModel()
-            StartView()
+            MapView()
                 .environmentObject(viewModel)
         //ProfileView()
                 

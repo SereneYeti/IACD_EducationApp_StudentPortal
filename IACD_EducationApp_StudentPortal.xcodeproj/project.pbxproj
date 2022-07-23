@@ -35,6 +35,7 @@
 		6A2F982C2881A71E001844CC /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2F98282881A71D001844CC /* CalendarHeaderView.swift */; };
 		6A2F982D2881A71E001844CC /* NewTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2F98292881A71E001844CC /* NewTask.swift */; };
 		6A2F982E2881A71E001844CC /* DynamicFilteredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2F982A2881A71E001844CC /* DynamicFilteredView.swift */; };
+		6A4C611B288C8869005BFD87 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 6A4C611A288C8869005BFD87 /* FirebaseFirestore */; };
 		6AC20F2F2889A2370037076C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC20F2E2889A2370037076C /* ProfileView.swift */; };
 		6AC20F322889A3590037076C /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC20F312889A3590037076C /* Student.swift */; };
 		6AC20F342889A4480037076C /* StudentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC20F332889A4480037076C /* StudentViewModel.swift */; };
@@ -66,6 +67,7 @@
 		5AC2E0CC286338BC009A0CA2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5AC2E0D328634053009A0CA2 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5AC2E0D5286340FD009A0CA2 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		6A110B22288C73D00002D765 /* FirebaseFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A2F981B2881A6B6001844CC /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		6A2F981C2881A6B6001844CC /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		6A2F981E2881A6B6001844CC /* TaskManagementCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaskManagementCoreData.xcdatamodel; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96AFC7F33E77C61CFF0F0B1E /* Pods_IACD_EducationApp_StudentPortal.framework in Frameworks */,
+				6A4C611B288C8869005BFD87 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +248,7 @@
 		C62E5F69C3D14C49AB6E4D2D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6A110B22288C73D00002D765 /* FirebaseFirestore.framework */,
 				F9B149739D65B41B1A2140E1 /* Pods_IACD_EducationApp_StudentPortal.framework */,
 			);
 			name = Frameworks;
@@ -268,6 +272,9 @@
 			dependencies = (
 			);
 			name = IACD_EducationApp_StudentPortal;
+			packageProductDependencies = (
+				6A4C611A288C8869005BFD87 /* FirebaseFirestore */,
+			);
 			productName = IACD_EducationApp_StudentPortal;
 			productReference = 5AC2E0C2286338BB009A0CA2 /* IACD_EducationApp_StudentPortal.app */;
 			productType = "com.apple.product-type.application";
@@ -296,6 +303,9 @@
 				Base,
 			);
 			mainGroup = 5AC2E0B9286338BB009A0CA2;
+			packageReferences = (
+				6A4C6119288C8869005BFD87 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 5AC2E0C3286338BB009A0CA2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -599,6 +609,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6A4C6119288C8869005BFD87 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6A4C611A288C8869005BFD87 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6A4C6119288C8869005BFD87 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		6A2F981D2881A6B6001844CC /* TaskManagementCoreData.xcdatamodeld */ = {
