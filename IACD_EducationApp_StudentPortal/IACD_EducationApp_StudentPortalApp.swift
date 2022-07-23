@@ -27,15 +27,15 @@ struct IACD_EducationApp_StudentPortalApp: App {
     var body: some Scene {
         WindowGroup {
             let viewModel = AppViewModel()
-<<<<<<< HEAD
+
             MapView()
                 .environmentObject(viewModel)
         //ProfileView()
-=======
+
 //            StartView()
 //                .environmentObject(viewModel)
         ProfileView()
->>>>>>> parent of b80879e (:notebook:  minor changes)
+
                 
         }
     }
