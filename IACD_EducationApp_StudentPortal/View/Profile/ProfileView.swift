@@ -11,12 +11,14 @@ import Firebase
 
 
 struct ProfileView: View {
-    @ObservedObject var stu = StudentModel()
+    @EnvironmentObject var studentManager : StudentModel
     
     var body: some View {
         TabView {
             StudentProfileView()
-            StudentCardView()
+                .environmentObject(StudentModel())
+//            StudentCardView()
+              
         }
         .tabViewStyle(.page(indexDisplayMode: .always))
         
@@ -29,10 +31,11 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
+            .environmentObject(StudentModel())
     }
 }
 struct StudentProfileView: View{
-    @ObservedObject var stu = StudentModel()
+    @EnvironmentObject var stu : StudentModel
     @State var selectedSelection: SelectedSelection = .modules
     var testStu = testData[0]
     @Namespace var animation
@@ -64,7 +67,7 @@ struct StudentProfileView: View{
                     
                     VStack {
                         HStack() {
-                            Text("\(stu.students[0].firstName)")
+                            Text("\(stu.students.count)")
                                 .bold()
                             Text(testStu.lastName)
                         }

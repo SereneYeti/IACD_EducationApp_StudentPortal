@@ -12,21 +12,19 @@ import Firebase
 class StudentModel: ObservableObject {
     @Published var students = [Student]()
  
-        //get refrence to data
-    private let db = Firestore.firestore()
+
     init(){
         getStudentData()
-        FirebaseApp.configure()
     }
     
         //MARK: Fetch data items
     func getStudentData(){
-        
+            //get refrence to data
+        let db = Firestore.firestore()
             //read documents at a path
         db.collection("Student").getDocuments { snapshot, error in
             if error == nil{
                 if let snapshot = snapshot{
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                             //get documents and create students
                         self.students = snapshot.documents.map { doc  in
                             //Create student
@@ -36,7 +34,6 @@ class StudentModel: ObservableObject {
                                            firstName: doc["firstName"] as? String ?? "",
                                            lastName: doc["lastName"] as? String ?? "" )
                         }
-                    }
                 }
             }else{
                     //handle error
