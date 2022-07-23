@@ -31,7 +31,7 @@ struct ModuleCardView: View{
                 .font(.headline)
             Text("Module Name")
                 .font(.subheadline)
-                .foregroundColor(.indigo)
+                .foregroundColor(.white)
             Button(action: {
                 print("ModuleID: \(moduleID)")
                 showModuleSheet = true
@@ -39,12 +39,13 @@ struct ModuleCardView: View{
                 Text("Module Information")
                     .font(.callout)
                     .bold()
-                    .foregroundColor(.blue)
+                    .foregroundColor(.purple
+                    )
             }
         }
         .frame(width: 200, height: 100)
-        .background(.gray)
-        .foregroundColor(.black)
+        .background(.black)
+        .foregroundColor(.white)
         .cornerRadius(45)
         .sheet(isPresented: $showModuleSheet,
                 content: { SelectedModuleView() })

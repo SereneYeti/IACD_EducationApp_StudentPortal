@@ -80,17 +80,19 @@ struct SignInFirebaseAuthView: View {
                         NavigationLink(destination: ContentView()) {
                             Text("Sign In")
                                 .foregroundColor(Color.white)
-                                .frame(width: 200, height: 50)
-                                .cornerRadius(8)
-                                .background(Color.blue)
+                                .font(.system(size: 20, weight: .bold, design: .rounded))
+                                .padding(.horizontal, 60)
+                                .padding(.vertical, 15)
+                                .background(.blue, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                         }
                     }
                     else{
                         Text("Sign In")
                             .foregroundColor(Color.white)
-                            .frame(width: 200, height: 50)
-                            .cornerRadius(8)
-                            .background(Color.blue)
+                            .font(.system(size: 20, weight: .bold, design: .rounded))
+                            .padding(.horizontal, 60)
+                            .padding(.vertical, 15)
+                            .background(.blue, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                     }
                     
                 }
@@ -111,17 +113,19 @@ struct SignInFirebaseAuthView: View {
                         NavigationLink(destination: ContentView()) {
                             Text("Sign Up")
                                 .foregroundColor(Color.white)
-                                .frame(width: 200, height: 50)
-                                .cornerRadius(8)
-                                .background(Color.blue)
+                                .font(.system(size: 20, weight: .bold, design: .rounded))
+                                .padding(.horizontal, 60)
+                                .padding(.vertical, 15)
+                                .background(.blue, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                         }
                     }
                     else{
                         Text("Sign Up")
                             .foregroundColor(Color.white)
-                            .frame(width: 200, height: 50)
-                            .cornerRadius(8)
-                            .background(Color.blue)
+                            .font(.system(size: 20, weight: .bold, design: .rounded))
+                            .padding(.horizontal, 60)
+                            .padding(.vertical, 15)
+                            .background(.blue, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                     }
                 }
                 .padding()

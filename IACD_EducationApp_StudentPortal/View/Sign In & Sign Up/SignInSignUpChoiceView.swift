@@ -14,15 +14,14 @@ struct SignInSignUpChoiceView: View {
         NavigationView{
             VStack{
                 Text("📚")
-                    .font(.title)
-                    .scaledToFill()
-                    .padding()
+                    .font(.system(size: 200))
                 NavigationLink(destination: SignUpFirebaseAuthView()) {
                     Text("Sign Up")
                         .foregroundColor(Color.white)
-                        .frame(width: 200, height: 50)
-                        .cornerRadius(8)
-                        .background(Color.blue)
+                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .padding(.horizontal, 60)
+                        .padding(.vertical, 15)
+                        .background(.blue, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                 }
                 .padding()
                 
@@ -31,9 +30,10 @@ struct SignInSignUpChoiceView: View {
                 NavigationLink(destination: SignInFirebaseAuthView()) {
                     Text("Sign In")
                         .foregroundColor(Color.white)
-                        .frame(width: 200, height: 50)
-                        .cornerRadius(8)
-                        .background(Color.blue)
+                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .padding(.horizontal, 60)
+                        .padding(.vertical, 15)
+                        .background(.blue, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                 }
                 .padding()
             }
