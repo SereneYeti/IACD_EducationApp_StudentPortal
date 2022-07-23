@@ -10,8 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var viewModel: AppViewModel
     
-    @State private var showWelcomeScreen: Bool = false
-    @State private var showMapView: Bool = false
+    @State private var showWelcomeScreen: Bool = false    
     @State private var showCalendarView: Bool = false
     
     var body: some View {
@@ -34,7 +33,6 @@ struct HomeView: View {
             }
             .navigationBarHidden(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
             .sheet(isPresented: $showWelcomeScreen, content: {onboarding() })
-            .sheet(isPresented: $showMapView, content: {  MapView() })
             .sheet(isPresented: $showCalendarView, content: { CalendarView() })
         }.onAppear{
             print("View Model Sign In: \(viewModel.firstTimeSignIn)")

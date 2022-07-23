@@ -43,13 +43,37 @@ struct MapView: View {
 private struct MainView: View {
     @Binding var showMenu: Bool
     
-    @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 34.011_286, longitude: -116.166_686)
-        , span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
+    
+    @State private var scale: CGFloat = 1.0
+    @State private var lastScale: CGFloat = 1.0
+    @State private var viewState = CGSize.zero
     
     var body: some View {
-        Map(coordinateRegion: $region)
+        
+        Image("mapExample3")
+            .resizable()
+            .aspectRatio(contentMode: .fill)
             .ignoresSafeArea()
+            .offset(x: viewState.width, y: viewState.height)
+            .gesture(DragGesture()
+                .onChanged { val in
+                    self.viewState = val.translation
+                }
+            )
+            .gesture(MagnificationGesture()
+                .onChanged { val in
+                    let delta = val / self.lastScale
+                    self.lastScale = val
+                    if delta > 0.94 { // if statement to minimize jitter
+                        let newScale = self.scale * delta
+                        self.scale = newScale
+                    }
+                }
+                .onEnded { _ in
+                    self.lastScale = 1.0
+                }
+            )
+            .scaleEffect(scale)
     }
 }
 

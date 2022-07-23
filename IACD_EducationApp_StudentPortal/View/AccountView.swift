@@ -26,7 +26,7 @@ struct AccountView: View {
                     .foregroundColor(Color.white)
                     .frame(width: 100, height: 50)
                     .cornerRadius(8)
-                    .background(Color.blue)
+                    .background(.blue, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
             }
             .padding()
         }

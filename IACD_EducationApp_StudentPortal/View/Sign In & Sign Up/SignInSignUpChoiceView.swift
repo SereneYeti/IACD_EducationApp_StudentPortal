@@ -12,30 +12,35 @@ struct SignInSignUpChoiceView: View {
     
     var body: some View {
         NavigationView{
-            VStack{
-                Text("📚")
-                    .font(.title)
-                    .scaledToFill()
+            ZStack{
+                
+                Color.purple.ignoresSafeArea(.all)
+                
+                VStack{
+                    Text("📚")
+                        .font(.system(size: 200))
+                    NavigationLink(destination: SignUpFirebaseAuthView()) {
+                        Text("Sign Up")
+                            .foregroundColor(Color.white)
+                            .font(.system(size: 20, weight: .bold, design: .rounded))
+                            .padding(.horizontal, 60)
+                            .padding(.vertical, 15)
+                            .background(.blue, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    }
                     .padding()
-                NavigationLink(destination: SignUpFirebaseAuthView()) {
-                    Text("Sign Up")
-                        .foregroundColor(Color.white)
-                        .frame(width: 200, height: 50)
-                        .cornerRadius(8)
-                        .background(Color.blue)
+                    
+                    Divider()
+                    
+                    NavigationLink(destination: SignInFirebaseAuthView()) {
+                        Text("Sign In")
+                            .foregroundColor(Color.white)
+                            .font(.system(size: 20, weight: .bold, design: .rounded))
+                            .padding(.horizontal, 60)
+                            .padding(.vertical, 15)
+                            .background(.blue, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    }
+                    .padding()
                 }
-                .padding()
-                
-                Divider()
-                
-                NavigationLink(destination: SignInFirebaseAuthView()) {
-                    Text("Sign In")
-                        .foregroundColor(Color.white)
-                        .frame(width: 200, height: 50)
-                        .cornerRadius(8)
-                        .background(Color.blue)
-                }
-                .padding()
             }
         }
     }

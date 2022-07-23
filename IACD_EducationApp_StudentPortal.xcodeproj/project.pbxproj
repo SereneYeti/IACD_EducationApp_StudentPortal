@@ -200,7 +200,6 @@
 		6A2F98252881A70C001844CC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6AC20F37288BE2EE0037076C /* Settings */,
 				5A8D7889287F116600CFA3F5 /* StartView.swift */,
 				5AC2E0C7286338BB009A0CA2 /* ContentView.swift */,
 				5A71A9E02886D094006CC56B /* AccountView.swift */,
@@ -241,13 +240,6 @@
 				6AC20F35288BE2000037076C /* SettingsItem.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		6AC20F37288BE2EE0037076C /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Settings;
 			sourceTree = "<group>";
 		};
 		C62E5F69C3D14C49AB6E4D2D /* Frameworks */ = {
@@ -329,7 +321,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		1C9F3AE5DA2077D3486B70A5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
