@@ -8,11 +8,22 @@
 import SwiftUI
 import FirebaseAuth
 
+struct User{
+    var uid:String
+    var email: String
+}
+
 class AppViewModel:ObservableObject {
     let auth = Auth.auth()
     
     @Published var signedIn = false
     @Published var firstTimeSignIn = false;
+    
+    @Published var session: User?
+    @Published var isAnon: Bool = false
+    var handle: AuthStateDidChangeListenerHandle?
+    
+    
     
     var isSignedIn:Bool  {
         return auth.currentUser != nil
@@ -50,6 +61,26 @@ class AppViewModel:ObservableObject {
         try? auth.signOut()
         
         self.signedIn = false
+    }
+    
+    func listen(){
+        handle = auth.addStateDidChangeListener({(auth, user) in
+            if let user = user {
+                self.session = User(uid: user.uid, email: user.email!)
+            }
+        })
+    }
+    
+    func unbind(){
+        if let handle = handle {
+            self.isAnon = false
+            auth.removeStateDidChangeListener(handle)
+        }
+        else
+        {
+            self.isAnon = true
+            self.session = nil
+        }
     }
 }
 
