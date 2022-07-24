@@ -67,15 +67,12 @@ struct MapMenuView: View {
                 }
                 
                 HStack{
-                    Stepper(value: $currentFloor, in: 0...maxFloor){
-                        Text("Floor: \(currentFloor)")
-                            .font(.headline)
-                            .fontWeight(Font.Weight.bold)
-                            .foregroundColor(.gray)
-                            .padding()
-                        
-                    }
-                    .font(.largeTitle)
+                    Text("Floor: \(currentFloor)")
+                        .font(.headline)
+                        .fontWeight(Font.Weight.bold)
+                        .foregroundColor(.gray)
+                        .padding()
+                    Stepper("", value: $currentFloor, in: 0...maxFloor)
                     .foregroundColor(.gray)
                     .padding()
                     
