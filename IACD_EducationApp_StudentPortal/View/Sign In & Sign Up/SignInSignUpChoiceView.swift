@@ -17,8 +17,8 @@ struct SignInSignUpChoiceView: View {
                 Color.purple.ignoresSafeArea(.all)
                 
                 VStack{
-                    Text("📚")
-                        .font(.system(size: 200))
+                    Image("logo1")
+                        .padding()
                     NavigationLink(destination: SignUpFirebaseAuthView()) {
                         Text("Sign Up")
                             .foregroundColor(Color.white)
