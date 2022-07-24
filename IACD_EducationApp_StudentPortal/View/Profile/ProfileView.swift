@@ -8,13 +8,17 @@
 import SwiftUI
 import Firebase
 
+
+
 struct ProfileView: View {
-    @ObservedObject var stu = StudentModel()
+    @EnvironmentObject var studentManager : StudentModel
     
     var body: some View {
         TabView {
             StudentProfileView()
-            StudentCardView()
+                .environmentObject(StudentModel())
+//            StudentCardView()
+              
         }
         .tabViewStyle(.page(indexDisplayMode: .always))
         
@@ -27,10 +31,11 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
+            .environmentObject(StudentModel())
     }
 }
 struct StudentProfileView: View{
-    
+    @EnvironmentObject var stu : StudentModel
     @State var selectedSelection: SelectedSelection = .modules
     var testStu = testData[0]
     @Namespace var animation
@@ -42,8 +47,7 @@ struct StudentProfileView: View{
                     Image(systemName: "gearshape.fill")
                         .font(.system(size: 25))
                     Spacer()
-                        //                Image(systemName: "ellipsis")
-                        //                    .font(.system(size: 25))
+            
                 }
                 .padding([.trailing, .bottom , .leading])
                 .padding(.bottom)
@@ -63,7 +67,7 @@ struct StudentProfileView: View{
                     
                     VStack {
                         HStack() {
-                            Text(testStu.firstName)
+                            Text("\(stu.student)")
                                 .bold()
                             Text(testStu.lastName)
                         }

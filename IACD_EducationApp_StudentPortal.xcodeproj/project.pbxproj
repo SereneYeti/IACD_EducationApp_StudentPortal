@@ -66,6 +66,7 @@
 		5AC2E0CC286338BC009A0CA2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5AC2E0D328634053009A0CA2 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5AC2E0D5286340FD009A0CA2 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		6A110B22288C73D00002D765 /* FirebaseFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A2F981B2881A6B6001844CC /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		6A2F981C2881A6B6001844CC /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		6A2F981E2881A6B6001844CC /* TaskManagementCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaskManagementCoreData.xcdatamodel; sourceTree = "<group>"; };
@@ -245,6 +246,7 @@
 		C62E5F69C3D14C49AB6E4D2D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6A110B22288C73D00002D765 /* FirebaseFirestore.framework */,
 				F9B149739D65B41B1A2140E1 /* Pods_IACD_EducationApp_StudentPortal.framework */,
 			);
 			name = Frameworks;
@@ -268,6 +270,8 @@
 			dependencies = (
 			);
 			name = IACD_EducationApp_StudentPortal;
+			packageProductDependencies = (
+			);
 			productName = IACD_EducationApp_StudentPortal;
 			productReference = 5AC2E0C2286338BB009A0CA2 /* IACD_EducationApp_StudentPortal.app */;
 			productType = "com.apple.product-type.application";
@@ -296,6 +300,8 @@
 				Base,
 			);
 			mainGroup = 5AC2E0B9286338BB009A0CA2;
+			packageReferences = (
+			);
 			productRefGroup = 5AC2E0C3286338BB009A0CA2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

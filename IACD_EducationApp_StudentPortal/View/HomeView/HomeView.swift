@@ -56,7 +56,7 @@ struct HomeView: View {
             .sheet(isPresented: $showWelcomeScreen, content: {onboarding() })
             .sheet(isPresented: $showCalendarView, content: { CalendarView() })
         }.onAppear{
-            print("View Model Sign In: \(viewModel.firstTimeSignIn)")
+            //print("View Model First Time Sign In: \(viewModel.firstTimeSignIn)")
             showWelcomeScreen = viewModel.firstTimeSignIn
         }
     }

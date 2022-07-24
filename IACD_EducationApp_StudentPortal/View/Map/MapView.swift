@@ -44,9 +44,10 @@ private struct MainView: View {
     @Binding var showMenu: Bool
     
     
-    @State private var scale: CGFloat = 1.0
-    @State private var lastScale: CGFloat = 1.0
-    @State private var viewState = CGSize.zero
+    @State var currentAmount:CGFloat = 0
+    @State var lastAmount:CGFloat = 0
+    
+    @State var currentOffset: CGSize = .zero    
     
     var body: some View {
         
@@ -54,26 +55,26 @@ private struct MainView: View {
             .resizable()
             .aspectRatio(contentMode: .fill)
             .ignoresSafeArea()
-            .offset(x: viewState.width, y: viewState.height)
-            .gesture(DragGesture()
-                .onChanged { val in
-                    self.viewState = val.translation
-                }
-            )
-            .gesture(MagnificationGesture()
-                .onChanged { val in
-                    let delta = val / self.lastScale
-                    self.lastScale = val
-                    if delta > 0.94 { // if statement to minimize jitter
-                        let newScale = self.scale * delta
-                        self.scale = newScale
+            .offset(currentOffset)
+            .gesture(
+                DragGesture()
+                    .onChanged{ value in
+                        currentOffset = value.translation
                     }
-                }
-                .onEnded { _ in
-                    self.lastScale = 1.0
-                }
             )
-            .scaleEffect(scale)
+            .scaleEffect(1 + currentAmount + lastAmount)
+            .gesture(
+                MagnificationGesture()
+                    .onChanged{ value in
+                        currentAmount = value - 1
+                    }
+                    .onEnded{ value in
+                        lastAmount += currentAmount
+                        currentAmount = 0;
+                    }
+            )
+            
+            
     }
 }
 

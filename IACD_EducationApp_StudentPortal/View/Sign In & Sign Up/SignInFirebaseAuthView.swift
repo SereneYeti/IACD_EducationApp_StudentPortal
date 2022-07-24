@@ -50,7 +50,7 @@ struct SignInFirebaseAuthView: View {
     var body: some View {
         NavigationView{
             ZStack{
-                Color.purple.ignoresSafeArea(.all)
+                Color.indigo.ignoresSafeArea(.all)
                 
                 VStack{
                     Image(systemName: "person")
@@ -64,17 +64,12 @@ struct SignInFirebaseAuthView: View {
                             .disableAutocorrection(true)
                             .autocapitalization(.none)
                             .padding()
-                            .frame(width: 350, height: 50)
-                            .background(.white, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-                            .font(.system(size: 13, weight: .bold, design: .rounded))
-                        
+                            .background(Color(.secondarySystemBackground))
                         SecureField("Password", text:  $pass)
                             .disableAutocorrection(true)
                             .autocapitalization(.none)
                             .padding()
-                            .frame(width: 350, height: 50)
-                            .background(.white, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-                            .font(.system(size: 13, weight: .bold, design: .rounded))
+                            .background(Color(.secondarySystemBackground))
                     }
                     .padding()
                     Button(action: {
