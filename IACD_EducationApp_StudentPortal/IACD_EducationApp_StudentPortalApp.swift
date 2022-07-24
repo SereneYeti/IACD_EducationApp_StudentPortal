@@ -17,36 +17,37 @@ import Firebase
 struct IACD_EducationApp_StudentPortalApp: App {
     
         // register app delegate for Firebase setup
-//    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    //@StateObject var fireStoreManager = StudentModel()
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     let persistenceController = PersistenceController.shared
-    @StateObject var fireStoreManager = StudentModel()
     
-    init(){
+    /*init(){
         FirebaseApp.configure()
-    }
+    }*/
     
     var body: some Scene {
         WindowGroup {
-//            let viewModel = AppViewModel()
+            let viewModel = AppViewModel()
+            StartView()
+               .environmentObject(viewModel)
 //
 //            MapView()
 //                .environmentObject(viewModel)
                 
-                //            StartView()
-                //                .environmentObject(viewModel)
-            ProfileView()
-                .environmentObject(fireStoreManager)
+                           
+            //ProfileView()
+              //  .environmentObject(fireStoreManager)
             
             
         }
     }
 }
 
-//class AppDelegate: NSObject, UIApplicationDelegate {
-//    func application(_ application: UIApplication,
-//                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-//        FirebaseApp.configure()
-//
-//        return true
-//    }
-//}
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        FirebaseApp.configure()
+
+        return true
+    }
+}

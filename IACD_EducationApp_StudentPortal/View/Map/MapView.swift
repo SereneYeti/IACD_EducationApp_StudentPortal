@@ -47,8 +47,7 @@ private struct MainView: View {
     @State var currentAmount:CGFloat = 0
     @State var lastAmount:CGFloat = 0
     
-    @State var currentOffset: CGSize = .zero
-    @State var lastOffset: CGSize = .zero
+    @State var currentOffset: CGSize = .zero    
     
     var body: some View {
         
@@ -57,14 +56,10 @@ private struct MainView: View {
             .aspectRatio(contentMode: .fill)
             .ignoresSafeArea()
             .offset(currentOffset)
-            //.offset(lastOffset)
             .gesture(
                 DragGesture()
                     .onChanged{ value in
                         currentOffset = value.translation
-                       // withAnimation(.spring()){
-                            
-                        //}
                     }
             )
             .scaleEffect(1 + currentAmount + lastAmount)
