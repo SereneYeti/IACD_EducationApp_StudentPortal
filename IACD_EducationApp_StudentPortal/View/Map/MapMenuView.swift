@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct MapMenuView: View {
+    @State var currentFloor:Int = 0
+    let maxFloor = 2
+    
     var body: some View {
         VStack(alignment: .leading) {
                     HStack {
@@ -37,6 +40,11 @@ struct MapMenuView: View {
                             .font(.headline)
                     }
                         .padding(.top, 30)
+            
+            Stepper("Floor: \(currentFloor)", value: $currentFloor, in: 0...maxFloor)
+                .font(.headline)
+                .foregroundColor(.gray)
+                .padding()
                         
                         Spacer()
                 }

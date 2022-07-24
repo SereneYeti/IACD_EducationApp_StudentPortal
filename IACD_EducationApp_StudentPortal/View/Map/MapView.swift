@@ -61,10 +61,11 @@ private struct MainView: View {
             .gesture(
                 DragGesture()
                     .onChanged{ value in
-                        withAnimation(.spring()){
-                            currentOffset = value.translation
-                        }
-                    }                    
+                        currentOffset = value.translation
+                       // withAnimation(.spring()){
+                            
+                        //}
+                    }
             )
             .scaleEffect(1 + currentAmount + lastAmount)
             .gesture(
