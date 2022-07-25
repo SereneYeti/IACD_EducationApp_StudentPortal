@@ -61,7 +61,7 @@ class StudentModel: ObservableObject {
                                                       Content: data["[Content]"] as? [String] ?? [],
                                                       ContentTitles: data["[ContentTitles]"] as? [String] ?? []))
                     
-                    print(self.graphicModules.count)
+                    //print(self.graphicModules.count)
                 }
             }
         }
