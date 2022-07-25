@@ -18,6 +18,7 @@ struct AccountView: View {
             
             Button(action:{
                 if viewModel.signedIn {
+                    viewModel.unbind()
                     viewModel.signOut()
                     
                 }

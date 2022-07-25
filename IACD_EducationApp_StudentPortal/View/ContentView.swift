@@ -46,7 +46,7 @@ struct ContentView: View {
                 Text("Map").bold()
             }.tag(tabs.Map)
             ChatroomListView().tabItem{
-                Image(systemName: "map.circle")
+                Image(systemName: "newspaper.circle.fill")
                 Text("Forums").bold()
             }.tag(tabs.Forums)
                 ProfileView().environmentObject(StudentModel()).tabItem{
