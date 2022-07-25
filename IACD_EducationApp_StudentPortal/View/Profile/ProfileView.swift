@@ -18,8 +18,7 @@ struct ProfileView: View {
             StudentProfileView()
                 .environmentObject(StudentModel())
             StudentCardView()
-            CalendarHome()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+  
             
         }
         .tabViewStyle(.page(indexDisplayMode: .always))
