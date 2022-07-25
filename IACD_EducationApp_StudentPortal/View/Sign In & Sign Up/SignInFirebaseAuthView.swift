@@ -57,6 +57,7 @@ struct SignInFirebaseAuthView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 150, height: 150)
+                        .foregroundColor(.white)
                     
                     VStack{
                         TextField("Email Address", text:  $email)

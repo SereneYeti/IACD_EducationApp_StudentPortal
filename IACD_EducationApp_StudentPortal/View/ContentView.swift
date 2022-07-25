@@ -10,6 +10,7 @@ public enum tabs : Hashable{
     case Home
     case Calendar
     case Map
+    case Forums
     case Modules
     case Clubs
     case Account
@@ -17,7 +18,13 @@ public enum tabs : Hashable{
     //NavigationLink("Go to Other Page", destination: //ContenvtViewB()).tabItem
 struct ContentView: View {
     @EnvironmentObject var viewModel: AppViewModel
-    @State var selectedItem:tabs = .Home   
+    @State var selectedItem:tabs = .Home    
+    
+    @ObservedObject var forumsViewModel =  AppViewModel()
+    
+    init() {
+        forumsViewModel.listen()
+    }
     
     var body: some View {
         
@@ -38,6 +45,10 @@ struct ContentView: View {
                 Image(systemName: "map.circle")
                 Text("Map").bold()
             }.tag(tabs.Map)
+            ChatroomListView().tabItem{
+                Image(systemName: "map.circle")
+                Text("Forums").bold()
+            }.tag(tabs.Forums)
             AccountView().tabItem{
                 Image(systemName: "person.crop.circle.fill")
                 Text("Account").bold()
@@ -52,6 +63,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().environmentObject(AppViewModel())
+        ChatroomListView()
 //        HomeView().environmentObject(AppViewModel())
 //        CalendarView()
 //            .environment(\.managedObjectContext, persistenceController.container.viewContext)
