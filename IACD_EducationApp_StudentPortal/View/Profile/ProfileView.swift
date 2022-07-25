@@ -17,8 +17,10 @@ struct ProfileView: View {
         TabView {
             StudentProfileView()
                 .environmentObject(StudentModel())
-//            StudentCardView()
-              
+            StudentCardView()
+            CalendarHome()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            
         }
         .tabViewStyle(.page(indexDisplayMode: .always))
         
@@ -36,7 +38,7 @@ struct ProfileView_Previews: PreviewProvider {
 }
 struct StudentProfileView: View{
     @EnvironmentObject var stu : StudentModel
-    @State var selectedSelection: SelectedSelection = .modules
+    @State var selectedSelection: SelectedSelection = .classes
     var testStu = testData[0]
     @Namespace var animation
     
@@ -47,7 +49,7 @@ struct StudentProfileView: View{
                     Image(systemName: "gearshape.fill")
                         .font(.system(size: 25))
                     Spacer()
-            
+                    
                 }
                 .padding([.trailing, .bottom , .leading])
                 .padding(.bottom)
@@ -67,12 +69,12 @@ struct StudentProfileView: View{
                     
                     VStack {
                         HStack() {
-                            Text("\(stu.student)")
+                            Text(testStu.firstName)
                                 .bold()
                             Text(testStu.lastName)
                         }
                         .font(.system(size: 25))
-                        Text("Digital Designer")
+                        Text("Game Design")
                             .font(.subheadline)
                     }
                     .padding(.bottom)
@@ -111,15 +113,31 @@ struct StudentProfileView: View{
                 
                 Spacer()
                 
-                    //MARK: Selected Views
-                    Text("Selectected text")
+                    //MARK: Selected Views using a switch for the enums
+                switch selectedSelection {
+                case .modules:
+                    ModulesListView()
+                case .classes:
+                    ClassesCardListView()
+                        .padding()
+                        .padding(.top)
+                case .dueDates:
+                    Text("No Events")
+                }
+                
             }
         }
     }
 }
 
-
-
+struct ModulesListView: View{
+    var body: some View{
+        ForEach(0 ..< 3) { item in
+            ModulesCardView(previewModule: testModule[0])
+                .padding()
+        }
+    }
+}
 
 
 struct ProfileSelections : Identifiable{
@@ -130,13 +148,13 @@ struct ProfileSelections : Identifiable{
 
 enum SelectedSelection{
     case modules
-    case about
+    case classes
     case dueDates
 }
 
 
 var profileOptions = [
     ProfileSelections(text: "Modules", selected: .modules),
-    ProfileSelections(text: "Classes", selected: .about),
+    ProfileSelections(text: "Classes", selected: .classes),
     ProfileSelections(text: "Events", selected: .dueDates)
 ]

@@ -40,6 +40,9 @@
 		6AC20F342889A4480037076C /* StudentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC20F332889A4480037076C /* StudentViewModel.swift */; };
 		6AC20F36288BE2000037076C /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC20F35288BE2000037076C /* SettingsItem.swift */; };
 		6AC20F3C288C07F70037076C /* StudentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC20F3B288C07F70037076C /* StudentCardView.swift */; };
+		6AEE181B288D780700B3AD1F /* DegreeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE181A288D780700B3AD1F /* DegreeModule.swift */; };
+		6AEE1820288DC41F00B3AD1F /* ModulesCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE181F288DC41F00B3AD1F /* ModulesCardView.swift */; };
+		6AEE1822288E862600B3AD1F /* ClassesCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE1821288E862600B3AD1F /* ClassesCardListView.swift */; };
 		96AFC7F33E77C61CFF0F0B1E /* Pods_IACD_EducationApp_StudentPortal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B149739D65B41B1A2140E1 /* Pods_IACD_EducationApp_StudentPortal.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +83,9 @@
 		6AC20F332889A4480037076C /* StudentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentViewModel.swift; sourceTree = "<group>"; };
 		6AC20F35288BE2000037076C /* SettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
 		6AC20F3B288C07F70037076C /* StudentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCardView.swift; sourceTree = "<group>"; };
+		6AEE181A288D780700B3AD1F /* DegreeModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DegreeModule.swift; sourceTree = "<group>"; };
+		6AEE181F288DC41F00B3AD1F /* ModulesCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesCardView.swift; sourceTree = "<group>"; };
+		6AEE1821288E862600B3AD1F /* ClassesCardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassesCardListView.swift; sourceTree = "<group>"; };
 		B830B4E1F01248BD0D3371A1 /* Pods-IACD_EducationApp_StudentPortal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IACD_EducationApp_StudentPortal.debug.xcconfig"; path = "Target Support Files/Pods-IACD_EducationApp_StudentPortal/Pods-IACD_EducationApp_StudentPortal.debug.xcconfig"; sourceTree = "<group>"; };
 		F9B149739D65B41B1A2140E1 /* Pods_IACD_EducationApp_StudentPortal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IACD_EducationApp_StudentPortal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -228,6 +234,7 @@
 		6AC20F2D28899EED0037076C /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				6AEE181C288DC3AA00B3AD1F /* Tab Bar Options */,
 				6AC20F2E2889A2370037076C /* ProfileView.swift */,
 				6AC20F3B288C07F70037076C /* StudentCardView.swift */,
 			);
@@ -239,8 +246,18 @@
 			children = (
 				6AC20F312889A3590037076C /* Student.swift */,
 				6AC20F35288BE2000037076C /* SettingsItem.swift */,
+				6AEE181A288D780700B3AD1F /* DegreeModule.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		6AEE181C288DC3AA00B3AD1F /* Tab Bar Options */ = {
+			isa = PBXGroup;
+			children = (
+				6AEE181F288DC41F00B3AD1F /* ModulesCardView.swift */,
+				6AEE1821288E862600B3AD1F /* ClassesCardListView.swift */,
+			);
+			path = "Tab Bar Options";
 			sourceTree = "<group>";
 		};
 		C62E5F69C3D14C49AB6E4D2D /* Frameworks */ = {
@@ -375,6 +392,7 @@
 				5AC2E0D428634054009A0CA2 /* HomeView.swift in Sources */,
 				5A8D78802875E2CB00CFA3F5 /* SignInFirebaseAuthView.swift in Sources */,
 				6A2F98202881A6B6001844CC /* extensions.swift in Sources */,
+				6AEE1822288E862600B3AD1F /* ClassesCardListView.swift in Sources */,
 				5A71A9E12886D094006CC56B /* AccountView.swift in Sources */,
 				5A8D7882287C2B0F00CFA3F5 /* AppViewModel.swift in Sources */,
 				5A8D7888287F0A4A00CFA3F5 /* SignUpFirebaseAuthView.swift in Sources */,
@@ -397,9 +415,11 @@
 				18F1EEF12886EA5D00D3384D /* onboarding.swift in Sources */,
 				5AC2E0C6286338BB009A0CA2 /* IACD_EducationApp_StudentPortalApp.swift in Sources */,
 				6A2F982E2881A71E001844CC /* DynamicFilteredView.swift in Sources */,
+				6AEE181B288D780700B3AD1F /* DegreeModule.swift in Sources */,
 				6A2F98242881A6DB001844CC /* TaskViewModel.swift in Sources */,
 				5A8D791028804F2700CFA3F5 /* CurrentModulesView.swift in Sources */,
 				6A2F982B2881A71E001844CC /* CalendarHome.swift in Sources */,
+				6AEE1820288DC41F00B3AD1F /* ModulesCardView.swift in Sources */,
 				5A8D7884287F072A00CFA3F5 /* SignInSignUpChoiceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
