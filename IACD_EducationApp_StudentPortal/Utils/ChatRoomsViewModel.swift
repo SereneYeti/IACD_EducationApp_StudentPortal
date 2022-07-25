@@ -21,6 +21,7 @@ class ChatroomsViewModel: ObservableObject{
     @Published var chatrooms = [Chatroom]()
     private let db = Firestore.firestore()
     private let user = Auth.auth().currentUser
+    private var chatroomJoinCodes:[Int] = []
     
     func fetchData(){
         if(user != nil){
@@ -28,7 +29,7 @@ class ChatroomsViewModel: ObservableObject{
                 guard let documents = snapshot?.documents else {
                     print("No docs returned!")
                     return
-                }
+                }                
                 
                 self.chatrooms = documents.map({docSnapshot -> Chatroom in
                     let data = docSnapshot.data()
@@ -43,9 +44,29 @@ class ChatroomsViewModel: ObservableObject{
         }
     }
     
+    func CheckJoinCodes(){
+        if user != nil {
+            db.collection("chatrooms").whereField("joinCode", isGreaterThanOrEqualTo: 0).getDocuments { [self] (querySnapshot, error) in
+                guard let documents = querySnapshot?.documents else {
+                    print("No docs returned!")
+                    return
+                }
+                
+                self.chatroomJoinCodes = documents.map({ docSnapshot -> Int in
+                    let data = docSnapshot.data()
+                    return data["joinCode"] as? Int ?? -1
+                })
+                
+                print("Chatroom join Codes: \(self.chatroomJoinCodes)")
+                
+            }
+        }
+    }
+    
     func createChatroom(title: String, handler: @escaping () -> Void) {
             if (user != nil) {
-                RandomNumberGenerator.GenerateRanodmNumber(numberOfDigits: 6, arrayToCheck: [])
+                CheckJoinCodes()
+                RandomNumberGenerator.GenerateRanodmNumber(numberOfDigits: 5, arrayToCheck: self.chatroomJoinCodes)
                 db.collection("chatrooms").addDocument(data: [
                                                         "title": title,
                                                         "joinCode": RandomNumberGenerator.randomNumberGenerated,
