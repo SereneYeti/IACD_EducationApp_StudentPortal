@@ -49,7 +49,7 @@ struct ContentView: View {
                 Image(systemName: "map.circle")
                 Text("Forums").bold()
             }.tag(tabs.Forums)
-            AccountView().tabItem{
+                ProfileView().environmentObject(StudentModel()).tabItem{
                 Image(systemName: "person.crop.circle.fill")
                 Text("Account").bold()
             }.tag(tabs.Account)
