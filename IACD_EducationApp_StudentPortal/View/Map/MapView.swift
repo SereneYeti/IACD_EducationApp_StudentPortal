@@ -26,6 +26,7 @@ struct MapView: View {
                 }
             }
             //.navigationBarTitle("Side Menu", displayMode: .inline)
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: (
                 Button(action: {
                     withAnimation {
@@ -35,9 +36,8 @@ struct MapView: View {
                     Image(systemName: "line.horizontal.3")
                         .imageScale(.large)
                 }
-            ))
+            ))            
         }
-        
     }
 }
 

@@ -30,6 +30,7 @@ class ChatroomsViewModel: ObservableObject{
                     return
                 }
                 
+                print("Documents: \(documents)")
                 self.chatrooms = documents.map({docSnapshot -> Chatroom in
                     let data = docSnapshot.data()
                     let docId = docSnapshot.documentID
@@ -45,7 +46,7 @@ class ChatroomsViewModel: ObservableObject{
     
     func createChatroom(title: String, handler: @escaping () -> Void) {
             if (user != nil) {
-                RandomNumberGenerator.GenerateRanodmNumber(numberOfDigits: 6, arrayToCheck: [])
+                RandomNumberGenerator.GenerateRanodmNumber(numberOfDigits: 5, arrayToCheck: [])
                 db.collection("chatrooms").addDocument(data: [
                                                         "title": title,
                                                         "joinCode": RandomNumberGenerator.randomNumberGenerated,

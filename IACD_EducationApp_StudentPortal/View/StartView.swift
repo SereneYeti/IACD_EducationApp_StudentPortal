@@ -21,7 +21,7 @@ struct StartView: View {
             }
         }.onAppear{
             viewModel.signedIn = viewModel.isSignedIn
-            print("viewModel: \(viewModel.signedIn)")
+            //print("viewModel: \(viewModel.signedIn)")
         }
     }
 }
