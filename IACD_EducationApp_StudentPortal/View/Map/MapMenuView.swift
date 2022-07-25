@@ -14,7 +14,7 @@ struct MapMenuView: View {
     let floor1:[String] = ["Braun", "Disruption", "Ijuse", "Library", "Memphis", "No 670", "Purple Cow", "Rhythm 10", "Rolling Stone", "Sound Stone", "Star Wars", "Space X", "Strangeland", "Tiny Studio"] //NOTE - TODO: DIGITAL STUDIOS LIST?
     let floor2:[String] = ["Bibi Aisha", "Fifteen Minutes", "Ideal City", "Hyperloop", "Obey Giant", "Pulp Fiction", "Vertigo", "Wellness Navigator"]
     
-    @State var currentFloor:Int = 0
+    @Binding var currentFloor:Int
     let maxFloor = 2
     
     var body: some View {
@@ -88,8 +88,10 @@ struct MapMenuView: View {
     }
 }
 
+/*
 struct MapMenuView_Previews: PreviewProvider {
     static var previews: some View {
         MapMenuView()
     }
 }
+ */
