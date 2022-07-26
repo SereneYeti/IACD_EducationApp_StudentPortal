@@ -9,5 +9,6 @@ target 'IACD_EducationApp_StudentPortal' do
 pod 'Firebase/Core'
 pod 'FirebaseUI/Auth'
 pod 'FirebaseFirestore'
+pod 'FirebaseFirestoreSwift'
 
 end

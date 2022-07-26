@@ -50,6 +50,7 @@ private struct MainView: View {
     @State var lastAmount:CGFloat = 0
     
     @State var currentOffset: CGSize = .zero
+    @State var LastOffset: CGSize = .zero
     
     var body: some View {
         
@@ -63,8 +64,13 @@ private struct MainView: View {
                 .gesture(
                     DragGesture()
                         .onChanged{ value in
-                            currentOffset = value.translation
+                            currentOffset.width = LastOffset.width + value.translation.width
+                            currentOffset.height = LastOffset.height + value.translation.height
+                            //currentOffset = value.translation
                         }
+                        .onEnded({ value in
+                            LastOffset = currentOffset
+                        })
                 )
                 .scaleEffect(1 + currentAmount + lastAmount)
                 .gesture(
