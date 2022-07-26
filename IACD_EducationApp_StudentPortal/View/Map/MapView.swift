@@ -11,32 +11,41 @@ import MapKit
 struct MapView: View {
     @State var showMenu = false
     @State private var currentFloor: Int = 0
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body: some View {
-        NavigationView {
-            GeometryReader { geometry in
-                ZStack(alignment: .leading){
-                    MainView(showMenu: self.$showMenu, currentFloor: self.$currentFloor)
-                        .frame(width: geometry.size.width, height: geometry.size.height)
-                    if self.showMenu{
-                        MapMenuView(currentFloor: self.$currentFloor)
-                            .frame(width: geometry.size.width/2)
-                            .transition(.move(edge: .leading))
-                    }
+        //NavigationView {
+        GeometryReader { geometry in
+            ZStack(alignment: .leading){
+                MainView(showMenu: self.$showMenu, currentFloor: self.$currentFloor)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                if self.showMenu{
+                    MapMenuView(currentFloor: self.$currentFloor)
+                        .frame(width: geometry.size.width/2)
+                        .transition(.move(edge: .leading))
                 }
             }
+            //}
             //.navigationBarTitle("Side Menu", displayMode: .inline)
+            .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: (
-                Button(action: {
-                    withAnimation {
-                        self.showMenu.toggle()
+                VStack{
+                    Button(action : {
+                        self.mode.wrappedValue.dismiss()
+                    }){
+                        Image(systemName: "arrow.left.circle.fill")
                     }
-                }) {
-                    Image(systemName: "line.horizontal.3")
-                        .imageScale(.large)
-                }
-            ))            
+                    Button(action: {
+                        withAnimation {
+                            self.showMenu.toggle()
+                        }
+                    }) {
+                        Image(systemName: "line.horizontal.3.circle.fill")
+                            .imageScale(.large)
+                    }
+                }//
+            ))
         }
     }
 }
@@ -160,9 +169,9 @@ private struct MainView: View {
 }
 
 /*
-struct MapView_Previews: PreviewProvider {
-    static var previews: some View {
-        MapView()
-    }
-}
+ struct MapView_Previews: PreviewProvider {
+ static var previews: some View {
+ MapView()
+ }
+ }
  */

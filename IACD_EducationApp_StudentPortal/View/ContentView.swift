@@ -34,7 +34,7 @@ struct ContentView: View {
                 Image(systemName: "house.fill")
                 Text("Home").bold()
             }.tag(tabs.Home)
-            CalendarHome()
+            /*CalendarHome()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .tabItem
             {
@@ -44,12 +44,12 @@ struct ContentView: View {
             MapView().tabItem{
                 Image(systemName: "map.circle")
                 Text("Map").bold()
-            }.tag(tabs.Map)
+            }.tag(tabs.Map)*/
             ChatroomListView().tabItem{
                 Image(systemName: "newspaper.circle.fill")
-                Text("Forums").bold()
+                Text("Social").bold()
             }.tag(tabs.Forums)
-                ProfileView().environmentObject(StudentModel()).tabItem{
+            ProfileView().environmentObject(StudentModel()).tabItem{
                 Image(systemName: "person.crop.circle.fill")
                 Text("Account").bold()
             }.tag(tabs.Account)
