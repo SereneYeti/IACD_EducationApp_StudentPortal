@@ -17,8 +17,8 @@ struct ClubCardsView: View {
         //
         //viewModel.joinClub(clubID: "Mountain Biking")
         
-        viewModel.fetchUserClubs()
-        
+        //viewModel.fetchUserClubs()
+                
     }
     
     var body: some View {
@@ -29,6 +29,12 @@ struct ClubCardsView: View {
                 Text("Club")
                 //}
             }
+        }
+        .task { await
+            
+            viewModel.fetchUserClubs()
+            
+            
         }
     }
 }

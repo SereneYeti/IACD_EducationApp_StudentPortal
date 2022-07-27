@@ -53,7 +53,7 @@ class ClubsViewModel: ObservableObject{
     private let user = Auth.auth().currentUser
     private var errorMessage:String = ""
     
-    public let joinClub = Clubs(Coordinator: "", ClubDescription: "Join a club to meet new people and learn neew things.", Helpful_Information: [], Meetups: [], RequiredEquipment: [], forumID: -1, members: [])
+    public let joinClub = Clubs(Coordinator: "JoinClub", ClubDescription: "Join a club to meet new people and learn neew things.", Helpful_Information: [], Meetups: [], RequiredEquipment: [], forumID: -1, members: [])
     
     func fetchDataForClub(clubID:String) -> Clubs{
         var ans:Clubs?
@@ -91,44 +91,7 @@ class ClubsViewModel: ObservableObject{
         return ans ?? joinClub
     }
     
-    func fetchDataForUserClubs(clubID:String){
-        if(user != nil){
-            let docRef = db.collection("Clubs").document(clubID)
-            
-            docRef.getDocument { document, error in
-                if let error = error as NSError? {
-                    self.errorMessage = "Error getting document: \(error.localizedDescription)"
-                }
-                else {
-                    if let document = document {
-                        do {
-                            let club = try document.data(as: Clubs.self)
-                            if(club.members.contains(self.user!.uid)){
-                                self.clubs.append(club)
-                            }
-                            print("Clubs: \(self.clubs[0].Helpful_Information[0])")
-                        }
-                        catch {
-                            switch error {
-                            case DecodingError.typeMismatch(_, let context):
-                                self.errorMessage = "\(error.localizedDescription): \(context.debugDescription)"
-                            case DecodingError.valueNotFound(_, let context):
-                                self.errorMessage = "\(error.localizedDescription): \(context.debugDescription)"
-                            case DecodingError.keyNotFound(_, let context):
-                                self.errorMessage = "\(error.localizedDescription): \(context.debugDescription)"
-                            case DecodingError.dataCorrupted(let key):
-                                self.errorMessage = "\(error.localizedDescription): \(key)"
-                            default:
-                                self.errorMessage = "Error decoding document: \(error.localizedDescription)"
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    func fetchUserClubs(){
+    func fetchUserClubs() {
         if(user != nil){
             db.collection("Clubs").whereField("members", arrayContains: user!.uid).addSnapshotListener({ [self](snapshot,error) in
                 guard let documents = snapshot?.documents else {
@@ -137,10 +100,37 @@ class ClubsViewModel: ObservableObject{
                 }
                 
                 self.clubs = documents.map({docSnapshot -> Clubs in
+                    let data = docSnapshot.data()
+                    let docId = docSnapshot.documentID
+                    let Coordinator = data["Coordinator"] as? String ?? ""
+                    let Description = data["Description"] as? String ?? ""
+                    let helpful_Information = getHelpfulInformation(docID: docId)
+                    let Meetups = data["Meetups"] as? [Timestamp] ?? []
+                    let RequiredEquipment = data["RequiredEquipment"] as? [String] ?? []
+                    let forumID = data["forumID"] as? Int ?? -1
+                    let members = data["members"] as? [String] ?? []
+                    return Clubs(id: docId,Coordinator: Coordinator, ClubDescription: Description, Helpful_Information: helpful_Information, Meetups: Meetups, RequiredEquipment: RequiredEquipment, forumID: forumID, members: members)
+                })
+                print("Club Coordinator 0: \(clubs[0].Helpful_Information.count)")
+                print("Club Coordinator 1: \(clubs[1].Helpful_Information.count)")
+                print("Club Equirpment 0: \(clubs[0].RequiredEquipment[0])")
+                print("Club Equirpment 1: \(clubs[1].RequiredEquipment[1])")
+            })            
+        }
+    }
+    func getHelpfulInformation(docID:String) -> [Helpful_Information]{
+        let docRef = db.collection("Clubs").document(docID)
+        var hi:[Helpful_Information] = []
+        var ans:Helpful_Information = Helpful_Information(name: "", link: "", infoDescription: "")
+         docRef.getDocument { document, error in
+            if let error = error as NSError? {
+                self.errorMessage = "Error getting document: \(error.localizedDescription)"
+            }
+            else {
+                if let document = document {
                     do {
-                        let clubTest = try docSnapshot.data(as: Clubs.self)
-                        print("Club Test: \(clubTest.Coordinator)")
-                        return clubTest
+                        ans = try document.data(as: Helpful_Information.self)
+                        hi.append(try document.data(as: Helpful_Information.self))
                     }
                     catch {
                         switch error {
@@ -155,14 +145,11 @@ class ClubsViewModel: ObservableObject{
                         default:
                             self.errorMessage = "Error decoding document: \(error.localizedDescription)"
                         }
-                        return joinClub
                     }
-                    
-                })
-                print("Club Count: \(clubs.count)")
-                print("Club Coordinadtor: \(clubs[1].Coordinator)")
-            })
-            
+                }
+                
+            }
+             
         }
     }
     

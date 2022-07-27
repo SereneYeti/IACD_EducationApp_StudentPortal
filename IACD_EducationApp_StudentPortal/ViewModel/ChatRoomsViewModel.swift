@@ -39,7 +39,6 @@ class ChatroomsViewModel: ObservableObject{
                     return Chatroom(id: docId, title: title, joinCode: joinCode)
                 })
             })
-            
         }
     }
     
