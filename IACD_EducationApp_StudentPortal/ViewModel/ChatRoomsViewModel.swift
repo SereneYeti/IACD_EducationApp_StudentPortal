@@ -40,7 +40,6 @@ class ChatroomsViewModel: ObservableObject{
                 })
             })
             
-            
         }
     }
     

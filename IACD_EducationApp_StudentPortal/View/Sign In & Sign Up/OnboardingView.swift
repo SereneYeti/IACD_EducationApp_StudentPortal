@@ -19,7 +19,7 @@ private let onBoardingSteps = [
     OnBoardingStep(image: "onboarding 3", title: "Always facinated learning", description: "Anywhere and anytime")
 ]
 
-struct onboarding: View {
+struct OnboardingView: View {
     @EnvironmentObject var viewModel: AppViewModel
     @Environment(\.presentationMode) var presentationMode
     @State private var currentStep = 0
@@ -98,6 +98,6 @@ struct onboarding: View {
 
 struct onboarding_Previews: PreviewProvider {
     static var previews: some View {
-        onboarding().environmentObject(AppViewModel())
+        OnboardingView().environmentObject(AppViewModel())
     }
 }

@@ -18,8 +18,8 @@ import SwiftUI
 struct ClubView: View {
     @ObservedObject var viewModel =  ClubsViewModel()
     
-    init() {
-        viewModel.fetchData(clubID: "Rock Climbing")
+    init(clubID:String) {
+        //viewModel.fetchData(clubID: clubID)
     }
     
     var body: some View {
@@ -29,6 +29,6 @@ struct ClubView: View {
 
 struct ClubView_Previews: PreviewProvider {
     static var previews: some View {
-        ClubView()
+        ClubView(clubID: "Rock Climbing")
     }
 }

@@ -67,7 +67,7 @@ struct HomeView: View {
             }
             .navigationBarHidden(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
             .ignoresSafeArea(edges: .top)
-            .sheet(isPresented: $showWelcomeScreen, content: {onboarding() })
+            .sheet(isPresented: $showWelcomeScreen, content: {OnboardingView() })
             .sheet(isPresented: $showMap, content: {MapView() })
             .sheet(isPresented: $showCalendarView, content: { CalendarView() })
         }.onAppear{
