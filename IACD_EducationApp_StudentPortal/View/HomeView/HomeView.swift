@@ -44,7 +44,7 @@ struct HomeView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: screen.width, height: 200)
-                            .padding()
+                            //.padding()
                         
                     }
                     .background(.indigo)

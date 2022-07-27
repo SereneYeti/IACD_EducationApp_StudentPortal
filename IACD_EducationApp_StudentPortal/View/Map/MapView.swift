@@ -15,14 +15,16 @@ struct MapView: View {
     
     var body: some View {
         //NavigationView {
-        GeometryReader { geometry in
+       // GeometryReader { geometry in
             ZStack(alignment: .leading){
                 MainView(showMenu: self.$showMenu, currentFloor: self.$currentFloor)
-                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .frame(width: screen.width, height: screen.size.height)
                 if self.showMenu{
                     MapMenuView(currentFloor: self.$currentFloor)
-                        .frame(width: geometry.size.width/2)
+                        .frame(width: screen.size.width/2)
                         .transition(.move(edge: .leading))
+                
+                
                 }
             }
             //}
@@ -48,7 +50,7 @@ struct MapView: View {
             ))
         }
     }
-}
+
 
 private struct MainView: View {
     @Binding var showMenu: Bool
@@ -65,9 +67,9 @@ private struct MainView: View {
         
         switch(currentFloor){
         case 0:
-            Image("mapExample1")
+            Image("map1")
                 .resizable()
-                .aspectRatio(contentMode: .fill)
+                .aspectRatio(contentMode: .fit)
                 .ignoresSafeArea()
                 .offset(currentOffset)
                 .gesture(
@@ -93,16 +95,21 @@ private struct MainView: View {
                         }
                 )
         case 1:
-            Image("mapExample2")
+            Image("map2")
                 .resizable()
-                .aspectRatio(contentMode: .fill)
+                .aspectRatio(contentMode: .fit)
                 .ignoresSafeArea()
                 .offset(currentOffset)
                 .gesture(
                     DragGesture()
                         .onChanged{ value in
-                            currentOffset = value.translation
+                            currentOffset.width = LastOffset.width + value.translation.width
+                            currentOffset.height = LastOffset.height + value.translation.height
+                            //currentOffset = value.translation
                         }
+                        .onEnded({ value in
+                            LastOffset = currentOffset
+                        })
                 )
                 .scaleEffect(1 + currentAmount + lastAmount)
                 .gesture(
@@ -116,16 +123,21 @@ private struct MainView: View {
                         }
                 )
         case 2:
-            Image("mapExample3")
+            Image("map3")
                 .resizable()
-                .aspectRatio(contentMode: .fill)
+                .aspectRatio(contentMode: .fit)
                 .ignoresSafeArea()
                 .offset(currentOffset)
                 .gesture(
                     DragGesture()
                         .onChanged{ value in
-                            currentOffset = value.translation
+                            currentOffset.width = LastOffset.width + value.translation.width
+                            currentOffset.height = LastOffset.height + value.translation.height
+                            //currentOffset = value.translation
                         }
+                        .onEnded({ value in
+                            LastOffset = currentOffset
+                        })
                 )
                 .scaleEffect(1 + currentAmount + lastAmount)
                 .gesture(
@@ -139,16 +151,21 @@ private struct MainView: View {
                         }
                 )
         default:
-            Image("mapExample1")
+            Image("map1")
                 .resizable()
-                .aspectRatio(contentMode: .fill)
+                .aspectRatio(contentMode: .fit)
                 .ignoresSafeArea()
                 .offset(currentOffset)
                 .gesture(
                     DragGesture()
                         .onChanged{ value in
-                            currentOffset = value.translation
+                            currentOffset.width = LastOffset.width + value.translation.width
+                            currentOffset.height = LastOffset.height + value.translation.height
+                            //currentOffset = value.translation
                         }
+                        .onEnded({ value in
+                            LastOffset = currentOffset
+                        })
                 )
                 .scaleEffect(1 + currentAmount + lastAmount)
                 .gesture(
