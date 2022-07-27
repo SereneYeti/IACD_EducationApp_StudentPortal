@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ClassesCardListView: View {
-    @State var previewModule : Module = testModule[0]
+    @State var previewModule : Module = .sample
     var body: some View {
         
         VStack(spacing: 30){
-            ClassCardView(previewModule: $previewModule)
+            ClassCardView(previewModule: previewModule)
                 .frame(width: screen.width - 50, height: screen.width - 250)
                 .background(.background)
                 .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
@@ -30,13 +30,13 @@ struct ClassesCardView_Previews: PreviewProvider {
 }
 
 struct ClassCardView: View{
-    @Binding var previewModule : Module
+    @State var previewModule : Module = .sample
     var body: some View{
-        ForEach(previewModule.ContentTitles ?? [], id: \.self){ conTitle in
+        ForEach(previewModule.content ?? [], id: \.self){ conTitle in
             VStack {
                 HStack {
                     VStack{
-                        Text(conTitle)
+                        Text(conTitle.contentTitle ?? "")
                             .font(.system(size: 16, weight: .bold))
                             .multilineTextAlignment(.leading)
                             .lineLimit(3)

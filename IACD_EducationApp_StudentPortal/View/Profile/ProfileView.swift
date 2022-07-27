@@ -12,17 +12,16 @@ import Firebase
 
 struct ProfileView: View {
     @EnvironmentObject var studentManager : StudentModel
-    
+    @EnvironmentObject var moduleViewModel : ModuleViewModule
     var body: some View {
         TabView {
             StudentProfileView()
-                .environmentObject(StudentModel())
+                .environmentObject(ModuleViewModule())
             StudentCardView()
-  
-            
         }
         .tabViewStyle(.page(indexDisplayMode: .always))
-        
+   
+
     }
 }
 
@@ -32,12 +31,12 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
-            .environmentObject(StudentModel())
+            .environmentObject(ModuleViewModule())
     }
 }
 struct StudentProfileView: View{
-    @EnvironmentObject var stu : StudentModel
-    @State var selectedSelection: SelectedSelection = .classes
+    @EnvironmentObject var moduleViewModel : ModuleViewModule
+    @State var selectedSelection: SelectedSelection = .modules
     var testStu = testData[0]
     @Namespace var animation
     
@@ -59,13 +58,6 @@ struct StudentProfileView: View{
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 140, height: 140)
                         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                    
-                        //                .overlay {
-                        //                    Image(systemName: "2.circle.fill")
-                        //                        .font(.system(size: 25))
-                        //                        .foregroundColor(.primary)
-                        //                }
-                    
                     VStack {
                         HStack() {
                             Text(testStu.firstName)
@@ -117,22 +109,22 @@ struct StudentProfileView: View{
                 case .modules:
                     ModulesListView()
                 case .classes:
-                    ClassesCardListView()
-                        .padding()
-                        .padding(.top)
+                    ClassCardView(previewModule: moduleViewModel.module)
                 case .dueDates:
                     Text("No Events")
                 }
                 
             }
         }
+        
     }
 }
 
 struct ModulesListView: View{
+    @EnvironmentObject var moduleViewModel : ModuleViewModule
     var body: some View{
-        ForEach(0 ..< 3) { item in
-            ModulesCardView(previewModule: testModule[0])
+        ForEach(moduleViewModel.modules) { item in
+            ModulesCardView(previewModule: item)
                 .padding()
         }
     }

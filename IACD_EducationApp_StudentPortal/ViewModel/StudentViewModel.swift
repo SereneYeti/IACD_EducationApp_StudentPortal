@@ -16,7 +16,6 @@ class StudentModel: ObservableObject {
     
     init(){
         fetchData()
-        fetchGraphicDesignData()
     }
     
         //MARK: Fetch data items
@@ -39,29 +38,6 @@ class StudentModel: ObservableObject {
                                                  studentID: studentID,
                                                  firstName: studentFirstName,
                                                  lastName: studentLastName))
-                }
-            }
-        }
-    }
-    
-    
-    func fetchGraphicDesignData(){
-        db.collection("GraphicDesign").getDocuments { modDocs, error in
-            if let error = error{
-                print("Error getting documents: \(error)")
-            }else{
-                for document in modDocs!.documents{
-                    let data = document.data()
-                    
-                    self.graphicModules.append(Module(name: data["name"] as? String ?? "",
-                                                      lecturer: data["lecturer"] as? String ?? "",
-                                                      color: data["color"] as? String ?? "",
-                                                      image: data["image"] as? String ?? "",
-                                                      description: data["description"] as? String ?? "",
-                                                      Content: data["[Content]"] as? [String] ?? [],
-                                                      ContentTitles: data["[ContentTitles]"] as? [String] ?? []))
-                    
-                    //print(self.graphicModules.count)
                 }
             }
         }
