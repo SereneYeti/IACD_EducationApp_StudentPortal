@@ -15,7 +15,7 @@ struct ProfileView: View {
     @EnvironmentObject var moduleViewModel : ModuleViewModule
     var body: some View {
         TabView {
-            StudentProfileView()
+            StudentProfileView(moduleViewModel: moduleViewModel)
                 .environmentObject(ModuleViewModule())
             StudentCardView()
         }
@@ -35,8 +35,8 @@ struct ProfileView_Previews: PreviewProvider {
     }
 }
 struct StudentProfileView: View{
-    @EnvironmentObject var moduleViewModel : ModuleViewModule
-    @State var selectedSelection: SelectedSelection = .modules
+    @ObservedObject var moduleViewModel : ModuleViewModule
+    @State var selectedSelection: SelectedSelection = .tasks
     var testStu = testData[0]
     @Namespace var animation
     
@@ -74,7 +74,6 @@ struct StudentProfileView: View{
                 
                     //MARK: Selectable profile options
                 HStack {
-                    
                     ForEach(profileOptions){ option in
                         Rectangle()
                             .frame(width: 1, height: 1)
@@ -108,15 +107,14 @@ struct StudentProfileView: View{
                 switch selectedSelection {
                 case .modules:
                     ModulesListView()
-                case .classes:
-                    ClassCardView(previewModule: moduleViewModel.module)
+                case .tasks:
+                    ModuleTasksListView()
                 case .dueDates:
                     Text("No Events")
                 }
                 
             }
         }
-        
     }
 }
 
@@ -130,6 +128,42 @@ struct ModulesListView: View{
     }
 }
 
+//MARK: Tasks
+struct ModuleTasksListView: View{
+    @EnvironmentObject var moduleViewModel : ModuleViewModule
+    var body: some View{
+        ForEach(moduleViewModel.modules){ item in
+            ForEach(item.tasks!, id:\.self) { tasks in
+                VStack(spacing: 10) {
+                    HStack {
+                        VStack {
+                            Text(tasks.taskTitle ?? "")
+                                .font(.system(size: 16, weight: .bold))
+                                .multilineTextAlignment(.leading)
+                                .lineLimit(3)
+                        }
+                        Spacer()
+                    }
+                    .padding()
+                    HStack{
+                        Spacer()
+                        Text("Module")
+                        Text(item.name ?? "")
+                            .bold()
+
+                    }
+                    .padding()
+                }
+                .frame(width: screen.width - 50, height: screen.width - 280)
+                .background(.background)
+                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                .shadow(color: Color(hex: item.color ??  "000000"), radius: 1, x: 2, y: 2)
+                .shadow(color: Color(hex: item.color ??  "000000").opacity(0.8), radius: 10, x: 2, y: 2)
+            }
+        }
+        .padding(15)
+    }
+}
 
 struct ProfileSelections : Identifiable{
     var id = UUID()
@@ -139,13 +173,13 @@ struct ProfileSelections : Identifiable{
 
 enum SelectedSelection{
     case modules
-    case classes
+    case tasks
     case dueDates
 }
 
 
 var profileOptions = [
     ProfileSelections(text: "Modules", selected: .modules),
-    ProfileSelections(text: "Classes", selected: .classes),
+    ProfileSelections(text: "Tasks", selected: .tasks),
     ProfileSelections(text: "Events", selected: .dueDates)
 ]

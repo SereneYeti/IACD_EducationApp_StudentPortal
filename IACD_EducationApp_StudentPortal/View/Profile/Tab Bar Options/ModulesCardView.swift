@@ -15,7 +15,7 @@ struct ModulesCardView: View {
                 .frame(width: screen.width - 40, height: screen.width - 220)
                 .background(Color(hex: previewModule.color ??  "000000"))
                 .overlay {
-//                url: URL(string: previewModule.image ?? "")
+
                     AsyncImage(url: URL(string: previewModule.image ?? "")) { image in
                         image.image?
                             .resizable()

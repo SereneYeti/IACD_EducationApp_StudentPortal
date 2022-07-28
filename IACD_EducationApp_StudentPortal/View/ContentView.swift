@@ -34,22 +34,13 @@ struct ContentView: View {
                 Image(systemName: "house.fill")
                 Text("Home").bold()
             }.tag(tabs.Home)
-            /*CalendarHome()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .tabItem
-            {
-                Image(systemName: "calendar.circle.fill")
-                Text("Calendar").bold()
-            }.tag(tabs.Calendar)
-            MapView().tabItem{
-                Image(systemName: "map.circle")
-                Text("Map").bold()
-            }.tag(tabs.Map)*/
             SocialView().tabItem{
                 Image(systemName: "newspaper.circle.fill")
                 Text("Social").bold()
             }.tag(tabs.Forums)
-            ProfileView().environmentObject(StudentModel()).tabItem{
+            ProfileView()
+                .environmentObject(ModuleViewModule())
+                .tabItem{
                 Image(systemName: "person.crop.circle.fill")
                 Text("Account").bold()
             }.tag(tabs.Account)
@@ -64,9 +55,6 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().environmentObject(AppViewModel())
         ChatroomListView()
-//        HomeView().environmentObject(AppViewModel())
-//        CalendarView()
-//            .environment(\.managedObjectContext, persistenceController.container.viewContext)
     }
 }
 

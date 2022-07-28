@@ -37,7 +37,10 @@ class ModuleViewModule: ObservableObject{
             }
 //            print(self.modules.count)
 //            for mods in self.modules{
-//                print(mods.lecturer ?? "")
+//                for cons in mods.content!{
+//                    print(cons.contentTitle ?? "")
+//                    print(cons.contentBody ?? "")
+//                }
 //            }
         }
     }
