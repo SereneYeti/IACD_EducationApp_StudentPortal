@@ -76,9 +76,7 @@ class ClubsViewModel: ObservableObject{
                             ans = try document.data(as: Clubs.self)                            
                             self.allClubs.append(ans!)
                             if(ans!.members!.contains(self.user!.uid)){
-                                self.userClubs.append(ans!)
-                                print(self.userClubs.count)
-                                print("user club!")
+                                self.userClubs.append(ans!)                                
                             }
                         }
                         catch {

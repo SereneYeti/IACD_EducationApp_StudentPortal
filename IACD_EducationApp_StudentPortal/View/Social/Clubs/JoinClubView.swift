@@ -8,8 +8,54 @@
 import SwiftUI
 
 struct JoinClubView: View {
+    @ObservedObject var viewModel =  ClubsViewModel()
+    var clubSet:[Clubs] = []
+    
+    init(){
+        viewModel.GetAllClubs()
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            ForEach(0 ..< viewModel.allClubs.count){ index in
+                if((index+1)<viewModel.allClubs.count){
+                    ListCellView(leftClub: viewModel.allClubs[index], rightClub: viewModel.allClubs[index+1])
+                }
+                else
+                {
+                    ListCellView(leftClub: viewModel.allClubs[index], rightClub: nil)
+                }
+                
+            }
+        }
+        .frame(width: screen.width, height: screen.height,alignment: .center)
+        .background(Color(red: 32/255, green: 32/255, blue: 32/255))
+        .edgesIgnoringSafeArea(.all)
+        .navigationTitle("Clubs Available to Join")
+    }
+}
+
+struct ListCellView:View{
+    @State var leftClub:Clubs
+    @State var rightClub:Clubs?
+    
+    var body: some View{
+        HStack{
+            Text(leftClub.id!)
+                .frame(width: screen.width * 0.5, height: screen.height*0.15, alignment: .center)
+                .background(.green)
+            if(rightClub != nil){
+                Text(rightClub!.id!)
+                    .frame(width: screen.width * 0.5, height: screen.height*0.15, alignment: .center)
+                    .background(.indigo)
+            }
+            else
+            {
+                Text("")
+                    .frame(width: screen.width * 0.5, height: screen.height*0.15, alignment: .center)
+                    .background(.indigo)
+            }
+        }
     }
 }
 
