@@ -10,32 +10,30 @@ import SwiftUI
 struct ClubCardsView: View {
     @State var clubID:String?
     @State var clubDescription:String?
-    //@Binding var clubs:[Clubs]
     @ObservedObject var viewModel =  ClubsViewModel()
     
     init() {
-        //
-        //viewModel.joinClub(clubID: "Mountain Biking")
-        
-        //viewModel.fetchUserClubs()
-                
+        viewModel.GetAllClubs()
     }
     
     var body: some View {
-        ScrollView(.horizontal) {
+        
+        ScrollView {
             HStack{
-                //ForEach(0 ..< viewModel.clubs.count) { index in
-                    //ClubCardView()
-                Text("Club")
-                //}
+               
+                ForEach(viewModel.allClubs) { club in
+                    ClubCardView(club: club)
+                    Text(club.Coordinator!)
+                        .background(.red)
+                    
+                }
+            }
+            .onAppear{
+                
+                print("CLubssss: \(viewModel.allClubs.count)")
             }
         }
-        .task { await
-            
-            viewModel.fetchUserClubs()
-            
-            
-        }
+        
     }
 }
 
@@ -43,8 +41,10 @@ struct ClubCardView:View{
     @State var club:Clubs
     
     var body: some View{
-        Text("Club card")
-            .background(.red)
+        VStack{
+            Text("Coordinator: \(club.Coordinator!)")
+            Text("CDescription: \(club.ClubDescription!)")
+        }
     }
 }
 

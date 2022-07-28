@@ -55,15 +55,15 @@ struct ContentView: View {
             }.tag(tabs.Account)
         }.onAppear(){
             UITabBar.appearance().backgroundColor = .lightGray
-            
-        }.accentColor(.blue)
+        }
+        .accentColor(.blue)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().environmentObject(AppViewModel())
-        ChatroomListView()
+        //ChatroomListView()
 //        HomeView().environmentObject(AppViewModel())
 //        CalendarView()
 //            .environment(\.managedObjectContext, persistenceController.container.viewContext)
