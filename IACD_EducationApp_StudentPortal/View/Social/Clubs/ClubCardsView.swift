@@ -67,7 +67,7 @@ struct ClubCardView:View{
                 Text("Join a Club")
                     .font(.headline)
                     .padding(0.5)
-                NavigationLink(destination: JoinClubView()){
+                NavigationLink(destination: JoinClubsView()){
                     Text("View Clubs to Join")
                         .background(.blue)
                         .foregroundColor(.white)

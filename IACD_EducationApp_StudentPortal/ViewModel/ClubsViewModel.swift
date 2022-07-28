@@ -102,6 +102,8 @@ class ClubsViewModel: ObservableObject{
     }
     
     func GetAllClubs(){
+        allClubs = []
+        userClubs = []
         if(user != nil){
             db.collection("Clubs").getDocuments { (snapshot, error) in
                 snapshot?.documents.forEach({ (document) in
