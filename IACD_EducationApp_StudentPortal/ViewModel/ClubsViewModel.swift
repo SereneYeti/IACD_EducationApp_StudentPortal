@@ -9,6 +9,7 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import SwiftUI
 
 struct Clubs: Codable, Identifiable{
     var id: String?
@@ -17,6 +18,7 @@ struct Clubs: Codable, Identifiable{
     var Helpful_Information:[Helpful_Information]?
     var Meetups:[Timestamp]?
     var RequiredEquipment:[String]?
+    var SF_Symbol:String?
     var forumID:Int?
     var members:[String]?
     
@@ -27,6 +29,7 @@ struct Clubs: Codable, Identifiable{
         case Helpful_Information
         case Meetups
         case RequiredEquipment
+        case SF_Symbol
         case forumID
         case members
     }
@@ -50,8 +53,7 @@ struct Helpful_Information:Codable, Identifiable ,Hashable{
 class ClubsViewModel: ObservableObject{
     @Published var allClubs = [Clubs]()
     @Published var userClubs = [Clubs]()
-    @Published var gottenClubs:Bool = false
-    @Published var club:Clubs?
+    
     private var clubIDs:[String] = []
     private let db = Firestore.firestore()
     private let user = Auth.auth().currentUser
@@ -71,8 +73,13 @@ class ClubsViewModel: ObservableObject{
                 else {
                     if let document = document {
                         do {
-                            ans = try document.data(as: Clubs.self)
+                            ans = try document.data(as: Clubs.self)                            
                             self.allClubs.append(ans!)
+                            if(ans!.members!.contains(self.user!.uid)){
+                                self.userClubs.append(ans!)
+                                print(self.userClubs.count)
+                                print("user club!")
+                            }
                         }
                         catch {
                             switch error {
@@ -98,26 +105,16 @@ class ClubsViewModel: ObservableObject{
     
     func GetAllClubs(){
         if(user != nil){
-            db.collection("Clubs").getDocuments { (snapshot, error) in 
+            db.collection("Clubs").getDocuments { (snapshot, error) in
                 snapshot?.documents.forEach({ (document) in
                     let docID = document.documentID
                     self.clubIDs.append(docID)
                 })
                 
                 self.clubIDs.forEach { id in
-                    print("Club ID: \(id)")
+                    //print("Club ID: \(id)")
                     self.fetchDataForClub(clubID: id)
-                   
                 }
-                
-                self.allClubs.forEach { club in
-                    print("CLUBS 123: \(club.Coordinator!)")
-                }
-                
-                //self.allClubs.remove(at: 0)
-                
-                
-                
             }
             
         }
@@ -137,38 +134,54 @@ class ClubsViewModel: ObservableObject{
         }
     }
     
+    func GetUserClubs(){
+        DispatchQueue.main.async {
+            self.GetAllClubs()
+            
+            self.allClubs.forEach { club in
+                print("User uid: \(self.user!.uid)")
+                print("Members: \(club.members!)")
+                if(club.members!.contains(self.user!.uid)){
+                    self.userClubs.append(club)
+                    print(club)
+                    print("User uid: \(self.user!.uid)")
+                }
+            }
+        }
+    }
+    
     func GetUserClubAtIndex(index:Int)->Clubs{
         return userClubs[index]
     }
     /* OLD
-    func fetchUserClubs() {
-        if(user != nil){
-            db.collection("Clubs").whereField("members", arrayContains: user!.uid).addSnapshotListener({ [self](snapshot,error) in
-                guard let documents = snapshot?.documents else {
-                    print("No docs returned!")
-                    return
-                }
-                
-                self.userClubs = documents.map({docSnapshot -> Clubs in
-                    let data = docSnapshot.data()
-                    let docId = docSnapshot.documentID
-                    let Coordinator = data["Coordinator"] as? String ?? ""
-                    let Description = data["Description"] as? String ?? ""
-                   
-                    //print("Club info: \(test)")
-                    
-                    let Meetups = data["Meetups"] as? [Timestamp] ?? []
-                    let RequiredEquipment = data["RequiredEquipment"] as? [String] ?? []
-                    let forumID = data["forumID"] as? Int ?? -1
-                    let members = data["members"] as? [String] ?? []
-                    return Clubs(id: docId,Coordinator: Coordinator, ClubDescription: Description, Helpful_Information: [] , Meetups: Meetups, RequiredEquipment: RequiredEquipment, forumID: forumID, members: members)
-                })
-                print("Club Coordinator 0: \(userClubs[0].Helpful_Information!.count)")
-                print("Club Coordinator 1: \(userClubs[1].Helpful_Information!.count)")
-                print("Club Equirpment 0: \(userClubs[0].RequiredEquipment![0])")
-                print("Club Equirpment 1: \(userClubs[1].RequiredEquipment![1])")
-            })
-        }
-    }
-    */
+     func fetchUserClubs() {
+     if(user != nil){
+     db.collection("Clubs").whereField("members", arrayContains: user!.uid).addSnapshotListener({ [self](snapshot,error) in
+     guard let documents = snapshot?.documents else {
+     print("No docs returned!")
+     return
+     }
+     
+     self.userClubs = documents.map({docSnapshot -> Clubs in
+     let data = docSnapshot.data()
+     let docId = docSnapshot.documentID
+     let Coordinator = data["Coordinator"] as? String ?? ""
+     let Description = data["Description"] as? String ?? ""
+     
+     //print("Club info: \(test)")
+     
+     let Meetups = data["Meetups"] as? [Timestamp] ?? []
+     let RequiredEquipment = data["RequiredEquipment"] as? [String] ?? []
+     let forumID = data["forumID"] as? Int ?? -1
+     let members = data["members"] as? [String] ?? []
+     return Clubs(id: docId,Coordinator: Coordinator, ClubDescription: Description, Helpful_Information: [] , Meetups: Meetups, RequiredEquipment: RequiredEquipment, forumID: forumID, members: members)
+     })
+     print("Club Coordinator 0: \(userClubs[0].Helpful_Information!.count)")
+     print("Club Coordinator 1: \(userClubs[1].Helpful_Information!.count)")
+     print("Club Equirpment 0: \(userClubs[0].RequiredEquipment![0])")
+     print("Club Equirpment 1: \(userClubs[1].RequiredEquipment![1])")
+     })
+     }
+     }
+     */
 }

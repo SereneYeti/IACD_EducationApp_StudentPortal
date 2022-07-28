@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct ClubCardsView: View {
     @State var clubID:String?
@@ -13,38 +14,76 @@ struct ClubCardsView: View {
     @ObservedObject var viewModel =  ClubsViewModel()
     
     init() {
-        viewModel.GetAllClubs()
+        viewModel.GetAllClubs()        
     }
     
     var body: some View {
         
-        ScrollView {
+        ScrollView(.horizontal) {
             HStack{
-               
-                ForEach(viewModel.allClubs) { club in
+                ClubCardView(club: nil)
+                    .frame(width: screen.width*0.5, height: screen.height * 0.25, alignment: .center)
+                    .padding()
+                ForEach(viewModel.userClubs) { club in
                     ClubCardView(club: club)
-                    Text(club.Coordinator!)
-                        .background(.red)
-                    
+                        .frame(width: screen.width*0.5, height: screen.height * 0.25, alignment: .center)
+                        .padding()
                 }
             }
-            .onAppear{
-                
-                print("CLubssss: \(viewModel.allClubs.count)")
-            }
         }
-        
+        .navigationBarHidden(true)
     }
 }
 
 struct ClubCardView:View{
-    @State var club:Clubs
+    @State var club:Clubs?
+    var cornerRadius:CGFloat = 45
     
     var body: some View{
         VStack{
-            Text("Coordinator: \(club.Coordinator!)")
-            Text("CDescription: \(club.ClubDescription!)")
+            if(club != nil){
+                Image(systemName:"person")
+                    .padding(1)
+                Text("Club: \(club!.id!)")
+                    .font(.headline)
+                    .padding(0.5)
+                Text("Coordinator: \(club!.Coordinator!)")
+                    .font(.subheadline)
+                    .padding(0.5)
+                NavigationLink(destination: ClubView(club: self.club!)){
+                    Text("More information")
+                        .background(.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        .font(.callout)
+                }
+                .padding(5)
+            }
+            else
+            {
+                Image(systemName:"plus")
+                    .font(.largeTitle)                    
+                    .padding(1)
+                Text("Join a Club")
+                    .font(.headline)
+                    .padding(0.5)
+                NavigationLink(destination: JoinClubView()){
+                    Text("View Clubs to Join")
+                        .background(.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        .font(.callout)
+                        .padding()
+                }
+                .padding(5)
+            }
         }
+        .background(.bar)
+        .cornerRadius(self.cornerRadius)
+        .overlay(
+            RoundedRectangle(cornerRadius: self.cornerRadius)
+                .stroke(lineWidth: 2)
+        )
     }
 }
 
