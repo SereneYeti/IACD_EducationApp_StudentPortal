@@ -23,7 +23,7 @@ class MessagesViewModel: ObservableObject{
     func sendMessage(messageContent: String,docId: String){
         if(user != nil){
             db.collection("chatrooms").document(docId).collection("messages").addDocument(data: ["sentAt": Date(),
-                                                                                                 "displayName": user!.email,
+                                                                                                 "displayName": user!.email!,
                                                                                                  "content": messageContent,
                                                                                                  "sender": user!.uid])
         }

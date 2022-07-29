@@ -9,16 +9,18 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import SwiftUI
 
 struct Clubs: Codable, Identifiable{
     var id: String?
-    var Coordinator:String
-    var ClubDescription:String
-    var Helpful_Information:[Helpful_Information]
-    var Meetups:[Timestamp]
-    var RequiredEquipment:[String]
-    var forumID:Int
-    var members:[String]
+    var Coordinator:String?
+    var ClubDescription:String?
+    var Helpful_Information:[Helpful_Information]?
+    var Meetups:[Timestamp]?
+    var RequiredEquipment:[String]?
+    var SF_Symbol:String?
+    var forumID:Int?
+    var members:[String]?
     
     enum CodingKeys:String,CodingKey{
         case id
@@ -27,13 +29,14 @@ struct Clubs: Codable, Identifiable{
         case Helpful_Information
         case Meetups
         case RequiredEquipment
+        case SF_Symbol
         case forumID
         case members
     }
     
 }
 
-struct Helpful_Information:Codable, Hashable{
+struct Helpful_Information:Codable, Identifiable ,Hashable{
     var id:String?
     var name:String
     var link:String
@@ -48,14 +51,17 @@ struct Helpful_Information:Codable, Hashable{
 }
 
 class ClubsViewModel: ObservableObject{
-    @Published var clubs = [Clubs]()
+    @Published var allClubs = [Clubs]()
+    @Published var userClubs = [Clubs]()
+    
+    private var clubIDs:[String] = []
     private let db = Firestore.firestore()
     private let user = Auth.auth().currentUser
     private var errorMessage:String = ""
     
-    public let joinClub = Clubs(Coordinator: "", ClubDescription: "Join a club to meet new people and learn neew things.", Helpful_Information: [], Meetups: [], RequiredEquipment: [], forumID: -1, members: [])
+    public let joinClub = Clubs(Coordinator: "JoinClub", ClubDescription: "Join a club to meet new people and learn neew things.", Helpful_Information: [], Meetups: [], RequiredEquipment: [], forumID: -1, members: [])
     
-    func fetchDataForClub(clubID:String) -> Clubs{
+    func fetchDataForClub(clubID:String){
         var ans:Clubs?
         if(user != nil){
             let docRef = db.collection("Clubs").document(clubID)
@@ -67,7 +73,11 @@ class ClubsViewModel: ObservableObject{
                 else {
                     if let document = document {
                         do {
-                            ans = try document.data(as: Clubs.self)
+                            ans = try document.data(as: Clubs.self)                            
+                            self.allClubs.append(ans!)
+                            if(ans!.members!.contains(self.user!.uid)){
+                                self.userClubs.append(ans!)                                
+                            }
                         }
                         catch {
                             switch error {
@@ -88,80 +98,24 @@ class ClubsViewModel: ObservableObject{
             }
         }
         
-        return ans ?? joinClub
+        
     }
     
-    func fetchDataForUserClubs(clubID:String){
+    func GetAllClubs(){
+        allClubs = []
+        userClubs = []
         if(user != nil){
-            let docRef = db.collection("Clubs").document(clubID)
-            
-            docRef.getDocument { document, error in
-                if let error = error as NSError? {
-                    self.errorMessage = "Error getting document: \(error.localizedDescription)"
-                }
-                else {
-                    if let document = document {
-                        do {
-                            let club = try document.data(as: Clubs.self)
-                            if(club.members.contains(self.user!.uid)){
-                                self.clubs.append(club)
-                            }
-                            print("Clubs: \(self.clubs[0].Helpful_Information[0])")
-                        }
-                        catch {
-                            switch error {
-                            case DecodingError.typeMismatch(_, let context):
-                                self.errorMessage = "\(error.localizedDescription): \(context.debugDescription)"
-                            case DecodingError.valueNotFound(_, let context):
-                                self.errorMessage = "\(error.localizedDescription): \(context.debugDescription)"
-                            case DecodingError.keyNotFound(_, let context):
-                                self.errorMessage = "\(error.localizedDescription): \(context.debugDescription)"
-                            case DecodingError.dataCorrupted(let key):
-                                self.errorMessage = "\(error.localizedDescription): \(key)"
-                            default:
-                                self.errorMessage = "Error decoding document: \(error.localizedDescription)"
-                            }
-                        }
-                    }
+            db.collection("Clubs").getDocuments { (snapshot, error) in
+                snapshot?.documents.forEach({ (document) in
+                    let docID = document.documentID
+                    self.clubIDs.append(docID)
+                })
+                
+                self.clubIDs.forEach { id in
+                    //print("Club ID: \(id)")
+                    self.fetchDataForClub(clubID: id)
                 }
             }
-        }
-    }
-    
-    func fetchUserClubs(){
-        if(user != nil){
-            db.collection("Clubs").whereField("members", arrayContains: user!.uid).addSnapshotListener({ [self](snapshot,error) in
-                guard let documents = snapshot?.documents else {
-                    print("No docs returned!")
-                    return
-                }
-                
-                self.clubs = documents.map({docSnapshot -> Clubs in
-                    do {
-                        let clubTest = try docSnapshot.data(as: Clubs.self)
-                        print("Club Test: \(clubTest.Coordinator)")
-                        return clubTest
-                    }
-                    catch {
-                        switch error {
-                        case DecodingError.typeMismatch(_, let context):
-                            self.errorMessage = "\(error.localizedDescription): \(context.debugDescription)"
-                        case DecodingError.valueNotFound(_, let context):
-                            self.errorMessage = "\(error.localizedDescription): \(context.debugDescription)"
-                        case DecodingError.keyNotFound(_, let context):
-                            self.errorMessage = "\(error.localizedDescription): \(context.debugDescription)"
-                        case DecodingError.dataCorrupted(let key):
-                            self.errorMessage = "\(error.localizedDescription): \(key)"
-                        default:
-                            self.errorMessage = "Error decoding document: \(error.localizedDescription)"
-                        }
-                        return joinClub
-                    }
-                    
-                })
-                print("Club Count: \(clubs.count)")
-                print("Club Coordinadtor: \(clubs[1].Coordinator)")
-            })
             
         }
     }
@@ -180,7 +134,54 @@ class ClubsViewModel: ObservableObject{
         }
     }
     
-    func GetClubAtIndex(index:Int)->Clubs{
-        return clubs[index]
+    func GetUserClubs(){
+        DispatchQueue.main.async {
+            self.GetAllClubs()
+            
+            self.allClubs.forEach { club in
+                print("User uid: \(self.user!.uid)")
+                print("Members: \(club.members!)")
+                if(club.members!.contains(self.user!.uid)){
+                    self.userClubs.append(club)
+                    print(club)
+                    print("User uid: \(self.user!.uid)")
+                }
+            }
+        }
     }
+    
+    func GetUserClubAtIndex(index:Int)->Clubs{
+        return userClubs[index]
+    }
+    /* OLD
+     func fetchUserClubs() {
+     if(user != nil){
+     db.collection("Clubs").whereField("members", arrayContains: user!.uid).addSnapshotListener({ [self](snapshot,error) in
+     guard let documents = snapshot?.documents else {
+     print("No docs returned!")
+     return
+     }
+     
+     self.userClubs = documents.map({docSnapshot -> Clubs in
+     let data = docSnapshot.data()
+     let docId = docSnapshot.documentID
+     let Coordinator = data["Coordinator"] as? String ?? ""
+     let Description = data["Description"] as? String ?? ""
+     
+     //print("Club info: \(test)")
+     
+     let Meetups = data["Meetups"] as? [Timestamp] ?? []
+     let RequiredEquipment = data["RequiredEquipment"] as? [String] ?? []
+     let forumID = data["forumID"] as? Int ?? -1
+     let members = data["members"] as? [String] ?? []
+     return Clubs(id: docId,Coordinator: Coordinator, ClubDescription: Description, Helpful_Information: [] , Meetups: Meetups, RequiredEquipment: RequiredEquipment, forumID: forumID, members: members)
+     })
+     print("Club Coordinator 0: \(userClubs[0].Helpful_Information!.count)")
+     print("Club Coordinator 1: \(userClubs[1].Helpful_Information!.count)")
+     print("Club Equirpment 0: \(userClubs[0].RequiredEquipment![0])")
+     print("Club Equirpment 1: \(userClubs[1].RequiredEquipment![1])")
+     })
+     }
+     }
+     */
 }

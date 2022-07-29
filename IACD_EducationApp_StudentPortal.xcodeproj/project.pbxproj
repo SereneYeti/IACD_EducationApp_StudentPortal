@@ -17,6 +17,8 @@
 		5A54AFEB289192A50096AC91 /* SocialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A54AFEA289192A50096AC91 /* SocialView.swift */; };
 		5A54AFEE289192C40096AC91 /* ChatRoomsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A54AFEC289192C40096AC91 /* ChatRoomsViewModel.swift */; };
 		5A54AFEF289192C40096AC91 /* ClubsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A54AFED289192C40096AC91 /* ClubsViewModel.swift */; };
+		5A54AFF32892FD8D0096AC91 /* JoinClubsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A54AFF22892FD8D0096AC91 /* JoinClubsView.swift */; };
+		5A54AFF5289312270096AC91 /* JoinClubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A54AFF4289312270096AC91 /* JoinClubView.swift */; };
 		5A71A9DB288591A1006CC56B /* SelectedModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A71A9DA288591A1006CC56B /* SelectedModuleView.swift */; };
 		5A71A9E12886D094006CC56B /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A71A9E02886D094006CC56B /* AccountView.swift */; };
 		5A71A9E32886F43F006CC56B /* MapMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A71A9E22886F43F006CC56B /* MapMenuView.swift */; };
@@ -68,6 +70,8 @@
 		5A54AFEA289192A50096AC91 /* SocialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialView.swift; sourceTree = "<group>"; };
 		5A54AFEC289192C40096AC91 /* ChatRoomsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomsViewModel.swift; sourceTree = "<group>"; };
 		5A54AFED289192C40096AC91 /* ClubsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClubsViewModel.swift; sourceTree = "<group>"; };
+		5A54AFF22892FD8D0096AC91 /* JoinClubsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinClubsView.swift; sourceTree = "<group>"; };
+		5A54AFF4289312270096AC91 /* JoinClubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinClubView.swift; sourceTree = "<group>"; };
 		5A71A9DA288591A1006CC56B /* SelectedModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedModuleView.swift; sourceTree = "<group>"; };
 		5A71A9E02886D094006CC56B /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		5A71A9E22886F43F006CC56B /* MapMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMenuView.swift; sourceTree = "<group>"; };
@@ -146,6 +150,8 @@
 			children = (
 				5A54AFE5289192920096AC91 /* ClubCardsView.swift */,
 				5A54AFE6289192920096AC91 /* ClubView.swift */,
+				5A54AFF22892FD8D0096AC91 /* JoinClubsView.swift */,
+				5A54AFF4289312270096AC91 /* JoinClubView.swift */,
 			);
 			path = Clubs;
 			sourceTree = "<group>";
@@ -444,6 +450,7 @@
 			files = (
 				5A54AFE8289192920096AC91 /* ClubView.swift in Sources */,
 				5A54AFDF2891924B0096AC91 /* MessagesView.swift in Sources */,
+				5A54AFF32892FD8D0096AC91 /* JoinClubsView.swift in Sources */,
 				5A8D788A287F116700CFA3F5 /* StartView.swift in Sources */,
 				5A54AFE02891924B0096AC91 /* JoinChatroomView.swift in Sources */,
 				5AC2E0D428634054009A0CA2 /* HomeView.swift in Sources */,
@@ -464,6 +471,7 @@
 				6A2F982C2881A71E001844CC /* CalendarHeaderView.swift in Sources */,
 				5A54AFEF289192C40096AC91 /* ClubsViewModel.swift in Sources */,
 				5AC2E0D6286340FD009A0CA2 /* CalendarView.swift in Sources */,
+				5A54AFF5289312270096AC91 /* JoinClubView.swift in Sources */,
 				5A71A9E32886F43F006CC56B /* MapMenuView.swift in Sources */,
 				6A2F981F2881A6B6001844CC /* Persistence.swift in Sources */,
 				5A54AFEE289192C40096AC91 /* ChatRoomsViewModel.swift in Sources */,

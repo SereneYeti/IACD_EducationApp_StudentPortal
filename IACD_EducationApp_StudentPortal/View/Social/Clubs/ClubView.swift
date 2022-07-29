@@ -9,26 +9,27 @@ import SwiftUI
 
 
 //TODO: LIST
-//      - FIND CLUBS WHERE FIELD INCLUDES USER STUDENT NO
 //      - ADD WAY FOR USER TO JOIN CLUBS
-//      - DISPLAY USER CLUBS
-//      - DISPLAY SELECTED CLUB INFO
-//      - Create enum of clubs for queries
+//      - Make club view look nice
 //TODO: ENDLIST
 struct ClubView: View {
-    @ObservedObject var viewModel =  ClubsViewModel()
-    
-    init(clubID:String) {
-        //viewModel.fetchData(clubID: clubID)
-    }
+    @State var club:Clubs
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            HStack{
+                Text("Club Coordinator: \(club.Coordinator!)")
+                //Image() //TODO: Add images of club coordinators, nb do in circle like the example
+            }
+            Divider()
+            Text("Club Description: \(club.ClubDescription!)")
+        }
+        .navigationTitle(club.id!)
     }
 }
 
 struct ClubView_Previews: PreviewProvider {
     static var previews: some View {
-        ClubView(clubID: "Rock Climbing")
+        ClubView(club: Clubs(id: "", Coordinator: "", ClubDescription: "", Helpful_Information: [], Meetups: [], RequiredEquipment: [], forumID: -1, members: []))
     }
 }
