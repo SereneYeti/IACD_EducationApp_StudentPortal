@@ -34,8 +34,9 @@ struct ClubCardsView: View {
                         .frame(width: screen.width*0.5, height: screen.height * 0.25, alignment: .center)
                     
                 }
+                .navigationTitle("My Clubs")
             }            
-            .navigationTitle("My Clubs")
+            
             
         }
     }

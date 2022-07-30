@@ -40,10 +40,10 @@ struct HomeView: View {
                     }
                     NavigationLink(destination: MapView()) {
                         //MapView()
-                        Image("mapExample1")
+                        Image("map1")
                             .resizable()
-                            .aspectRatio(contentMode: .fill)
                             .frame(width: screen.width, height: 200)
+                            .aspectRatio(contentMode: .fill)
                             //.padding()
                         
                     }

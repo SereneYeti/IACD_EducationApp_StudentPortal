@@ -78,7 +78,7 @@ struct ListCellView:View{
             
             //.background(.green)
             if(rightClub != nil){
-                NavigationLink(destination: JoinClubView(club: rightClub)){
+                NavigationLink(destination: JoinClubView(club: rightClub).environmentObject(viewModel)){
                     RoundedRectangle(cornerRadius:  15)
                         .stroke(lineWidth: 2)
                         //.foregroundColor(.white)

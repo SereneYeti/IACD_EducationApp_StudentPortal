@@ -19,8 +19,7 @@ struct JoinClubView: View {
                 .font(.headline)
                 .padding()
             Button {
-                viewModel.joinClub(clubID: club!.id!)
-                //viewModel.GetAllClubs()
+                viewModel.joinClub(clubID: club!.id!)  
                 //self.mode.wrappedValue.dismiss()
                 print("Joined club: \(club!.id!)")
                 

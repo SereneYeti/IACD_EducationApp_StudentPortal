@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SocialView: View {
     var body: some View {
-        VStack{
+        VStack(spacing: 1){
             //Text("My Clubs")
               //  .font(.title)
                 //.bold()
@@ -22,7 +22,9 @@ struct SocialView: View {
                 //.navigationTitle("My Clubs")
             
             Divider()
-                .foregroundColor(.black)
+                .frame(height:2)
+                .overlay(.indigo)
+            
             
             ChatroomListView()
                 .frame(width: screen.width)

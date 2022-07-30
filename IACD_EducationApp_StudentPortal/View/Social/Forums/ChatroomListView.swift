@@ -17,7 +17,15 @@ struct ChatroomListView: View {
     }
     
     var body: some View {
-        NavigationView{
+       // NavigationView{
+        VStack (spacing: 1){
+            Text("My Forums")
+                .font(.headline)
+                .fontWeight(.bold)
+                .padding()
+                .alignmentGuide(.leading) { _ in
+                    0
+            }
             List(viewModel.chatrooms){ chatroom in
                 NavigationLink(destination: MessagesView(chatroom: chatroom)){
                     HStack {
@@ -26,7 +34,7 @@ struct ChatroomListView: View {
                     }
                 }
             }
-            .navigationBarTitle("Forums")
+            //.navigationBarTitle("Forums")
             .navigationBarItems(trailing: Button(action: {
                 self.joinModel = true
             }, label: {
@@ -36,6 +44,8 @@ struct ChatroomListView: View {
                 JoinChatroomView(isOpen: $joinModel)
             })
         }
+            
+        //}
     }
 }
 
