@@ -10,10 +10,16 @@ import SwiftUI
 struct SocialView: View {
     var body: some View {
         VStack{
-            ClubCardsView()
-                .frame(width: screen.width, height: screen.height*0.25)
+            //Text("My Clubs")
+              //  .font(.title)
+                //.bold()
+                //.frame(width: screen.width, height: screen.height*0.05, alignment: .center)
+            
+            ClubCardsView().environmentObject(ClubsViewModel())
+                .frame(width: screen.width, height: screen.height*0.28)
                 .background(.white)
                 .padding()
+                //.navigationTitle("My Clubs")
             
             Divider()
                 .foregroundColor(.black)
@@ -22,7 +28,8 @@ struct SocialView: View {
                 .frame(width: screen.width)
                 .background(.white)
                 .padding()
-        }
+              }
+        //.navigationBarHidden(true)
     }
 }
 
