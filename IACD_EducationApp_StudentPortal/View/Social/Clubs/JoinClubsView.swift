@@ -18,7 +18,7 @@ struct JoinClubsView: View {
     var body: some View {
         ScrollView(.vertical){
             VStack{
-                ForEach(0 ..< viewModel.allClubs.count){ index in
+                ForEach(viewModel.allClubs.indices){ index in
                     if((index+1)<viewModel.allClubs.count){
                         if(index % 2 == 0 && (index+1)%2 == 1){
                             ListCellView(leftClub: viewModel.allClubs[index], rightClub: viewModel.allClubs[index+1]).environmentObject(viewModel)
@@ -72,9 +72,7 @@ struct ListCellView:View{
                             .padding()
                         }
                     }
-                    
             }
-            
             
             //.background(.green)
             if(rightClub != nil){

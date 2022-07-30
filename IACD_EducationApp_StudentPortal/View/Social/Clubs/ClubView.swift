@@ -79,7 +79,7 @@ struct ClubView: View {
                     .alignmentGuide(HorizontalAlignment.leading) { _ in
                         0
                     }
-                ForEach(0 ..< club.RequiredEquipment!.count) { index in
+                ForEach(club.RequiredEquipment!.indices) { index in
                     Text("  - \(club.RequiredEquipment![index])")
                         .font(.body)
                         .fontWeight(.regular)
