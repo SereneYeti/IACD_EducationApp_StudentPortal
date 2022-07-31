@@ -8,10 +8,32 @@
 import SwiftUI
 
 struct JoinClubView: View {
+    @EnvironmentObject var viewModel:ClubsViewModel
     @State var club:Clubs?
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body: some View {
-        Text(club!.id!)
+        VStack
+        {
+            Text(club!.id!)
+                .font(.headline)
+                .padding()
+            Button {
+                viewModel.joinClub(clubID: club!.id!)  
+                //self.mode.wrappedValue.dismiss()
+                print("Joined club: \(club!.id!)")
+                
+            } label: {
+                Text("Join Club")
+                    .padding(2)
+                    .background(.blue)
+                    .cornerRadius(15)
+                    .foregroundColor(.white)
+                
+            }
+            .padding()
+
+        }
     }
 }
 

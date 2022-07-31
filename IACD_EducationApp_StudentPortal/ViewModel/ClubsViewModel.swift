@@ -19,6 +19,7 @@ struct Clubs: Codable, Identifiable{
     var Meetups:[Timestamp]?
     var RequiredEquipment:[String]?
     var SF_Symbol:String?
+    var Images:[Images]?
     var forumID:Int?
     var members:[String]?
     
@@ -30,6 +31,7 @@ struct Clubs: Codable, Identifiable{
         case Meetups
         case RequiredEquipment
         case SF_Symbol
+        case Images
         case forumID
         case members
     }
@@ -50,6 +52,18 @@ struct Helpful_Information:Codable, Identifiable ,Hashable{
     }
 }
 
+struct Images:Codable, Identifiable, Hashable{
+    var id:String?
+    var URL:String?
+    var credit:String?
+    
+    enum CodingKeys:String,CodingKey{
+        case id
+        case URL
+        case credit
+    }
+}
+
 class ClubsViewModel: ObservableObject{
     @Published var allClubs = [Clubs]()
     @Published var userClubs = [Clubs]()
@@ -59,7 +73,7 @@ class ClubsViewModel: ObservableObject{
     private let user = Auth.auth().currentUser
     private var errorMessage:String = ""
     
-    public let joinClub = Clubs(Coordinator: "JoinClub", ClubDescription: "Join a club to meet new people and learn neew things.", Helpful_Information: [], Meetups: [], RequiredEquipment: [], forumID: -1, members: [])
+    public let joinClub = Clubs(Coordinator: "JoinClub", ClubDescription: "Join a club to meet new people and learn neew things.", Helpful_Information: [], Meetups: [], RequiredEquipment: [],SF_Symbol: "house",Images: [], forumID: -1, members: [])
     
     func fetchDataForClub(clubID:String){
         var ans:Clubs?
@@ -102,8 +116,8 @@ class ClubsViewModel: ObservableObject{
     }
     
     func GetAllClubs(){
-        allClubs = []
-        userClubs = []
+        self.allClubs.removeAll()
+        
         if(user != nil){
             db.collection("Clubs").getDocuments { (snapshot, error) in
                 snapshot?.documents.forEach({ (document) in
@@ -114,7 +128,7 @@ class ClubsViewModel: ObservableObject{
                 self.clubIDs.forEach { id in
                     //print("Club ID: \(id)")
                     self.fetchDataForClub(clubID: id)
-                }
+                }                
             }
             
         }
@@ -128,14 +142,29 @@ class ClubsViewModel: ObservableObject{
                 } else {
                     self.db.collection("Clubs").document(clubID).updateData([
                         "members": FieldValue.arrayUnion([self.user!.uid])])
+                    self.AddClubToUserArray(ClubID: clubID)
+                    //self.userClubs.append()
                 }
                 
+            }
+            
+            //GetAllClubs()
+        }
+    }
+    
+    private func AddClubToUserArray(ClubID:String){
+        self.allClubs.forEach { club in
+            if(club.id == ClubID){
+                userClubs.append(club)
+                print("Added member to \(ClubID) Club")
             }
         }
     }
     
     func GetUserClubs(){
+        self.userClubs.removeAll()
         DispatchQueue.main.async {
+            
             self.GetAllClubs()
             
             self.allClubs.forEach { club in
