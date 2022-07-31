@@ -87,10 +87,10 @@ class ClubsViewModel: ObservableObject{
                 else {
                     if let document = document {
                         do {
-                            ans = try document.data(as: Clubs.self)                            
+                            ans = try document.data(as: Clubs.self)
                             self.allClubs.append(ans!)
                             if(ans!.members!.contains(self.user!.uid)){
-                                self.userClubs.append(ans!)                                
+                                self.userClubs.append(ans!)
                             }
                         }
                         catch {
@@ -128,11 +128,12 @@ class ClubsViewModel: ObservableObject{
                 self.clubIDs.forEach { id in
                     //print("Club ID: \(id)")
                     self.fetchDataForClub(clubID: id)
-                }                
+                }
             }
             
         }
     }
+    
     
     func joinClub(clubID:String) {
         if (user != nil) {
@@ -182,6 +183,19 @@ class ClubsViewModel: ObservableObject{
     func GetUserClubAtIndex(index:Int)->Clubs{
         return userClubs[index]
     }
+    
+    func InClub(ClubID:String) -> Bool{
+        var ans:Bool = false
+        userClubs.forEach({ c in
+            if(c.id! == ClubID){
+                ans = true
+            }
+            
+        })
+        
+        return ans
+    }
+    
     /* OLD
      func fetchUserClubs() {
      if(user != nil){

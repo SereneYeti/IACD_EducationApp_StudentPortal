@@ -41,7 +41,7 @@ class ChatroomsViewModel: ObservableObject{
             })
         }
         
-        //print("JOIN CODE: \(createJoinCode())")
+        print("JOIN CODE: \(createJoinCode())")
     }
     
     func CheckJoinCodes(){
