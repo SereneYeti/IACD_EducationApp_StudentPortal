@@ -112,9 +112,11 @@ struct ClubCardView:View{
     }
 }
 
+/*
 struct ClubCardsView_Previews: PreviewProvider {
     static var previews: some View {
         ClubCardsView().environmentObject(ClubsViewModel())
         //ClubCardView()
     }
 }
+*/

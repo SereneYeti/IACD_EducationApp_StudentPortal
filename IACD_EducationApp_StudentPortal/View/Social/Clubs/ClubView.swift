@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MobileCoreServices
 
 
 //TODO: LIST
@@ -82,23 +83,56 @@ struct ClubView: View {
                     .alignmentGuide(HorizontalAlignment.leading) { _ in
                         0
                     }
+                
                 ForEach(club.RequiredEquipment!.indices) { index in
                     Text("  - \(club.RequiredEquipment![index])")
                         .font(.body)
                         .fontWeight(.regular)
-                        .multilineTextAlignment(.center)
+                        .frame(width: screen.width,alignment: .leading)
                         .padding(2)
-                        .alignmentGuide(HorizontalAlignment.leading) { _ in
-                            0
-                        }
+                        
                 }
                 
-                Text("Incoming Meetups")
+                UpcomingClubsTaskView()
                     .frame(width: screen.width, height: screen.height*0.10, alignment: .center)
                     .background(.indigo)
                     .padding()
-                
+
                 Spacer()
+                
+                ForEach(club.Helpful_Information!.indices){index in
+                    VStack(spacing: 2.5){
+                        Text("Useful Information for: ")
+                            .font(.headline)
+                            .bold()
+                            .frame(width: screen.width,alignment: .center)
+                            .padding(.top,3)
+                        Text("\(club.Helpful_Information![index].name)")
+                            .font(.subheadline)
+                            .bold()
+                            .foregroundColor(.gray)
+                            .frame(width: screen.width,alignment: .center)
+                            .offset(CGSize(width: 0, height: -2))
+                        Text("  - Description : \(club.Helpful_Information![index].infoDescription)")
+                            .font(.subheadline)
+                            .fontWeight(.regular)
+                            .frame(width: screen.width,alignment: .center)
+                            .padding(2)
+                        Text("  - Link : \(club.Helpful_Information![index].link)")
+                            .font(.subheadline)
+                            .fontWeight(.regular)
+                            .foregroundColor(.blue)
+                            .frame(width: screen.width,alignment: .leading)
+                            .padding(2)
+                            .onTapGesture {
+                                let link = club.Helpful_Information![index].link
+                                print("Link: \(link)")
+                                UIPasteboard.general.string = link
+                            }
+                    }
+                    .frame(width: screen.width)
+                    .border(.indigo, width: 2)
+                }
             }
             .navigationTitle(club.id!)
         }

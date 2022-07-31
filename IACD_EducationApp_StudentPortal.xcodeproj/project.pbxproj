@@ -23,6 +23,8 @@
 		5A71A9E12886D094006CC56B /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A71A9E02886D094006CC56B /* AccountView.swift */; };
 		5A71A9E32886F43F006CC56B /* MapMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A71A9E22886F43F006CC56B /* MapMenuView.swift */; };
 		5A71A9E82889A66C006CC56B /* RandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A71A9E72889A66C006CC56B /* RandomNumberGenerator.swift */; };
+		5A8A97DD2896C94600DD5A1A /* NewTaskClubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8A97DC2896C94600DD5A1A /* NewTaskClubs.swift */; };
+		5A8A97DF2896CBCE00DD5A1A /* UpcomingClubsTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8A97DE2896CBCE00DD5A1A /* UpcomingClubsTaskView.swift */; };
 		5A8D787E2875E1C000CFA3F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A8D787D2875E1C000CFA3F5 /* GoogleService-Info.plist */; };
 		5A8D78802875E2CB00CFA3F5 /* SignInFirebaseAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8D787F2875E2CB00CFA3F5 /* SignInFirebaseAuthView.swift */; };
 		5A8D7882287C2B0F00CFA3F5 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8D7881287C2B0F00CFA3F5 /* AppViewModel.swift */; };
@@ -76,6 +78,8 @@
 		5A71A9E02886D094006CC56B /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		5A71A9E22886F43F006CC56B /* MapMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMenuView.swift; sourceTree = "<group>"; };
 		5A71A9E72889A66C006CC56B /* RandomNumberGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumberGenerator.swift; sourceTree = "<group>"; };
+		5A8A97DC2896C94600DD5A1A /* NewTaskClubs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskClubs.swift; sourceTree = "<group>"; };
+		5A8A97DE2896CBCE00DD5A1A /* UpcomingClubsTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingClubsTaskView.swift; sourceTree = "<group>"; };
 		5A8D787D2875E1C000CFA3F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5A8D787F2875E2CB00CFA3F5 /* SignInFirebaseAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFirebaseAuthView.swift; sourceTree = "<group>"; };
 		5A8D7881287C2B0F00CFA3F5 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 				5A54AFE6289192920096AC91 /* ClubView.swift */,
 				5A54AFF22892FD8D0096AC91 /* JoinClubsView.swift */,
 				5A54AFF4289312270096AC91 /* JoinClubView.swift */,
+				5A8A97DE2896CBCE00DD5A1A /* UpcomingClubsTaskView.swift */,
 			);
 			path = Clubs;
 			sourceTree = "<group>";
@@ -282,6 +287,7 @@
 		6A2F98262881A712001844CC /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				5A8A97DC2896C94600DD5A1A /* NewTaskClubs.swift */,
 				5AC2E0D5286340FD009A0CA2 /* CalendarView.swift */,
 				6A2F98282881A71D001844CC /* CalendarHeaderView.swift */,
 				6A2F98272881A71C001844CC /* CalendarHome.swift */,
@@ -469,6 +475,7 @@
 				5AC2E0C8286338BB009A0CA2 /* ContentView.swift in Sources */,
 				6AC20F3C288C07F70037076C /* StudentCardView.swift in Sources */,
 				6A2F982C2881A71E001844CC /* CalendarHeaderView.swift in Sources */,
+				5A8A97DD2896C94600DD5A1A /* NewTaskClubs.swift in Sources */,
 				5A54AFEF289192C40096AC91 /* ClubsViewModel.swift in Sources */,
 				5AC2E0D6286340FD009A0CA2 /* CalendarView.swift in Sources */,
 				5A54AFF5289312270096AC91 /* JoinClubView.swift in Sources */,
@@ -488,6 +495,7 @@
 				6A2F982E2881A71E001844CC /* DynamicFilteredView.swift in Sources */,
 				6A2F98242881A6DB001844CC /* TaskViewModel.swift in Sources */,
 				5A8D791028804F2700CFA3F5 /* CurrentModulesView.swift in Sources */,
+				5A8A97DF2896CBCE00DD5A1A /* UpcomingClubsTaskView.swift in Sources */,
 				6AE6A122289022B000BA45D8 /* ModuleViewModel.swift in Sources */,
 				6A2F982B2881A71E001844CC /* CalendarHome.swift in Sources */,
 				6AEE1820288DC41F00B3AD1F /* ModulesCardView.swift in Sources */,

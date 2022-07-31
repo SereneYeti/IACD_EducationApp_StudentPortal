@@ -33,6 +33,7 @@ struct ContentView: View {
             {
                 Image(systemName: "house.fill")
                 Text("Home").bold()
+                
             }.tag(tabs.Home)
             SocialView().tabItem{
                 Image(systemName: "newspaper.circle.fill")
