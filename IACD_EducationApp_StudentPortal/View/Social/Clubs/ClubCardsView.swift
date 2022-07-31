@@ -12,25 +12,26 @@ import Foundation
 struct ClubCardsView: View {
     @State var clubID:String?
     @State var clubDescription:String?
-    @ObservedObject var viewModel =  ClubsViewModel()
+    @ObservedObject var clubsViewModel =  ClubsViewModel()
+    @EnvironmentObject var forumsViewModel:ChatroomsViewModel
     @State var displayed:Bool = false
     
     
     init(){
         //code
-        viewModel.GetUserClubs()
+        clubsViewModel.GetUserClubs()
     }
     
     var body: some View {
         
         ScrollView(.horizontal) {
             HStack(alignment: .center){
-                ClubCardView(club: nil).environmentObject(viewModel)
+                ClubCardView(club: nil).environmentObject(clubsViewModel).environmentObject(forumsViewModel)
                     .frame(width: screen.width*0.5, height: screen.height * 0.25, alignment: .center)
                 //.padding()
-                ForEach($viewModel.userClubs){ i in
+                ForEach($clubsViewModel.userClubs){ i in
                     
-                    ClubCardView(club: i.wrappedValue).environmentObject(viewModel)
+                    ClubCardView(club: i.wrappedValue).environmentObject(clubsViewModel).environmentObject(forumsViewModel)
                         .frame(width: screen.width*0.5, height: screen.height * 0.25, alignment: .center)
                     
                 }
@@ -47,15 +48,14 @@ struct ClubCardsView: View {
 struct ClubCardView:View{
     @State var club:Clubs?
     var cornerRadius:CGFloat = 20
-    @EnvironmentObject var viewModel:ClubsViewModel
+    @EnvironmentObject var clubsViewModel:ClubsViewModel
+    @EnvironmentObject var forumsViewModel:ChatroomsViewModel
     
     var body: some View{
         VStack{
             if(club != nil){
-                //Image(systemName:club!.SF_Symbol!)
-                //  .padding(1)
-                NavigationLink(destination: ClubView(club: self.club!).environmentObject(viewModel)){
-                    VStack{
+                NavigationLink(destination: ClubView(club: self.club!).environmentObject(clubsViewModel)){
+                    VStack{                        
                         AsyncImage(url: URL(string: club!.Images![0].URL!)) { image in
                             image.resizable()
                         } placeholder: {
@@ -90,7 +90,7 @@ struct ClubCardView:View{
             }
             else
             {
-                NavigationLink(destination: JoinClubsView().environmentObject(viewModel)){
+                NavigationLink(destination: JoinClubsView().environmentObject(clubsViewModel).environmentObject(forumsViewModel)){
                     VStack{
                         Image(systemName:"plus")
                             .font(.largeTitle)

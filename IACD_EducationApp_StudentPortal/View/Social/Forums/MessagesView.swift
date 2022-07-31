@@ -31,6 +31,7 @@ struct MessagesView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 Button(action: {
                     viewModel.sendMessage(messageContent: messageField, docId: chatroom.id)
+                    messageField = ""
                 }, label: {
                     Text("Send")
                 })

@@ -64,10 +64,7 @@ struct NewTask: View {
                             
                         }else {
                                 //MARK: Create a new entity , which will create our new object in core Date
-                            let task = Task(context: context)
-                            task.taskTitle = taskTitle
-                            task.taskDescription = taskDescription
-                            task.taskDate = taskDate
+                            let task = CreateTask()
                         }
                         
                             //Saving
@@ -77,7 +74,7 @@ struct NewTask: View {
                     .disabled(taskTitle == "" || taskDescription == "")
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Canel"){
+                    Button("Cancel"){
                         dismiss()
                     }
                 }
@@ -91,6 +88,17 @@ struct NewTask: View {
                 }
             }
         }
+    }
+    
+    func CreateTask()->Task{
+        
+        let task = Task(context: context)
+        
+        task.taskTitle = taskTitle
+        task.taskDescription = taskDescription
+        task.taskDate = taskDate
+        
+        return task
     }
 }
 

@@ -8,13 +8,11 @@
 import SwiftUI
 
 struct ChatroomListView: View {
-    @ObservedObject var viewModel =  ChatroomsViewModel()
+    @EnvironmentObject var forumsViewModel:ChatroomsViewModel
     @State var joinModel = false
     
     
-    init() {
-        viewModel.fetchData()
-    }
+    
     
     var body: some View {
        // NavigationView{
@@ -26,7 +24,7 @@ struct ChatroomListView: View {
                 .alignmentGuide(.leading) { _ in
                     0
             }
-            List(viewModel.chatrooms){ chatroom in
+            List(forumsViewModel.chatrooms){ chatroom in
                 NavigationLink(destination: MessagesView(chatroom: chatroom)){
                     HStack {
                         Text(chatroom.title)

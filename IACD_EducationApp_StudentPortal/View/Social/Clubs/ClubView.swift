@@ -28,13 +28,16 @@ struct ClubView: View {
                         }
                     
                     AsyncImage(url: URL(string: "https://a57.foxnews.com/a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2018/09/640/320/1862/1048/georgeclooney640.jpg?ve=1&tl=1?ve=1&tl=1")) { image in
-                            image.resizable()
-                            .aspectRatio(1, contentMode: .fit)
+                        image.resizable()
+                            
                     } placeholder: {
                         ProgressView()
                     }
                     .frame(width: screen.width*0.10, height: screen.height*0.05)
-                    .clipShape(Circle())
+                    .cornerRadius(20)
+                    .clipped()
+                    //.border(.indigo, width: 4)
+                    //.clipShape(Circle())
                     .alignmentGuide(HorizontalAlignment.trailing) { _ in
                         0
                     }

@@ -40,6 +40,8 @@ class ChatroomsViewModel: ObservableObject{
                 })
             })
         }
+        
+        //print("JOIN CODE: \(createJoinCode())")
     }
     
     func CheckJoinCodes(){
@@ -78,10 +80,21 @@ class ChatroomsViewModel: ObservableObject{
                 }
             }
         }
+    
+    func createJoinCode() -> Int{
+        var joinCode:Int = -1
+        if(user != nil){
+            CheckJoinCodes()
+            RandomNumberGenerator.GenerateRanodmNumber(numberOfDigits: 5, arrayToCheck: self.chatroomJoinCodes)
+            joinCode = RandomNumberGenerator.randomNumberGenerated
+        }
         
-        func joinChatroom(code: String, handler: @escaping () -> Void) {
+        return joinCode
+    }
+        
+        func joinChatroom(code: Int, handler: @escaping () -> Void) {
             if (user != nil) {
-                db.collection("chatrooms").whereField("joinCode", isEqualTo: Int(code)!).getDocuments() { (snapshot, error) in
+                db.collection("chatrooms").whereField("joinCode", isEqualTo: code).getDocuments() { (snapshot, error) in
                     if let error = error {
                         print("error getting documents! \(error)")
                     } else {

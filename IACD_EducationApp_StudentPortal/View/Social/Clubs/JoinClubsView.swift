@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct JoinClubsView: View {
-    @EnvironmentObject var viewModel:ClubsViewModel
+    @EnvironmentObject var clubsViewModel:ClubsViewModel
+    @EnvironmentObject var forumsViewModel:ChatroomsViewModel
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     var clubSet:[Clubs] = []
     
     init(){
@@ -18,17 +20,17 @@ struct JoinClubsView: View {
     var body: some View {
         ScrollView(.vertical){
             VStack{
-                ForEach(viewModel.allClubs.indices){ index in
-                    if((index+1)<viewModel.allClubs.count){
+                ForEach(clubsViewModel.allClubs.indices){ index in
+                    if((index+1)<clubsViewModel.allClubs.count){
                         if(index % 2 == 0 && (index+1)%2 == 1){
-                            ListCellView(leftClub: viewModel.allClubs[index], rightClub: viewModel.allClubs[index+1]).environmentObject(viewModel)
+                            ListCellView(leftClub: clubsViewModel.allClubs[index], rightClub: clubsViewModel.allClubs[index+1]).environmentObject(clubsViewModel).environmentObject(forumsViewModel)
                         }
                         
                     }
-                    else if((index)<viewModel.allClubs.count)
+                    else if((index)<clubsViewModel.allClubs.count)
                     {
                         if(index % 2 == 0){
-                            ListCellView(leftClub: viewModel.allClubs[index], rightClub: nil).environmentObject(viewModel)
+                            ListCellView(leftClub: clubsViewModel.allClubs[index], rightClub: nil).environmentObject(clubsViewModel).environmentObject(forumsViewModel)
                         }
                     }
                     
@@ -43,13 +45,14 @@ struct JoinClubsView: View {
 }
 
 struct ListCellView:View{
-    @EnvironmentObject var viewModel:ClubsViewModel
+    @EnvironmentObject var clubsViewModel:ClubsViewModel
+    @EnvironmentObject var forumsViewModel:ChatroomsViewModel
     @State var leftClub:Clubs
     @State var rightClub:Clubs?
     
     var body: some View{
         HStack{
-            NavigationLink(destination: JoinClubView(club: leftClub).environmentObject(viewModel)){
+            NavigationLink(destination: JoinClubView(isOpen: .constant(true),club: leftClub).environmentObject(clubsViewModel).environmentObject(forumsViewModel)){
                 RoundedRectangle(cornerRadius: 15)
                     .stroke(lineWidth: 2)
                     //.foregroundColor(.white)
@@ -76,7 +79,7 @@ struct ListCellView:View{
             
             //.background(.green)
             if(rightClub != nil){
-                NavigationLink(destination: JoinClubView(club: rightClub).environmentObject(viewModel)){
+                NavigationLink(destination: JoinClubView(isOpen: .constant(true),club: rightClub).environmentObject(clubsViewModel).environmentObject(forumsViewModel)){
                     RoundedRectangle(cornerRadius:  15)
                         .stroke(lineWidth: 2)
                         //.foregroundColor(.white)

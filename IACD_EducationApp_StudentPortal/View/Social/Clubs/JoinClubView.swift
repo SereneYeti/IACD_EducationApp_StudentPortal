@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct JoinClubView: View {
+    @Binding var isOpen:Bool
     @EnvironmentObject var viewModel:ClubsViewModel
+    @EnvironmentObject var forumsViewModel:ChatroomsViewModel
     @State var club:Clubs?
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
@@ -20,6 +22,11 @@ struct JoinClubView: View {
                 .padding()
             Button {
                 viewModel.joinClub(clubID: club!.id!)  
+                print("joining with code \(club!.forumID!)")
+                forumsViewModel.joinChatroom(code: club!.forumID!, handler: {
+                    self.isOpen = false
+                })
+                //JoinClubsView().mode.wrappedValue.dismiss()
                 //self.mode.wrappedValue.dismiss()
                 print("Joined club: \(club!.id!)")
                 
@@ -39,6 +46,6 @@ struct JoinClubView: View {
 
 struct JoinClubView_Previews: PreviewProvider {
     static var previews: some View {
-        JoinClubView(club: nil)
+        JoinClubView(isOpen: .constant(true),club: nil)
     }
 }
