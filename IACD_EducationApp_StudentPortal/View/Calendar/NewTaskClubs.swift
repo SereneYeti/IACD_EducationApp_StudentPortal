@@ -33,12 +33,11 @@ struct NewTaskClubs: View {
                 }
                 Section {
                     TextField("What type of work", text: $taskDescription)
-                    ForEach(0 ..< clubViewModel.userClubs.count) { i in
-                        Picker(selection: /*@START_MENU_TOKEN@*/.constant(1)/*@END_MENU_TOKEN@*/, label: Text("Clubs")) {
+                    Picker(selection: /*@START_MENU_TOKEN@*/.constant(1)/*@END_MENU_TOKEN@*/, label: Text("Clubs")) {
+                        ForEach(0 ..< clubViewModel.userClubs.count) { i in
                             Text(clubViewModel.userClubs[i].id!).tag(i)
                         }
-                    }
-
+                    }   
                 } header: {
                     Text("Task Description")
                 }

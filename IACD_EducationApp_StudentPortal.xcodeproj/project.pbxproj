@@ -25,6 +25,7 @@
 		5A71A9E82889A66C006CC56B /* RandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A71A9E72889A66C006CC56B /* RandomNumberGenerator.swift */; };
 		5A8A97DD2896C94600DD5A1A /* NewTaskClubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8A97DC2896C94600DD5A1A /* NewTaskClubs.swift */; };
 		5A8A97DF2896CBCE00DD5A1A /* UpcomingClubsTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8A97DE2896CBCE00DD5A1A /* UpcomingClubsTaskView.swift */; };
+		5A8A97E12898328F00DD5A1A /* CoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8A97E02898328E00DD5A1A /* CoordinatorViewModel.swift */; };
 		5A8D787E2875E1C000CFA3F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A8D787D2875E1C000CFA3F5 /* GoogleService-Info.plist */; };
 		5A8D78802875E2CB00CFA3F5 /* SignInFirebaseAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8D787F2875E2CB00CFA3F5 /* SignInFirebaseAuthView.swift */; };
 		5A8D7882287C2B0F00CFA3F5 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8D7881287C2B0F00CFA3F5 /* AppViewModel.swift */; };
@@ -80,6 +81,7 @@
 		5A71A9E72889A66C006CC56B /* RandomNumberGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumberGenerator.swift; sourceTree = "<group>"; };
 		5A8A97DC2896C94600DD5A1A /* NewTaskClubs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskClubs.swift; sourceTree = "<group>"; };
 		5A8A97DE2896CBCE00DD5A1A /* UpcomingClubsTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingClubsTaskView.swift; sourceTree = "<group>"; };
+		5A8A97E02898328E00DD5A1A /* CoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorViewModel.swift; sourceTree = "<group>"; };
 		5A8D787D2875E1C000CFA3F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5A8D787F2875E2CB00CFA3F5 /* SignInFirebaseAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFirebaseAuthView.swift; sourceTree = "<group>"; };
 		5A8D7881287C2B0F00CFA3F5 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				5A54AFEC289192C40096AC91 /* ChatRoomsViewModel.swift */,
+				5A8A97E02898328E00DD5A1A /* CoordinatorViewModel.swift */,
 				5A54AFED289192C40096AC91 /* ClubsViewModel.swift */,
 				5A8D7881287C2B0F00CFA3F5 /* AppViewModel.swift */,
 				6A2F98232881A6DB001844CC /* TaskViewModel.swift */,
@@ -475,6 +478,7 @@
 				5AC2E0C8286338BB009A0CA2 /* ContentView.swift in Sources */,
 				6AC20F3C288C07F70037076C /* StudentCardView.swift in Sources */,
 				6A2F982C2881A71E001844CC /* CalendarHeaderView.swift in Sources */,
+				5A8A97E12898328F00DD5A1A /* CoordinatorViewModel.swift in Sources */,
 				5A8A97DD2896C94600DD5A1A /* NewTaskClubs.swift in Sources */,
 				5A54AFEF289192C40096AC91 /* ClubsViewModel.swift in Sources */,
 				5AC2E0D6286340FD009A0CA2 /* CalendarView.swift in Sources */,

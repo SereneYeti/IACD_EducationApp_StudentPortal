@@ -18,7 +18,6 @@ struct Clubs: Codable, Identifiable{
     var Helpful_Information:[Helpful_Information]?
     var Meetups:[Timestamp]?
     var RequiredEquipment:[String]?
-    var SF_Symbol:String?
     var Images:[Images]?
     var forumID:Int?
     var members:[String]?
@@ -29,8 +28,7 @@ struct Clubs: Codable, Identifiable{
         case ClubDescription = "Description"
         case Helpful_Information
         case Meetups
-        case RequiredEquipment
-        case SF_Symbol
+        case RequiredEquipment        
         case Images
         case forumID
         case members
@@ -73,7 +71,7 @@ class ClubsViewModel: ObservableObject{
     private let user = Auth.auth().currentUser
     private var errorMessage:String = ""
     
-    public let joinClub = Clubs(Coordinator: "JoinClub", ClubDescription: "Join a club to meet new people and learn neew things.", Helpful_Information: [], Meetups: [], RequiredEquipment: [],SF_Symbol: "house",Images: [], forumID: -1, members: [])
+    public let joinClub = Clubs(Coordinator: "JoinClub", ClubDescription: "Join a club to meet new people and learn neew things.", Helpful_Information: [], Meetups: [], RequiredEquipment: [],Images: [], forumID: -1, members: [])
     
     func fetchDataForClub(clubID:String){
         var ans:Clubs?
@@ -110,8 +108,7 @@ class ClubsViewModel: ObservableObject{
                     }
                 }
             }
-        }
-        
+        }       
         
     }
     

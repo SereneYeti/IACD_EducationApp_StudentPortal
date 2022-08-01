@@ -19,7 +19,7 @@ struct MessagesView: View {
     }
     
     var body: some View {
-        VStack{
+        VStack{            
             List(viewModel.messages){ message in
                 HStack{
                     Text(message.content)
@@ -37,7 +37,7 @@ struct MessagesView: View {
                 })
             }
         }
-            .navigationBarTitle(chatroom.title)
+        .navigationBarTitle(chatroom.title)
     }
 }
 

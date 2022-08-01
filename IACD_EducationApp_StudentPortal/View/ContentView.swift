@@ -18,8 +18,9 @@ public enum tabs : Hashable{
     //NavigationLink("Go to Other Page", destination: //ContenvtViewB()).tabItem
 struct ContentView: View {
     @EnvironmentObject var viewModel: AppViewModel
-    @State var selectedItem:tabs = .Home    
+    @State var selectedItem:tabs = .Home
     
+    @StateObject var taskModel: TaskViewModel = TaskViewModel()
     @ObservedObject var forumsViewModel =  AppViewModel()
     
     init() {
@@ -29,13 +30,13 @@ struct ContentView: View {
     var body: some View {
         
         TabView(selection: $selectedItem) {
-            HomeView().tabItem
+            HomeView().environmentObject(taskModel).tabItem
             {
                 Image(systemName: "house.fill")
                 Text("Home").bold()
                 
             }.tag(tabs.Home)
-            SocialView().tabItem{
+            SocialView().environmentObject(taskModel).tabItem{
                 Image(systemName: "newspaper.circle.fill")
                 Text("Social").bold()
             }.tag(tabs.Forums)

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SocialView: View {
     @ObservedObject var forumsViewModel =  ChatroomsViewModel()
+    @EnvironmentObject var taskModel:TaskViewModel
     
     init(){
         forumsViewModel.fetchData()
@@ -17,27 +18,27 @@ struct SocialView: View {
     var body: some View {
         VStack(spacing: 1){
             //Text("My Clubs")
-              //  .font(.title)
-                //.bold()
-                //.frame(width: screen.width, height: screen.height*0.05, alignment: .center)
+            //  .font(.title)
+            //.bold()
+            //.frame(width: screen.width, height: screen.height*0.05, alignment: .center)
             
-            ClubCardsView().environmentObject(forumsViewModel)
+            ClubCardsView().environmentObject(forumsViewModel).environmentObject(taskModel)
                 .frame(width: screen.width, height: screen.height*0.28)
                 .background(.white)
                 .padding()
-                //.navigationTitle("My Clubs")
+            //.navigationTitle("My Clubs")
             
             Divider()
                 .frame(height:2)
                 .overlay(.indigo)
-                .opacity(0.3)            
+                .opacity(0.3)
             
             ChatroomListView().environmentObject(forumsViewModel)
                 .frame(width: screen.width)
                 .background(.white)
                 .padding()
-              }
-        //.navigationBarHidden(true)
+        }
+        .navigationBarHidden(true)
     }
 }
 
