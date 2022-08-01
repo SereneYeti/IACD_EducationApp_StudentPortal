@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18447A0828983B0E001280A9 /* Newsletter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18447A0728983B0D001280A9 /* Newsletter.swift */; };
 		18F1EEF12886EA5D00D3384D /* onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F1EEF02886EA5D00D3384D /* onboarding.swift */; };
 		5A3015DF288DC34A00D63571 /* ChatRoomsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3015DE288DC34A00D63571 /* ChatRoomsViewModel.swift */; };
 		5A3015E1288DCD5E00D63571 /* ChatroomListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3015E0288DCD5E00D63571 /* ChatroomListView.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18447A0728983B0D001280A9 /* Newsletter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Newsletter.swift; sourceTree = "<group>"; };
 		18F1EEF02886EA5D00D3384D /* onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboarding.swift; sourceTree = "<group>"; };
 		1BF643E09FB5B438EE4DBD33 /* Pods-IACD_EducationApp_StudentPortal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IACD_EducationApp_StudentPortal.release.xcconfig"; path = "Target Support Files/Pods-IACD_EducationApp_StudentPortal/Pods-IACD_EducationApp_StudentPortal.release.xcconfig"; sourceTree = "<group>"; };
 		5A3015DE288DC34A00D63571 /* ChatRoomsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomsViewModel.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				5A71A9DA288591A1006CC56B /* SelectedModuleView.swift */,
 				5AC2E0D328634053009A0CA2 /* HomeView.swift */,
 				5A8D791128804F6200CFA3F5 /* UpcomingProjectsView.swift */,
+				18447A0728983B0D001280A9 /* Newsletter.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				5A54AFD3289030200096AC91 /* ClubView.swift in Sources */,
 				5A8D791228804F6200CFA3F5 /* UpcomingProjectsView.swift in Sources */,
 				5A71A9E82889A66C006CC56B /* RandomNumberGenerator.swift in Sources */,
+				18447A0828983B0E001280A9 /* Newsletter.swift in Sources */,
 				5A3015E1288DCD5E00D63571 /* ChatroomListView.swift in Sources */,
 				18F1EEF12886EA5D00D3384D /* onboarding.swift in Sources */,
 				5AC2E0C6286338BB009A0CA2 /* IACD_EducationApp_StudentPortalApp.swift in Sources */,
