@@ -45,9 +45,9 @@ class ChatroomsViewModel: ObservableObject{
             })
         }
         
-        //print("JOIN CODE: \(createJoinCode())")
-        RandomNumberGenerator.GenerateRanodmNumber(numberOfDigits: 6, arrayToCheck: [])
-        print("Staff ID: \(RandomNumberGenerator.randomNumberGenerated)")
+        print("JOIN CODE: \(createJoinCode())")
+        //RandomNumberGenerator.GenerateRanodmNumber(numberOfDigits: 6, arrayToCheck: [])
+        //print("Staff ID: \(RandomNumberGenerator.randomNumberGenerated)")
     }
     
     func CheckJoinCodes(){

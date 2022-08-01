@@ -111,10 +111,9 @@ struct ClubCardView:View{
                     .overlay(
                         RoundedRectangle(cornerRadius: self.cornerRadius-5)
                             .stroke(lineWidth: 2)
-                            .foregroundColor(.purple)
+                            .foregroundColor(.indigo)
                             .opacity(1)
                             .shadow(color: .purple, radius: 2, x: 3, y: 3)
-
                                        
                     )
                 }

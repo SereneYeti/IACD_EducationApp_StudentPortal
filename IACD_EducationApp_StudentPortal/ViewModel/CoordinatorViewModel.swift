@@ -14,12 +14,14 @@ struct Coordinator: Codable, Identifiable, Hashable{
     var name:String
     var ContactNumber:Int
     var staffID:Int
+    var image:String
     
     enum CodingKeys:CodingKey{
         case id
         case name
         case ContactNumber
         case staffID
+        case image
     }
     
 }
@@ -29,9 +31,25 @@ class CoordinatorViewModel:ObservableObject{
     private let db = Firestore.firestore()
     private let user = Auth.auth().currentUser
     private var errorMessage:String = ""
-    private var coordinatorIDs:[String] = []
+    private var coordinatorIDs:[Int] = []
     
-    func fetchDataForStaffMember(staffID:String){
+    func GetStaffInfo(staffId:Int) -> Coordinator{
+        var ans = Coordinator(name: "", ContactNumber: -1, staffID: -1, image: "")
+        Coordinators.forEach { c in
+            if(c.staffID == staffId){
+                ans = c
+            }
+        }
+        
+        return ans
+    }
+    
+    func GetNewStaffID() -> Int{
+        RandomNumberGenerator.GenerateRanodmNumber(numberOfDigits: 6, arrayToCheck: coordinatorIDs)
+        return RandomNumberGenerator.randomNumberGenerated
+    }
+    
+    private func fetchDataForStaffMember(staffID:String){
         var ans:Coordinator?
         if(user != nil){
             let docRef = db.collection("Staff").document(staffID)
@@ -74,12 +92,12 @@ class CoordinatorViewModel:ObservableObject{
             db.collection("Clubs").getDocuments { (snapshot, error) in
                 snapshot?.documents.forEach({ (document) in
                     let docID = document.documentID
-                    self.coordinatorIDs.append(docID)
+                    self.coordinatorIDs.append(Int(docID)!)
                 })
                 
                 self.coordinatorIDs.forEach { id in
                     //print("Club ID: \(id)")
-                    self.fetchDataForStaffMember(staffID: id)
+                    self.fetchDataForStaffMember(staffID: String(id))
                 }
             }
             

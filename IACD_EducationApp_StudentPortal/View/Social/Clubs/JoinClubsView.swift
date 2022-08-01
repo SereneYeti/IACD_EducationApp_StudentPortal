@@ -58,10 +58,10 @@ struct ListCellView:View{
                     .stroke(lineWidth: 2)
                     //.foregroundColor(.white)
                     .foregroundColor(Color(red: 32/255, green: 32/255, blue: 32/255))
-                    .padding(1)
                     .frame(width: screen.width * 0.5, height: screen.height*0.30, alignment: .center)
+                    .padding(1)
                     .overlay {
-                        VStack{
+                        VStack(spacing: 1){
                             Text(leftClub.id!)
                                 .fontWeight(.bold)
                                 .font(.title)
@@ -74,7 +74,10 @@ struct ListCellView:View{
                                 ProgressView()
                             }
                             .clipShape(Circle())
-                            .padding()
+                            .shadow(color: .purple, radius: 2, x: 3, y: 3)
+                            .padding(.bottom)
+                            .padding(.leading)
+                            .padding(.trailing)
                         }
                     }
             }
@@ -86,10 +89,10 @@ struct ListCellView:View{
                         .stroke(lineWidth: 2)
                         //.foregroundColor(.white)
                         .foregroundColor(Color(red: 32/255, green: 32/255, blue: 32/255))
-                        .padding(1)
                         .frame(width: screen.width * 0.5, height: screen.height*0.30, alignment: .center)
+                        .padding(1)
                         .overlay {
-                            VStack{
+                            VStack(spacing: 1){
                                 Text(rightClub!.id!)
                                     .fontWeight(.bold)
                                     .font(.title)
@@ -97,15 +100,21 @@ struct ListCellView:View{
                                     .padding(.trailing, 1)
                                     .frame(width: screen.width*0.50, alignment: .center)
                                     .minimumScaleFactor(0.4)
+                                    //.offset(x: -8, y: 0)
                                     //.multilineTextAlignment(.center)
                                     //.padding()
                                 AsyncImage(url: URL(string: rightClub!.Images![0].URL!)) { image in
-                                    image.resizable() 
+                                    image.resizable()                                        
+                                        
                                 } placeholder: {
                                     ProgressView()
                                 }
                                 .clipShape(Circle())
-                                .padding()
+                                .shadow(color: .purple, radius: 4, x: 3, y: 3)
+                                .padding(.bottom)
+                                .padding(.leading)
+                                .padding(.trailing)
+                                
                             }
                         }
                 }
