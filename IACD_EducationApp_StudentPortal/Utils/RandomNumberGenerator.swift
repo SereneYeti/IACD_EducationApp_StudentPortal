@@ -22,6 +22,7 @@ struct RandomNumberGenerator{
 
         print(testArr)
     */
+    
     public static var randomNumberGenerated:Int = -1
     private var arrayToCheck:[Int] = []
     
@@ -43,8 +44,7 @@ struct RandomNumberGenerator{
         {
             print("Re-running number generation. Current Number Generated \(randomNumberGenerated)")
             GenerateRanodmNumber(numberOfDigits: numberOfDigits, arrayToCheck: arrayToCheck)
-        }
-        
+        }        
     }
     
     private static func GenerateRequiredDigits(iToEdit:Int, numberOfDigitsRequired:Int) -> Int{

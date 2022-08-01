@@ -13,6 +13,7 @@ struct HomeView: View {
     @State private var showWelcomeScreen: Bool = false
     @State private var showCalendarView: Bool = false
     @State private var showMap: Bool = false
+    @EnvironmentObject var taskModel:TaskViewModel
     
     var testStu = testData[0]
     
@@ -69,7 +70,7 @@ struct HomeView: View {
             .ignoresSafeArea(edges: .top)
             .sheet(isPresented: $showWelcomeScreen, content: {OnboardingView() })
             .sheet(isPresented: $showMap, content: {MapView() })
-            .sheet(isPresented: $showCalendarView, content: { CalendarView() })
+            .sheet(isPresented: $showCalendarView, content: { CalendarView().environmentObject(taskModel) })
         }.onAppear{
             //print("View Model First Time Sign In: \(viewModel.firstTimeSignIn)")
             showWelcomeScreen = viewModel.firstTimeSignIn

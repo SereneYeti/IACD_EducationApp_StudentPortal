@@ -15,19 +15,17 @@ struct MapView: View {
     
     var body: some View {
         //NavigationView {
-       // GeometryReader { geometry in
+        GeometryReader { geometry in
             ZStack(alignment: .leading){
                 MainView(showMenu: self.$showMenu, currentFloor: self.$currentFloor)
-                    .frame(width: screen.width, height: screen.size.height)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
                 if self.showMenu{
                     MapMenuView(currentFloor: self.$currentFloor)
-                        .frame(width: screen.size.width/2)
+                        .frame(width: geometry.size.width/2)
                         .transition(.move(edge: .leading))
-                
-                
                 }
             }
-            //}
+            }
             //.navigationBarTitle("Side Menu", displayMode: .inline)
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)

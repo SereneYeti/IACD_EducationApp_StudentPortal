@@ -7,13 +7,12 @@
 
 import SwiftUI
 
-
 //TODO: LIST
-//      - ADD WAY FOR USER TO JOIN CLUBS
 //      - Make club view look nice
 //TODO: ENDLIST
 struct ClubView: View {
     @State var club:Clubs
+    @EnvironmentObject var taskModel: TaskViewModel
     
     var body: some View {
         ScrollView(.vertical) {
@@ -75,30 +74,68 @@ struct ClubView: View {
                     }
                 
                 
-                Text("Equipment Needed:")
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                    .padding()
-                    .alignmentGuide(HorizontalAlignment.leading) { _ in
-                        0
-                    }
-                ForEach(club.RequiredEquipment!.indices) { index in
-                    Text("  - \(club.RequiredEquipment![index])")
-                        .font(.body)
-                        .fontWeight(.regular)
-                        .multilineTextAlignment(.center)
-                        .padding(2)
+                Group{
+                    Text("Equipment Needed:")
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                        .padding()
                         .alignmentGuide(HorizontalAlignment.leading) { _ in
                             0
                         }
+                    
+                    ForEach(club.RequiredEquipment!.indices) { index in
+                        Text("  - \(club.RequiredEquipment![index])")
+                            .font(.body)
+                            .fontWeight(.regular)
+                            .frame(width: screen.width,alignment: .leading)
+                            .padding(2)
+                            
+                    }
                 }
                 
-                Text("Incoming Meetups")
-                    .frame(width: screen.width, height: screen.height*0.10, alignment: .center)
-                    .background(.indigo)
-                    .padding()
-                
+                VStack{
+                    Text("Upcoming Club Meeetups")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .frame(width: screen.width, alignment: .center)
+                        .padding()
+                       
+                    
+                    UpcomingClubsTaskView().environmentObject(taskModel)
+                        .frame(width: screen.width, height: screen.height*0.10, alignment: .center)
+                        .background(.background)
+                        .padding()
+                }
+
                 Spacer()
+                
+                VStack{
+                    Text("Useful Information ")
+                        .font(.headline)
+                        .bold()
+                        .frame(width: screen.width,alignment: .center)
+                        .padding()
+                    ForEach(club.Helpful_Information!.indices){index in
+                        VStack(spacing: 2.5){
+                            Text("\(club.Helpful_Information![index].name)")
+                                .font(.subheadline)
+                                .bold()
+                                .foregroundColor(.gray)
+                                .frame(width: screen.width,alignment: .center)
+                                .offset(CGSize(width: 0, height: -2))
+                            Text("  - Description : \(club.Helpful_Information![index].infoDescription)")
+                                .font(.subheadline)
+                                .fontWeight(.regular)
+                                .frame(width: screen.width,alignment: .center)
+                                .padding(2)
+                            Link("Open website", destination: URL(string: club.Helpful_Information![index].link) ?? URL(string: "www.google.com")!)
+                                .padding(2)
+                                
+                        }
+                        .frame(width: screen.width)
+                        .border(.indigo, width: 2)
+                    }
+                }
             }
             .navigationTitle(club.id!)
         }

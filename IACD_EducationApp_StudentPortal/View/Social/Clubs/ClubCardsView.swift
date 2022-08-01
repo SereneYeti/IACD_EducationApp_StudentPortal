@@ -14,6 +14,7 @@ struct ClubCardsView: View {
     @State var clubDescription:String?
     @ObservedObject var clubsViewModel =  ClubsViewModel()
     @EnvironmentObject var forumsViewModel:ChatroomsViewModel
+    @EnvironmentObject var taskModel: TaskViewModel
     @State var displayed:Bool = false
     
     
@@ -23,26 +24,26 @@ struct ClubCardsView: View {
     }
     
     var body: some View {
-        
-        ScrollView(.horizontal) {
-            HStack(alignment: .center){
-                ClubCardView(club: nil).environmentObject(clubsViewModel).environmentObject(forumsViewModel)
-                    .frame(width: screen.width*0.5, height: screen.height * 0.25, alignment: .center)
-                //.padding()
-                ForEach($clubsViewModel.userClubs){ i in
-                    
-                    ClubCardView(club: i.wrappedValue).environmentObject(clubsViewModel).environmentObject(forumsViewModel)
+        VStack{
+            Text("My Clubs")
+                .font(.title)
+                .fontWeight(.bold)
+                .frame(width: screen.width, alignment: .center)
+            ScrollView(.horizontal) {
+                HStack(alignment: .center){
+                    ClubCardView(club: nil).environmentObject(clubsViewModel).environmentObject(forumsViewModel).environmentObject(taskModel)
                         .frame(width: screen.width*0.5, height: screen.height * 0.25, alignment: .center)
-                    
+                    //.padding()
+                    ForEach($clubsViewModel.userClubs){ i in
+                        
+                        ClubCardView(club: i.wrappedValue).environmentObject(clubsViewModel).environmentObject(forumsViewModel).environmentObject(taskModel)
+                            .frame(width: screen.width*0.5, height: screen.height * 0.25, alignment: .center)
+                        
+                    }
                 }
-                .navigationTitle("My Clubs")
-            }            
-            
-            
+            }
         }
     }
-    
-    
 }
 
 struct ClubCardView:View{
@@ -50,12 +51,13 @@ struct ClubCardView:View{
     var cornerRadius:CGFloat = 20
     @EnvironmentObject var clubsViewModel:ClubsViewModel
     @EnvironmentObject var forumsViewModel:ChatroomsViewModel
+    @EnvironmentObject var taskModel: TaskViewModel
     
     var body: some View{
         VStack{
             if(club != nil){
-                NavigationLink(destination: ClubView(club: self.club!).environmentObject(clubsViewModel)){
-                    VStack{                        
+                NavigationLink(destination: ClubView(club: self.club!).environmentObject(clubsViewModel).environmentObject(taskModel)){
+                    VStack{
                         AsyncImage(url: URL(string: club!.Images![0].URL!)) { image in
                             image.resizable()
                         } placeholder: {
@@ -112,9 +114,11 @@ struct ClubCardView:View{
     }
 }
 
-struct ClubCardsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ClubCardsView().environmentObject(ClubsViewModel())
-        //ClubCardView()
-    }
-}
+/*
+ struct ClubCardsView_Previews: PreviewProvider {
+ static var previews: some View {
+ ClubCardsView().environmentObject(ClubsViewModel())
+ //ClubCardView()
+ }
+ }
+ */

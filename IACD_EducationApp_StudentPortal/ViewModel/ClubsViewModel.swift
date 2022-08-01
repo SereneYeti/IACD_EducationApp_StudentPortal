@@ -18,7 +18,6 @@ struct Clubs: Codable, Identifiable{
     var Helpful_Information:[Helpful_Information]?
     var Meetups:[Timestamp]?
     var RequiredEquipment:[String]?
-    var SF_Symbol:String?
     var Images:[Images]?
     var forumID:Int?
     var members:[String]?
@@ -29,8 +28,7 @@ struct Clubs: Codable, Identifiable{
         case ClubDescription = "Description"
         case Helpful_Information
         case Meetups
-        case RequiredEquipment
-        case SF_Symbol
+        case RequiredEquipment        
         case Images
         case forumID
         case members
@@ -73,7 +71,7 @@ class ClubsViewModel: ObservableObject{
     private let user = Auth.auth().currentUser
     private var errorMessage:String = ""
     
-    public let joinClub = Clubs(Coordinator: "JoinClub", ClubDescription: "Join a club to meet new people and learn neew things.", Helpful_Information: [], Meetups: [], RequiredEquipment: [],SF_Symbol: "house",Images: [], forumID: -1, members: [])
+    public let joinClub = Clubs(Coordinator: "JoinClub", ClubDescription: "Join a club to meet new people and learn neew things.", Helpful_Information: [], Meetups: [], RequiredEquipment: [],Images: [], forumID: -1, members: [])
     
     func fetchDataForClub(clubID:String){
         var ans:Clubs?
@@ -87,10 +85,10 @@ class ClubsViewModel: ObservableObject{
                 else {
                     if let document = document {
                         do {
-                            ans = try document.data(as: Clubs.self)                            
+                            ans = try document.data(as: Clubs.self)
                             self.allClubs.append(ans!)
                             if(ans!.members!.contains(self.user!.uid)){
-                                self.userClubs.append(ans!)                                
+                                self.userClubs.append(ans!)
                             }
                         }
                         catch {
@@ -110,8 +108,7 @@ class ClubsViewModel: ObservableObject{
                     }
                 }
             }
-        }
-        
+        }       
         
     }
     
@@ -128,11 +125,12 @@ class ClubsViewModel: ObservableObject{
                 self.clubIDs.forEach { id in
                     //print("Club ID: \(id)")
                     self.fetchDataForClub(clubID: id)
-                }                
+                }
             }
             
         }
     }
+    
     
     func joinClub(clubID:String) {
         if (user != nil) {
@@ -182,6 +180,19 @@ class ClubsViewModel: ObservableObject{
     func GetUserClubAtIndex(index:Int)->Clubs{
         return userClubs[index]
     }
+    
+    func InClub(ClubID:String) -> Bool{
+        var ans:Bool = false
+        userClubs.forEach({ c in
+            if(c.id! == ClubID){
+                ans = true
+            }
+            
+        })
+        
+        return ans
+    }
+    
     /* OLD
      func fetchUserClubs() {
      if(user != nil){
