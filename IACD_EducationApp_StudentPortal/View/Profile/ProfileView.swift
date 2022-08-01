@@ -45,7 +45,7 @@ struct StudentProfileView: View{
             VStack{
                 HStack{
                     Image(systemName: "gearshape.fill")
-                        .font(.system(size: 25))
+                        .font(.system(size: 20))
                     Spacer()
                     
                 }

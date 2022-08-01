@@ -39,7 +39,7 @@ extension Module {
                                color: "ffcdb2",
                                tasks: [Tasks(taskTitle: "start", taskBody: "Do some work"),
                                        Tasks(taskTitle: "end", taskBody: "Final project")],
-                               content: [ Content(contentTitle: "Start", contentBody: "first module"),
+                               content: [ Content(contentTitle: "What is a brand ?", contentBody: "first module"),
                                           Content(contentTitle: "End", contentBody: "last module")])
 }
 
