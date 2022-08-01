@@ -28,6 +28,7 @@ struct ClubCardsView: View {
             Text("My Clubs")
                 .font(.title)
                 .fontWeight(.bold)
+                .foregroundColor(.white)
                 .frame(width: screen.width, alignment: .center)
             ScrollView(.horizontal) {
                 HStack(alignment: .center){
@@ -43,6 +44,8 @@ struct ClubCardsView: View {
                 }
             }
         }
+        .background(Color(red: 32/255, green: 32/255, blue: 32/255))
+        .ignoresSafeArea(.all, edges: .top)
     }
 }
 
@@ -68,27 +71,27 @@ struct ClubCardView:View{
                         Text("\(club!.id!)")
                             .padding(.top, 5)
                             .font(.headline)
-                            .foregroundColor(Color.black)
+                            .foregroundColor(Color.white)
                             .multilineTextAlignment(.center)
                         Text("Coordinator: \(club!.Coordinator!)")
                             .font(.subheadline)
-                            .foregroundColor(Color.gray)
+                            .foregroundColor(Color.white)
                             .fontWeight(Font.Weight.light)
                             .multilineTextAlignment(.center)
                             .padding(.bottom,10)
                         
                     }
-                    .background(.ultraThickMaterial)
-                    .cornerRadius(self.cornerRadius)
                     .padding(8)
+                    .background(.ultraThinMaterial)
+                    .cornerRadius(self.cornerRadius)
                     .overlay(
                         RoundedRectangle(cornerRadius: self.cornerRadius)
                             .stroke(lineWidth: 2)
-                            .foregroundColor(.black)
+                            .foregroundColor(.indigo)
+                            .opacity(1)
+                            .shadow(color: .purple, radius: 2, x: 3, y: 3)
                     )
-                    
                 }
-                
             }
             else
             {
@@ -101,12 +104,17 @@ struct ClubCardView:View{
                             .font(.headline)
                             .padding(6)
                     }
-                    .background(.ultraThickMaterial)
-                    .cornerRadius(self.cornerRadius-5)
+                    .foregroundColor(.white)
                     .padding(8)
+                    .background(.ultraThinMaterial)
+                    .cornerRadius(self.cornerRadius-5)
                     .overlay(
                         RoundedRectangle(cornerRadius: self.cornerRadius-5)
                             .stroke(lineWidth: 2)
+                            .foregroundColor(.purple)
+                            .opacity(1)
+                            .shadow(color: .purple, radius: 2, x: 3, y: 3)
+
                                        
                     )
                 }

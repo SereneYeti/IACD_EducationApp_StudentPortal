@@ -39,6 +39,7 @@ struct JoinClubsView: View {
             
         }
         .background(Color(red: 32/255, green: 32/255, blue: 32/255))
+        //.background(.ultraThinMaterial)
         //.edgesIgnoringSafeArea(.all)
         .navigationTitle("Available Clubs")        
     }
@@ -57,14 +58,15 @@ struct ListCellView:View{
                     .stroke(lineWidth: 2)
                     //.foregroundColor(.white)
                     .foregroundColor(Color(red: 32/255, green: 32/255, blue: 32/255))
-                    .padding(1.0)
+                    .padding(1)
                     .frame(width: screen.width * 0.5, height: screen.height*0.30, alignment: .center)
                     .overlay {
                         VStack{
                             Text(leftClub.id!)
                                 .fontWeight(.bold)
                                 .font(.title)
-                                .multilineTextAlignment(.center)
+                                .lineLimit(1)
+                                .frame(width: screen.width*0.50, alignment: .center)
                                 //.padding()
                             AsyncImage(url: URL(string: leftClub.Images![0].URL!)) { image in
                                 image.resizable()
@@ -84,13 +86,18 @@ struct ListCellView:View{
                         .stroke(lineWidth: 2)
                         //.foregroundColor(.white)
                         .foregroundColor(Color(red: 32/255, green: 32/255, blue: 32/255))
+                        .padding(1)
                         .frame(width: screen.width * 0.5, height: screen.height*0.30, alignment: .center)
                         .overlay {
                             VStack{
                                 Text(rightClub!.id!)
                                     .fontWeight(.bold)
                                     .font(.title)
-                                    .multilineTextAlignment(.center)
+                                    .lineLimit(1)
+                                    .padding(.trailing, 1)
+                                    .frame(width: screen.width*0.50, alignment: .center)
+                                    .minimumScaleFactor(0.4)
+                                    //.multilineTextAlignment(.center)
                                     //.padding()
                                 AsyncImage(url: URL(string: rightClub!.Images![0].URL!)) { image in
                                     image.resizable() 
