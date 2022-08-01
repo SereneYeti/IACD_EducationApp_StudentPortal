@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct ClassesCardListView: View {
-    @State var previewModule : Module = testModule[0]
+    @State var previewModule : Module = .sample
+    @ObservedObject var moduleViewModel : ModuleViewModule
     var body: some View {
         
         VStack(spacing: 30){
-            ClassCardView(previewModule: $previewModule)
+            ClassesCardListView(moduleViewModel: moduleViewModel)
                 .frame(width: screen.width - 50, height: screen.width - 250)
                 .background(.background)
                 .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
@@ -25,35 +26,43 @@ struct ClassesCardListView: View {
 
 struct ClassesCardView_Previews: PreviewProvider {
     static var previews: some View {
-        ClassesCardListView()
+        ClassesCardListView(moduleViewModel: ModuleViewModule())
     }
 }
 
-struct ClassCardView: View{
-    @Binding var previewModule : Module
+struct ClassTaskCardView: View{
+    @EnvironmentObject var moduleViewModel : ModuleViewModule
     var body: some View{
-        ForEach(previewModule.ContentTitles ?? [], id: \.self){ conTitle in
-            VStack {
-                HStack {
-                    VStack{
-                        Text(conTitle)
-                            .font(.system(size: 16, weight: .bold))
-                            .multilineTextAlignment(.leading)
-                            .lineLimit(3)
+        ForEach(moduleViewModel.modules){ item in
+            ForEach(item.tasks!, id:\.self) { tasks in
+                VStack(spacing: 10) {
+                    HStack {
+                        VStack {
+                            Text(tasks.taskTitle ?? "")
+                                .font(.system(size: 16, weight: .bold))
+                                .multilineTextAlignment(.leading)
+                                .lineLimit(3)
+                        }
+                        Spacer()
                     }
-                    Spacer()
-                }
-                .padding(20)
-                HStack{
-                    Spacer()
-                    Text("Lecturer")
-                    Text(previewModule.lecturer ?? "")
-                        .bold()
+                    .padding(20)
+                    HStack{
+                        Spacer()
+                        Text("Module")
+                        Text(item.name ?? "")
+                            .bold()
 
+                    }
+                    .padding()
                 }
-                .padding()
+                .padding(.top,30)
+                .frame(width: screen.width - 50, height: screen.width - 250)
+                .background(.background)
+                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                .shadow(color: Color(hex: item.color ??  "000000"), radius: 1, x: 2, y: 2)
+                .shadow(color: Color(hex: item.color ??  "000000"), radius: 1, x: 2, y: 2)
+    
             }
         }
-        
     }
 }

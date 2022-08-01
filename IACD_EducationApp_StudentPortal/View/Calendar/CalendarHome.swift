@@ -10,7 +10,7 @@
 import SwiftUI
 
 struct CalendarHome: View {
-    @StateObject var taskModel: TaskViewModel = TaskViewModel()
+    @EnvironmentObject var taskModel: TaskViewModel
     @Namespace var animation
     
     //MARK: Core Data Context

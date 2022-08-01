@@ -21,7 +21,7 @@ struct JoinChatroomView: View {
                         .font(.title)
                     TextField("Enter your join code", text: $joinCode)
                     Button(action: {
-                        viewModel.joinChatroom(code: joinCode, handler: {
+                        viewModel.joinChatroom(code: Int(joinCode) ?? -1, handler: {
                             self.isOpen = false
                         })
                     }, label: {

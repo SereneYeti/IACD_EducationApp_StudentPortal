@@ -9,10 +9,12 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 
-struct Chatroom: Codable, Identifiable{
+struct Chatroom: Codable, Identifiable, Hashable{
     var id:String
     var title:String
     var joinCode:Int
+    var type:Int //type 0 will be clubs 1 will be degrees and 2 will be student made forums & -1 will mean an error
+    var section:String
     
 }
 
@@ -29,19 +31,23 @@ class ChatroomsViewModel: ObservableObject{
                 guard let documents = snapshot?.documents else {
                     print("No docs returned!")
                     return
-                }                
+                }
                 
                 self.chatrooms = documents.map({docSnapshot -> Chatroom in
                     let data = docSnapshot.data()
                     let docId = docSnapshot.documentID
                     let title = data["title"] as? String ?? "Chatroom"
                     let joinCode = data["joinCode"] as? Int ?? -1
-                    return Chatroom(id: docId, title: title, joinCode: joinCode)
+                    let type = data["type"] as? Int ?? -1
+                    let section = data["section"] as? String ?? ""
+                    return Chatroom(id: docId, title: title, joinCode: joinCode,type: type, section: section)
                 })
             })
-            
-            
         }
+        
+        //print("JOIN CODE: \(createJoinCode())")
+        RandomNumberGenerator.GenerateRanodmNumber(numberOfDigits: 6, arrayToCheck: [])
+        print("Staff ID: \(RandomNumberGenerator.randomNumberGenerated)")
     }
     
     func CheckJoinCodes(){
@@ -64,13 +70,15 @@ class ChatroomsViewModel: ObservableObject{
     }
     
     func createChatroom(title: String, handler: @escaping () -> Void) {
-            if (user != nil) {
-                CheckJoinCodes()
-                RandomNumberGenerator.GenerateRanodmNumber(numberOfDigits: 5, arrayToCheck: self.chatroomJoinCodes)
-                db.collection("chatrooms").addDocument(data: [
-                                                        "title": title,
-                                                        "joinCode": RandomNumberGenerator.randomNumberGenerated,
-                                                        "users": [user!.uid]]) { err in
+        if (user != nil) {
+            CheckJoinCodes()
+            RandomNumberGenerator.GenerateRanodmNumber(numberOfDigits: 5, arrayToCheck: self.chatroomJoinCodes)
+            db.collection("chatrooms").addDocument(data: [
+                "title": title,
+                "joinCode": RandomNumberGenerator.randomNumberGenerated,
+                "type": 2,
+                "section": "Student Made",
+                "users": [user!.uid]]) { err in
                     if let err = err {
                         print("error adding document! \(err)")
                     } else {
@@ -78,25 +86,45 @@ class ChatroomsViewModel: ObservableObject{
                     }
                     
                 }
-            }
+        }
+    }
+    
+    func createJoinCode() -> Int{
+        var joinCode:Int = -1
+        if(user != nil){
+            CheckJoinCodes()
+            RandomNumberGenerator.GenerateRanodmNumber(numberOfDigits: 5, arrayToCheck: self.chatroomJoinCodes)
+            joinCode = RandomNumberGenerator.randomNumberGenerated
         }
         
-        func joinChatroom(code: String, handler: @escaping () -> Void) {
-            if (user != nil) {
-                db.collection("chatrooms").whereField("joinCode", isEqualTo: Int(code)).getDocuments() { (snapshot, error) in
-                    if let error = error {
-                        print("error getting documents! \(error)")
-                    } else {
-                        for document in snapshot!.documents {
-                            self.db.collection("chatrooms").document(document.documentID).updateData([
-                                                                                                        "users": FieldValue.arrayUnion([self.user!.uid])])
-                            handler()
-                        }
+        return joinCode
+    }
+    
+    func GetChatroomsInTypes() -> [[Chatroom]]{
+        var ans:[[Chatroom]] = [[],[],[]]
+        chatrooms.forEach { chatroom in
+            ans[chatroom.type].append(chatroom)
+        }
+        
+        return ans
+    }
+    
+    func joinChatroom(code: Int, handler: @escaping () -> Void) {
+        if (user != nil) {
+            db.collection("chatrooms").whereField("joinCode", isEqualTo: code).getDocuments() { (snapshot, error) in
+                if let error = error {
+                    print("error getting documents! \(error)")
+                } else {
+                    for document in snapshot!.documents {
+                        self.db.collection("chatrooms").document(document.documentID).updateData([
+                            "users": FieldValue.arrayUnion([self.user!.uid])])
+                        handler()
                     }
-                    
                 }
+                
             }
         }
+    }
     
     
 }

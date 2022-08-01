@@ -19,7 +19,7 @@ struct MessagesView: View {
     }
     
     var body: some View {
-        VStack{
+        VStack{            
             List(viewModel.messages){ message in
                 HStack{
                     Text(message.content)
@@ -31,17 +31,18 @@ struct MessagesView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 Button(action: {
                     viewModel.sendMessage(messageContent: messageField, docId: chatroom.id)
+                    messageField = ""
                 }, label: {
                     Text("Send")
                 })
             }
         }
-            .navigationBarTitle(chatroom.title)
+        .navigationBarTitle(chatroom.title)
     }
 }
 
 struct MessagesView_Previews: PreviewProvider {
     static var previews: some View {
-        MessagesView(chatroom: Chatroom(id: "10101", title: "Hello!", joinCode: 0))
+        MessagesView(chatroom: Chatroom(id: "10101", title: "Hello!", joinCode: 0,type: 2,section: "User Generated"))
     }
 }

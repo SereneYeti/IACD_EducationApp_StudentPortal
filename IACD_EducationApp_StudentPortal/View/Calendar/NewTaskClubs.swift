@@ -8,7 +8,7 @@
 import SwiftUI
     //MARK: View for user to define the new task they'll be adding
 
-struct NewTask: View {
+struct NewTaskClubs: View {
     @Environment(\.dismiss) var dismiss
     
         //MARK: Task Values
@@ -20,6 +20,7 @@ struct NewTask: View {
     @Environment(\.managedObjectContext) var context
     
     @EnvironmentObject var taskModel: TaskViewModel
+    @EnvironmentObject var clubViewModel: ClubsViewModel
     
     var body: some View {
         
@@ -32,6 +33,11 @@ struct NewTask: View {
                 }
                 Section {
                     TextField("What type of work", text: $taskDescription)
+                    Picker(selection: /*@START_MENU_TOKEN@*/.constant(1)/*@END_MENU_TOKEN@*/, label: Text("Clubs")) {
+                        ForEach(0 ..< clubViewModel.userClubs.count) { i in
+                            Text(clubViewModel.userClubs[i].id!).tag(i)
+                        }
+                    }   
                 } header: {
                     Text("Task Description")
                 }
@@ -102,8 +108,8 @@ struct NewTask: View {
     }
 }
 
-struct NewTask_Previews: PreviewProvider {
+struct NewTaskClubs_Previews: PreviewProvider {
     static var previews: some View {
-        NewTask()
+        NewTaskClubs()
     }
 }

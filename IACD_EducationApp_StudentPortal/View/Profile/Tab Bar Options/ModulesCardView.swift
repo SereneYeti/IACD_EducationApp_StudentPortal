@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct ModulesCardView: View {
-    var previewModule : Module = testModule[0]
+    @State var previewModule : Module = .sample
     var body: some View {
         ZStack {
-            CardView()
+            CardView(previewModule: previewModule)
                 .frame(width: screen.width - 40, height: screen.width - 220)
                 .background(Color(hex: previewModule.color ??  "000000"))
                 .overlay {
-//                url: URL(string: previewModule.image ?? "")
+
                     AsyncImage(url: URL(string: previewModule.image ?? "")) { image in
                         image.image?
                             .resizable()
@@ -33,20 +33,20 @@ struct ModulesCardView: View {
 
 struct ModulesCardView_Previews: PreviewProvider {
     static var previews: some View {
-        ModulesCardView(previewModule: testModule[0])
+        ModulesCardView(previewModule: .sample)
             //            .previewLayout(.sizeThatFits)
         
     }
 }
 
 struct CardView: View{
-    var previewModule = testModule[0]
+   @State var previewModule  : Module = .sample
     var body: some View{
         VStack {
             HStack {
                 VStack{
                     Text(previewModule.name ?? "")
-                        .font(.system(size: 36, weight: .bold))
+                        .font(.system(size: 18, weight: .bold))
                         Spacer()
                 }
                 Spacer()
