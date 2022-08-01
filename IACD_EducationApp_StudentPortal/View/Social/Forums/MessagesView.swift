@@ -43,6 +43,6 @@ struct MessagesView: View {
 
 struct MessagesView_Previews: PreviewProvider {
     static var previews: some View {
-        MessagesView(chatroom: Chatroom(id: "10101", title: "Hello!", joinCode: 0))
+        MessagesView(chatroom: Chatroom(id: "10101", title: "Hello!", joinCode: 0,type: 2,section: "User Generated"))
     }
 }
