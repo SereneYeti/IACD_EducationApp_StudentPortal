@@ -29,6 +29,7 @@ class CoordinatorViewModel:ObservableObject{
     private let db = Firestore.firestore()
     private let user = Auth.auth().currentUser
     private var errorMessage:String = ""
+    private var coordinatorIDs:[String] = []
     
     func fetchDataForStaffMember(staffID:String){
         var ans:Coordinator?
@@ -44,6 +45,8 @@ class CoordinatorViewModel:ObservableObject{
                         do {
                             ans = try document.data(as: Coordinator.self)
                             print("Coordinator: \(ans?.name ?? "error")")
+                            self.Coordinators.append(ans!)
+                            
                         }
                         catch {
                             switch error {
@@ -63,8 +66,24 @@ class CoordinatorViewModel:ObservableObject{
                 }
             }
         }
+    }
+    
+    func GetAllCoordinators(){
         
-        
+        if(user != nil){
+            db.collection("Clubs").getDocuments { (snapshot, error) in
+                snapshot?.documents.forEach({ (document) in
+                    let docID = document.documentID
+                    self.coordinatorIDs.append(docID)
+                })
+                
+                self.coordinatorIDs.forEach { id in
+                    //print("Club ID: \(id)")
+                    self.fetchDataForStaffMember(staffID: id)
+                }
+            }
+            
+        }
     }
     
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Newsletter: View {
+struct NewsletterView: View {
     var body: some View {
         Image("newsletter")
             .resizable()
@@ -17,6 +17,6 @@ struct Newsletter: View {
 
 struct Newsletter_Previews: PreviewProvider {
     static var previews: some View {
-        Newsletter()
+        NewsletterView()
     }
 }

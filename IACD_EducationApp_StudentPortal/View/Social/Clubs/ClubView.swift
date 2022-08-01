@@ -13,6 +13,7 @@ import SwiftUI
 struct ClubView: View {
     @State var club:Clubs
     @EnvironmentObject var taskModel: TaskViewModel
+    @EnvironmentObject var clubViewModel:ClubsViewModel
     
     var body: some View {
         ScrollView(.vertical) {
@@ -101,7 +102,7 @@ struct ClubView: View {
                         .padding()
                        
                     
-                    UpcomingClubsTaskView().environmentObject(taskModel)
+                    UpcomingClubsTaskView().environmentObject(clubViewModel).environmentObject(taskModel)
                         .frame(width: screen.width, height: screen.height*0.10, alignment: .center)
                         .background(.background)
                         .padding()

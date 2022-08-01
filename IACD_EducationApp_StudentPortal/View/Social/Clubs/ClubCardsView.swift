@@ -78,9 +78,9 @@ struct ClubCardView:View{
                             .padding(.bottom,10)
                         
                     }
-                    .padding(8)
-                    .background(.bar)
+                    .background(.ultraThickMaterial)
                     .cornerRadius(self.cornerRadius)
+                    .padding(8)
                     .overlay(
                         RoundedRectangle(cornerRadius: self.cornerRadius)
                             .stroke(lineWidth: 2)
@@ -101,12 +101,13 @@ struct ClubCardView:View{
                             .font(.headline)
                             .padding(6)
                     }
-                    //.padding(8)
-                    .background(.bar)
+                    .background(.ultraThickMaterial)
                     .cornerRadius(self.cornerRadius-5)
+                    .padding(8)
                     .overlay(
                         RoundedRectangle(cornerRadius: self.cornerRadius-5)
                             .stroke(lineWidth: 2)
+                                       
                     )
                 }
             }

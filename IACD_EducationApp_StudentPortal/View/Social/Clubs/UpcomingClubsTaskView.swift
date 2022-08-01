@@ -12,7 +12,7 @@ struct UpcomingClubsTaskView: View {
     @State var currentClub:Clubs?
     @EnvironmentObject var clubViewModel:ClubsViewModel
     @EnvironmentObject var taskModel: TaskViewModel
-    
+    let persistenceController = PersistenceController.shared
     
     var body: some View {
         ScrollView(.horizontal) {
@@ -26,7 +26,7 @@ struct UpcomingClubsTaskView: View {
                     Image(systemName: "plus.circle")
                 })
             }
-            .sheet(isPresented: self.$newTask, content: {NewTaskClubs().environmentObject(taskModel).environmentObject(clubViewModel)})
+            .sheet(isPresented: self.$newTask, content: {NewTaskClubs() .environment(\.managedObjectContext, persistenceController.container.viewContext).environmentObject(taskModel).environmentObject(clubViewModel)})
         }
     }
 }
