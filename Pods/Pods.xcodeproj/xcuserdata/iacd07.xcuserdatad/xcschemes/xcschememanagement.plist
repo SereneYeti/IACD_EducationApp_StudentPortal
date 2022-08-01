@@ -77,7 +77,7 @@
 		<key>FirebaseFirestoreSwift.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>25</integer>
+			<integer>26</integer>
 		</dict>
 		<key>FirebaseInstallations.xcscheme</key>
 		<dict>
