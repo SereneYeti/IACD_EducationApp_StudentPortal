@@ -12,7 +12,7 @@ import Firebase
 class StudentModel: ObservableObject {
     @Published var students = [Student]()
     @Published var graphicModules = [Module]()
-    let db = Firestore.firestore()
+    let db = Firestore.firestore() 
     
     init(){
         fetchData()

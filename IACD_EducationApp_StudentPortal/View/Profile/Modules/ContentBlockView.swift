@@ -24,7 +24,7 @@ struct ContentBlockView: View {
                             .frame(width: 200, height: 200)
                             .background(.white)
                             .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-                            .shadow(color: Color(hex: item.color ?? "").opacity(0.3), radius: 2, x: 1, y: 1)
+                            .shadow(color: Color(hex: item.color ?? "").opacity(0.8), radius: 2, x: 2, y: 1)
                             .shadow(color: Color(hex: item.color ?? "").opacity(0.5), radius: 10, x: 5, y: 10)
                         }
                     } else {

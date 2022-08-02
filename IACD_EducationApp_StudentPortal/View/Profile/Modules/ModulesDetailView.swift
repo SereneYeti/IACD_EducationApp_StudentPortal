@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ModulesDetailView: View {
     var previewModule : Module
-    @ObservedObject var moduleViewModel : ModuleViewModule
+    var moduleViewModel : ModuleViewModule
     var body: some View {
         ScrollView( showsIndicators: false){
             VStack {
@@ -62,8 +62,8 @@ struct ModulesDetailView: View {
                                 )
                                 .offset(x: 20,y:30)
                         )
-                     
-                       
+                    
+                    
                 }
                 .padding(.leading)
                 
@@ -71,7 +71,7 @@ struct ModulesDetailView: View {
                     .frame(height: 60)
                     //MARK: Content
                 Text("Content")
-                    .font(.system(size: 30, weight: .light))
+                    .font(.system(size: 25, weight: .light))
                     .hLeading()
                     .padding()
                 
@@ -89,13 +89,15 @@ struct ModulesDetailView: View {
                     .frame(height: 60)
                 
                 Text("Tasks")
-                    .font(.system(size: 30, weight: .light))
+                    .font(.system(size: 25, weight: .light))
                     .hLeading()
                     .padding()
                     //MARK: Tasks
+                ModuleTasksListView()
+                    .environmentObject(ModuleViewModule())
                 
-            
-            }
+                
+            }.padding()
         }
     }
 }
