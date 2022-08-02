@@ -11,6 +11,7 @@ struct CalendarView: View {
     let persistenceController = PersistenceController.shared
     var body: some View {
         CalendarHome()
+        
             .environment(\.managedObjectContext, persistenceController.container.viewContext)
             .navigationBarHidden(true)
         

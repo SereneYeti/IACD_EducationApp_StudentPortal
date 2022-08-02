@@ -41,6 +41,13 @@ extension Module {
                                        Tasks(taskTitle: "end", taskBody: "Final project")],
                                content: [ Content(contentTitle: "What is a brand ?", contentBody: "first module"),
                                           Content(contentTitle: "End", contentBody: "last module")])
+
+}
+
+extension Tasks{
+    static let empty = Tasks(taskTitle: "", taskBody: "")
+    static let sample = Tasks(taskTitle: "Main title",
+                                  taskBody: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut venenatis vulputate magna, at tempor ligula dignissim et. Suspendisse a ligula ipsum. Proin eu dictum elit, et semper tortor. Donec malesuada mauris neque, non tristique nibh venenatis in. Maecenas nec sapien ac massa bibendum cursus non nec arcu. Cras efficitur tempor varius. Cras porttitor pellentesque accumsan. Morbi eu lorem sit amet diam ultricies ultricies. Quisque porttitor vitae dolor ut tincidunt. Sed nisi turpis, egestas at ex eget, convallis suscipit nunc.")
 }
 
 

@@ -20,8 +20,8 @@ struct ProfileView: View {
             StudentCardView()
         }
         .tabViewStyle(.page(indexDisplayMode: .always))
-   
-
+        
+        
     }
 }
 
@@ -121,38 +121,43 @@ struct StudentProfileView: View{
 struct ModulesListView: View{
     @EnvironmentObject var moduleViewModel : ModuleViewModule
     var body: some View{
-        ForEach(moduleViewModel.modules) { item in
-            ModulesCardView(previewModule: item)
-                .padding()
+        NavigationView {
+            ForEach(moduleViewModel.modules) { item in
+                ModulesCardView(previewModule: item)
+                    .padding()
+            }
+            
         }
     }
 }
 
-//MARK: Tasks
+    //MARK: Tasks
 struct ModuleTasksListView: View{
     @EnvironmentObject var moduleViewModel : ModuleViewModule
     var body: some View{
         ForEach(moduleViewModel.modules){ item in
             ForEach(item.tasks!, id:\.self) { tasks in
-                VStack(spacing: 10) {
-                    HStack {
-                        VStack {
-                            Text(tasks.taskTitle ?? "")
-                                .font(.system(size: 16, weight: .bold))
-                                .multilineTextAlignment(.leading)
-                                .lineLimit(3)
+                NavigationLink(destination: TasksDetailView(previewModule: item, previewTasks: tasks)) {
+                    VStack(spacing: 10) {
+                        HStack {
+                            VStack {
+                                Text(tasks.taskTitle ?? "")
+                                    .font(.system(size: 16, weight: .bold))
+                                    .multilineTextAlignment(.leading)
+                                    .lineLimit(3)
+                            }
+                            Spacer()
                         }
-                        Spacer()
+                        .padding()
+                        HStack{
+                            Spacer()
+                            Text("Module")
+                            Text(item.name ?? "")
+                                .bold()
+                            
+                        }
+                        .padding()
                     }
-                    .padding()
-                    HStack{
-                        Spacer()
-                        Text("Module")
-                        Text(item.name ?? "")
-                            .bold()
-
-                    }
-                    .padding()
                 }
                 .frame(width: screen.width - 50, height: screen.width - 280)
                 .background(.background)
@@ -160,6 +165,7 @@ struct ModuleTasksListView: View{
                 .shadow(color: Color(hex: item.color ??  "000000"), radius: 1, x: 2, y: 2)
                 .shadow(color: Color(hex: item.color ??  "000000").opacity(0.8), radius: 10, x: 2, y: 2)
             }
+            
         }
         .padding(15)
     }

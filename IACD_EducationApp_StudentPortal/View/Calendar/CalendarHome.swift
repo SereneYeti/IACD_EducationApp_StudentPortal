@@ -239,5 +239,6 @@ struct CalendarHome: View {
 struct CalendarHome_Previews: PreviewProvider {
     static var previews: some View {
         CalendarHome()
+            .environmentObject(TaskViewModel())
     }
 }

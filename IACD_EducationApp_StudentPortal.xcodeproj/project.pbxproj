@@ -668,7 +668,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"IACD_EducationApp_StudentPortal/Preview Content\"";
-				DEVELOPMENT_TEAM = TGGDTMFZ2S;
+				DEVELOPMENT_TEAM = 8K52FAQ674;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -698,7 +698,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"IACD_EducationApp_StudentPortal/Preview Content\"";
-				DEVELOPMENT_TEAM = TGGDTMFZ2S;
+				DEVELOPMENT_TEAM = 8K52FAQ674;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
