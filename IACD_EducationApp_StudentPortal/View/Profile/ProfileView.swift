@@ -20,8 +20,6 @@ struct ProfileView: View {
             StudentCardView()
         }
         .tabViewStyle(.page(indexDisplayMode: .always))
-        
-        
     }
 }
 
@@ -121,23 +119,23 @@ struct StudentProfileView: View{
 struct ModulesListView: View{
     @EnvironmentObject var moduleViewModel : ModuleViewModule
     var body: some View{
-        NavigationView {
-            ForEach(moduleViewModel.modules) { item in
-                ModulesCardView(previewModule: item)
-                    .padding()
-            }
-            
+        ForEach(moduleViewModel.modules) { item in
+            ModulesCardView(previewModule: item)
+                .padding()
         }
     }
 }
 
-    //MARK: Tasks
+//MARK: Tasks
 struct ModuleTasksListView: View{
     @EnvironmentObject var moduleViewModel : ModuleViewModule
+    @State var showTasks : Bool = false
     var body: some View{
         ForEach(moduleViewModel.modules){ item in
             ForEach(item.tasks!, id:\.self) { tasks in
-                NavigationLink(destination: TasksDetailView(previewModule: item, previewTasks: tasks)) {
+                NavigationLink{
+                    TasksDetailView(previewModule:item , previewTasks: tasks)
+                }label:{
                     VStack(spacing: 10) {
                         HStack {
                             VStack {
@@ -154,18 +152,19 @@ struct ModuleTasksListView: View{
                             Text("Module")
                             Text(item.name ?? "")
                                 .bold()
-                            
+
                         }
                         .padding()
                     }
+                    .frame(width: screen.width - 50, height: screen.width - 280)
+                    .background(.background)
+                    .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                    .shadow(color: Color(hex: item.color ??  "000000"), radius: 1, x: 2, y: 2)
+                    .shadow(color: Color(hex: item.color ??  "000000").opacity(0.8), radius: 10, x: 2, y: 2)
+                    .tint(.none)
                 }
-                .frame(width: screen.width - 50, height: screen.width - 280)
-                .background(.background)
-                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                .shadow(color: Color(hex: item.color ??  "000000"), radius: 1, x: 2, y: 2)
-                .shadow(color: Color(hex: item.color ??  "000000").opacity(0.8), radius: 10, x: 2, y: 2)
+                
             }
-            
         }
         .padding(15)
     }
