@@ -69,7 +69,7 @@ class ChatroomsViewModel: ObservableObject{
         }
     }
     
-    func createChatroom(title: String, handler: @escaping () -> Void) {
+    func createStudentChatroom(title: String, handler: @escaping () -> Void) {
         if (user != nil) {
             CheckJoinCodes()
             RandomNumberGenerator.GenerateRanodmNumber(numberOfDigits: 5, arrayToCheck: self.chatroomJoinCodes)
@@ -79,6 +79,44 @@ class ChatroomsViewModel: ObservableObject{
                 "type": 2,
                 "section": "Student Made",
                 "users": [user!.uid]]) { err in
+                    if let err = err {
+                        print("error adding document! \(err)")
+                    } else {
+                        handler()
+                    }
+                    
+                }
+        }
+    }
+    
+    func createClubChatroom(title: String, handler: @escaping () -> Void, joinCode:Int) {
+        if (user != nil) {
+            //CheckJoinCodes()
+            db.collection("chatrooms").addDocument(data: [
+                "title": title,
+                "joinCode": joinCode,
+                "type": 0,
+                "section": "Clubs",
+                "users": []]) { err in
+                    if let err = err {
+                        print("error adding document! \(err)")
+                    } else {
+                        handler()
+                    }
+                    
+                }
+        }
+    }
+    
+    func createDegreeChatroom(title: String, handler: @escaping () -> Void, joinCode:Int) {
+        if (user != nil) {
+            //CheckJoinCodes()
+            db.collection("chatrooms").addDocument(data: [
+                "title": title,
+                "joinCode": joinCode,
+                "type": 1,
+                "section": "Degree",
+                "users": []]) { err in
                     if let err = err {
                         print("error adding document! \(err)")
                     } else {

@@ -11,10 +11,10 @@ import FirebaseFirestore
 
 struct Coordinator: Codable, Identifiable, Hashable{
     var id:String?
-    var name:String
-    var ContactNumber:Int
-    var staffID:Int
-    var image:String
+    var name:String?
+    var ContactNumber:Int?
+    var staffID:Int?
+    var image:String?
     
     enum CodingKeys:CodingKey{
         case id
@@ -33,6 +33,11 @@ class CoordinatorViewModel:ObservableObject{
     private var errorMessage:String = ""
     private var coordinatorIDs:[Int] = []
     
+    init(){
+        AddNewStaffMemberDocument(staffID: GetNewStaffID(), Name: "Eben Kok", ContatNumber: 27765552533, ImageURL: "https://cbsnews1.cbsistatic.com/hub/i/2017/08/22/1611291e-8783-4d73-a86d-5760a3dd781e/gettyimages-699007336.jpg")
+        GetAllCoordinators()
+    }
+    
     func GetStaffInfo(staffId:Int) -> Coordinator{
         var ans = Coordinator(name: "", ContactNumber: -1, staffID: -1, image: "")
         Coordinators.forEach { c in
@@ -42,6 +47,17 @@ class CoordinatorViewModel:ObservableObject{
         }
         
         return ans
+    }
+    
+    func AddNewStaffMemberDocument(staffID:Int, Name: String, ContatNumber:Int, ImageURL:String){
+        let newStaff = Coordinator(name: Name, ContactNumber: ContatNumber, staffID: staffID, image: ImageURL)
+        
+        do {
+            try db.collection("Staff").document(String(staffID)).setData(from: newStaff)
+            print("New Staff member \(newStaff.name) added!")
+        } catch let error {
+            print("Error writing staff member to Firestore: \(error)")
+        }
     }
     
     func GetNewStaffID() -> Int{
@@ -89,10 +105,12 @@ class CoordinatorViewModel:ObservableObject{
     func GetAllCoordinators(){
         
         if(user != nil){
-            db.collection("Clubs").getDocuments { (snapshot, error) in
+            db.collection("Staff").getDocuments { (snapshot, error) in
                 snapshot?.documents.forEach({ (document) in
                     let docID = document.documentID
-                    self.coordinatorIDs.append(Int(docID)!)
+                    if(!docID.isEmpty){
+                        self.coordinatorIDs.append(Int(docID)!)
+                    }
                 })
                 
                 self.coordinatorIDs.forEach { id in

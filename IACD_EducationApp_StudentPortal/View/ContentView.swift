@@ -22,6 +22,7 @@ struct ContentView: View {
     
     @StateObject var taskModel: TaskViewModel = TaskViewModel()
     @ObservedObject var forumsViewModel =  AppViewModel()
+    @ObservedObject var staffViewModel:CoordinatorViewModel = CoordinatorViewModel()
     
     init() {
         forumsViewModel.listen()
@@ -36,7 +37,7 @@ struct ContentView: View {
                 Text("Home").bold()
                 
             }.tag(tabs.Home)
-            SocialView().environmentObject(taskModel).tabItem{
+            SocialView().environmentObject(taskModel).environmentObject(staffViewModel).tabItem{
                 Image(systemName: "newspaper.circle.fill")
                 Text("Social").bold()
             }.tag(tabs.Forums)
