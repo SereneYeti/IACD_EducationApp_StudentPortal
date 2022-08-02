@@ -107,7 +107,7 @@ class ChatroomsViewModel: ObservableObject{
                 }
         }
     }
-    //TODO: integrate forum & degree, create game design student
+    
     func createDegreeChatroom(title: String, handler: @escaping () -> Void, joinCode:Int) {
         if (user != nil) {
             //CheckJoinCodes()

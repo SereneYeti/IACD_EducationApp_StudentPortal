@@ -35,6 +35,7 @@ struct SocialView: View {
         
         clubsViewModel.GetUserClubs()
     }
+    //TODO: integrate forum & degree, create game design student
     //TODO: Update join forums view
     var body: some View {
         VStack(spacing: 1){
