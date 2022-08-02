@@ -15,6 +15,7 @@ struct HomeView: View {
     @State private var showMap: Bool = false
     @State private var showNewsletterView: Bool = false
     @EnvironmentObject var taskModel:TaskViewModel
+    @Binding var verified:Bool
     
     var testStu = testData[0]
     
@@ -42,6 +43,13 @@ struct HomeView: View {
                     }
                     HStack{
                         VStack{
+                            Button {
+                                self.verified.toggle() //TODO: move verified to app view model, Update verified to check firestore
+                                print("verified") // TODO: Make profile picture top right for sign out and to show verification staus, Home screen background change?
+                            } label: {
+                                Text("Verify your account now!")
+                            }
+
                             NavigationLink(destination: MapView()) {
                                 //MapView()
                                 Image("Image")
@@ -137,7 +145,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView().environmentObject(AppViewModel())
+        HomeView(verified: .constant(true)).environmentObject(AppViewModel())
             .environmentObject(TaskViewModel())
     }
 }

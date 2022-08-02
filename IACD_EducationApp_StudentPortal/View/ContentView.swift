@@ -19,6 +19,7 @@ public enum tabs : Hashable{
 struct ContentView: View {
     @EnvironmentObject var viewModel: AppViewModel
     @State var selectedItem:tabs = .Home
+    @State var verified:Bool = false
     
     @StateObject var taskModel: TaskViewModel = TaskViewModel()
     @ObservedObject var forumsViewModel =  AppViewModel()
@@ -31,22 +32,24 @@ struct ContentView: View {
     var body: some View {
         
         TabView(selection: $selectedItem) {
-            HomeView().environmentObject(taskModel).tabItem
+            HomeView(verified: $verified).environmentObject(taskModel).tabItem
             {
                 Image(systemName: "house.fill")
                 Text("Home").bold()
                 
             }.tag(tabs.Home)
-            SocialView().environmentObject(taskModel).environmentObject(staffViewModel).tabItem{
-                Image(systemName: "newspaper.circle.fill")
-                Text("Social").bold()
-            }.tag(tabs.Forums)
-            ProfileView()
-                .environmentObject(ModuleViewModule())
-                .tabItem{
-                Image(systemName: "person.crop.circle.fill")
-                Text("Account").bold()
-            }.tag(tabs.Account)
+            if(verified){
+                SocialView().environmentObject(taskModel).environmentObject(staffViewModel).tabItem{
+                    Image(systemName: "newspaper.circle.fill")
+                    Text("Social").bold()
+                }.tag(tabs.Forums)
+                ProfileView()
+                    .environmentObject(ModuleViewModule())
+                    .tabItem{
+                    Image(systemName: "person.crop.circle.fill")
+                    Text("Account").bold()
+                }.tag(tabs.Account)
+            }
         }.onAppear(){
             UITabBar.appearance().backgroundColor = .lightGray
             

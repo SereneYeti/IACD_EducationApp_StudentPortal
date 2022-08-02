@@ -21,6 +21,7 @@ class AppViewModel:ObservableObject {
     
     @Published var session: User?
     @Published var isAnon: Bool = false
+    
     var handle: AuthStateDidChangeListenerHandle?
     
     

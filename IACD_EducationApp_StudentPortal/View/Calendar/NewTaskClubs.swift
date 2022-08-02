@@ -1,22 +1,26 @@
-    //
-    //  NewTask.swift
-    //  IACD_EducationApp_StudentPortal
-    //
-    //  Created by IACD-013 on 2022/07/15.
-    //
+//
+//  NewTask.swift
+//  IACD_EducationApp_StudentPortal
+//
+//  Created by IACD-013 on 2022/07/15.
+//
 
 import SwiftUI
-    //MARK: View for user to define the new task they'll be adding
+import FirebaseFirestore
+//MARK: View for user to define the new task they'll be adding
 
 struct NewTaskClubs: View {
     @Environment(\.dismiss) var dismiss
+    @State private var clubPicker = 0
     
-        //MARK: Task Values
+    //MARK: Task Values
     @State var taskTitle: String = ""
     @State var taskDescription: String = ""
+    @State var club:Clubs
+    @State var strClub:String
     @State var taskDate: Date = Date()
     
-        //MARK: Core data Context
+    //MARK: Core data Context
     @Environment(\.managedObjectContext) var context
     
     @EnvironmentObject var taskModel: TaskViewModel
@@ -27,21 +31,22 @@ struct NewTaskClubs: View {
         NavigationView{
             List{
                 Section {
-                    TextField("Go to work", text: $taskTitle)
+                    TextField("Club Meetup", text: $taskTitle)
+                        .onAppear{
+                            taskTitle = ("\(club.id!) Club Meetup")
+                        }
                 } header: {
                     Text("Task Title")
                 }
                 Section {
-                    TextField("What type of work", text: $taskDescription)
-                    Picker(selection: /*@START_MENU_TOKEN@*/.constant(1)/*@END_MENU_TOKEN@*/, label: Text("Clubs")) {
-                        ForEach(0 ..< clubViewModel.userClubs.count) { i in
-                            Text(clubViewModel.userClubs[i].id!).tag(i)
-                        }
-                    }   
+                    TextField("Description of the meetup", text: $taskDescription)
+                    
                 } header: {
                     Text("Task Description")
                 }
-                    //Disable when editing
+                
+                
+                //Disable when editing
                 if taskModel.editTask == nil {
                     Section {
                         DatePicker("", selection: $taskDate)
@@ -57,10 +62,10 @@ struct NewTaskClubs: View {
             .navigationTitle("Add New task")
             .navigationBarTitleDisplayMode(.inline)
             
-                //MARK: Disabling the view with swipe action
+            //MARK: Disabling the view with swipe action
             .interactiveDismissDisabled()
             
-                //MARK: Action Buttons
+            //MARK: Action Buttons
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save"){
@@ -69,11 +74,12 @@ struct NewTaskClubs: View {
                             task.taskDescription = taskDescription
                             
                         }else {
-                                //MARK: Create a new entity , which will create our new object in core Date
+                            //MARK: Create a new entity , which will create our new object in core Date
                             let task = CreateTask()
                         }
+                        //Saving
                         
-                            //Saving
+                        
                         try? context.save()
                         dismiss()
                     }
@@ -85,7 +91,7 @@ struct NewTaskClubs: View {
                     }
                 }
             }
-                // loading task data if from edit
+            // loading task data if from edit
             .onAppear{
                 if let task = taskModel.editTask {
                     taskTitle = task.taskTitle ?? ""
@@ -107,9 +113,10 @@ struct NewTaskClubs: View {
         return task
     }
 }
-
+/*
 struct NewTaskClubs_Previews: PreviewProvider {
     static var previews: some View {
         NewTaskClubs()
     }
 }
+ */

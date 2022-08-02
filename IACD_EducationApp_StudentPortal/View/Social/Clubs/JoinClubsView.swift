@@ -10,6 +10,7 @@ import SwiftUI
 struct JoinClubsView: View {
     @EnvironmentObject var clubsViewModel:ClubsViewModel
     @EnvironmentObject var forumsViewModel:ChatroomsViewModel
+    @EnvironmentObject var staffViewModel: CoordinatorViewModel
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     var clubSet:[Clubs] = []
     
@@ -24,6 +25,7 @@ struct JoinClubsView: View {
                     if((index+1)<clubsViewModel.allClubs.count){
                         if(index % 2 == 0 && (index+1)%2 == 1){
                             ListCellView(leftClub: clubsViewModel.allClubs[index], rightClub: clubsViewModel.allClubs[index+1]).environmentObject(clubsViewModel).environmentObject(forumsViewModel)
+                                .environmentObject(staffViewModel)
                         }
                         
                     }
@@ -31,6 +33,7 @@ struct JoinClubsView: View {
                     {
                         if(index % 2 == 0){
                             ListCellView(leftClub: clubsViewModel.allClubs[index], rightClub: nil).environmentObject(clubsViewModel).environmentObject(forumsViewModel)
+                                .environmentObject(staffViewModel)
                         }
                     }
                     
@@ -48,12 +51,13 @@ struct JoinClubsView: View {
 struct ListCellView:View{
     @EnvironmentObject var clubsViewModel:ClubsViewModel
     @EnvironmentObject var forumsViewModel:ChatroomsViewModel
+    @EnvironmentObject var staffViewModel: CoordinatorViewModel
     @State var leftClub:Clubs
     @State var rightClub:Clubs?
     
     var body: some View{
         HStack{
-            NavigationLink(destination: JoinClubView(isOpen: .constant(true),club: leftClub).environmentObject(clubsViewModel).environmentObject(forumsViewModel)){
+            NavigationLink(destination: JoinClubView(isOpen: .constant(true),club: leftClub, coordinator: staffViewModel.GetStaffInfo(staffId: leftClub.Coordinator!)).environmentObject(clubsViewModel).environmentObject(forumsViewModel)){
                 RoundedRectangle(cornerRadius: 15)
                     .stroke(lineWidth: 2)
                     //.foregroundColor(.white)
@@ -84,7 +88,7 @@ struct ListCellView:View{
             
             //.background(.green)
             if(rightClub != nil){
-                NavigationLink(destination: JoinClubView(isOpen: .constant(true),club: rightClub).environmentObject(clubsViewModel).environmentObject(forumsViewModel)){
+                NavigationLink(destination: JoinClubView(isOpen: .constant(true),club: rightClub, coordinator: staffViewModel.GetStaffInfo(staffId: rightClub!.Coordinator!)).environmentObject(clubsViewModel).environmentObject(forumsViewModel)){
                     RoundedRectangle(cornerRadius:  15)
                         .stroke(lineWidth: 2)
                         //.foregroundColor(.white)

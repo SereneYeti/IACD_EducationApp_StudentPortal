@@ -21,7 +21,7 @@ struct ClubCardsView: View {
     
     init(){
         //code
-        
+       
     }
     
     var body: some View {
@@ -95,6 +95,7 @@ struct ClubCardView:View{
                             .opacity(1)
                             .shadow(color: .purple, radius: 2, x: 3, y: 3)
                     )
+                    
                 }
             }
             else

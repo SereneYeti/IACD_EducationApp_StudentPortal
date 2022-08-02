@@ -11,11 +11,13 @@ import SwiftUI
 //      - Make club view look nice
 //TODO: ENDLIST
 struct ClubView: View {
+    @State var newTask = false
     @State var club:Clubs
     @State var coordinator:Coordinator
     @EnvironmentObject var taskModel: TaskViewModel
     @EnvironmentObject var clubViewModel:ClubsViewModel
     @EnvironmentObject var staffViewModel: CoordinatorViewModel
+    let persistenceController = PersistenceController.shared
     
     
     var body: some View {
@@ -32,6 +34,7 @@ struct ClubView: View {
                     
                     AsyncImage(url: URL(string: coordinator.image!)) { image in
                         image.resizable()
+                        
                             
                     } placeholder: {
                         ProgressView()
@@ -49,22 +52,14 @@ struct ClubView: View {
                 .alignmentGuide(.leading) { _ in 0 }
                 .frame(width: screen.width, alignment: .topLeading)
                 
-                AsyncImage(url: URL(string: club.Images![0].URL!)) { image in
-                    image.resizable()
-                } placeholder: {
-                    ProgressView()
+                TabView{
+                    ForEach(club.Images!, id:\.self){ image in
+                        ImgView(URL:image.URL!,credit: image.credit!)
+                            
+                    }
                 }
                 .frame(width: screen.width*1.0, height: screen.height*0.42)
-                .alignmentGuide(HorizontalAlignment.leading) { _ in
-                    0
-                }
-                Text("Image taken by \(club.Images![0].credit!)")
-                    .font(.caption)
-                    .fontWeight(.light)
-                    .padding()
-                    .alignmentGuide(HorizontalAlignment.leading) { _ in
-                        0
-                    }
+                .tabViewStyle(.page(indexDisplayMode: .always))
                 //.cornerRadius(15)
                 
                 Divider()
@@ -97,19 +92,16 @@ struct ClubView: View {
                     }
                 }
                 
-                VStack{
-                    Text("Upcoming Club Meeetups")
+                HStack {
+                    
+                    Text("Create Club Meetup")
                         .font(.headline)
                         .fontWeight(.bold)
-                        .frame(width: screen.width, alignment: .center)
                         .padding()
-                       
                     
-                    UpcomingClubsTaskView().environmentObject(clubViewModel).environmentObject(taskModel)
-                        .frame(width: screen.width, height: screen.height*0.10, alignment: .center)
-                        .background(.background)
-                        .padding()
-                }
+                    UpcomingClubsTaskView(currentClub: club)
+                    
+                }.frame(width: screen.width, alignment: .center)
 
                 Spacer()
                 
@@ -127,6 +119,7 @@ struct ClubView: View {
                                 .foregroundColor(.gray)
                                 .frame(width: screen.width,alignment: .center)
                                 .offset(CGSize(width: 0, height: -2))
+                                .padding(.top)
                             Text("  - Description : \(club.Helpful_Information![index].infoDescription)")
                                 .font(.subheadline)
                                 .fontWeight(.regular)
@@ -142,6 +135,7 @@ struct ClubView: View {
                 }
             }
             .navigationTitle(club.id!)
+            
         }
     }
 }

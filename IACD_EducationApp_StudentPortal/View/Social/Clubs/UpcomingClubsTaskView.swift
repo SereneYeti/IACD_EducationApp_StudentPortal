@@ -15,49 +15,16 @@ struct UpcomingClubsTaskView: View {
     let persistenceController = PersistenceController.shared
     
     var body: some View {
-        ScrollView(.horizontal) {
-            HStack {
-                //ForEach(, id: \.self){ task in
-                ClubTaskView(taskTitle: "Title", taskDescription: "Description", taskDate: Date.now)
-                // }
-                Button(action: {
-                    self.newTask = true
-                }, label: {
-                    Image(systemName: "plus.circle")
-                })
-            }
-            .sheet(isPresented: self.$newTask, content: {NewTaskClubs() .environment(\.managedObjectContext, persistenceController.container.viewContext).environmentObject(taskModel).environmentObject(clubViewModel)})
+        
+        if(currentClub != nil){
+            Button(action: {
+                self.newTask = true
+            }, label: {
+                Image(systemName: "plus.circle")
+            })
+            .sheet(isPresented: self.$newTask, content: {NewTaskClubs(club: currentClub!, strClub: currentClub!.id!) .environment(\.managedObjectContext, persistenceController.container.viewContext).environmentObject(taskModel).environmentObject(clubViewModel)})
         }
-    }
-}
-
-struct ClubTaskView:View{
-    
-    @State var taskTitle: String = ""
-    @State var taskDescription: String = ""
-    @State var taskDate: Date = Date()
-    
-    var body: some View{
-        VStack{
-            Text(taskTitle)
-                .font(.headline)
-                .fontWeight(.bold)
-            Text(taskDescription)
-                .font(.subheadline)
-                .fontWeight(.regular)
-            Text(taskDate.description)
-                .font(.footnote)
-                .fontWeight(.bold)
-            
-        }
-        .padding()
-        .background(.bar)
-        .cornerRadius(15)
-        .overlay(
-            RoundedRectangle(cornerRadius: 15)
-                .stroke(lineWidth: 2)
-        )
-        .padding()
+        
     }
 }
 

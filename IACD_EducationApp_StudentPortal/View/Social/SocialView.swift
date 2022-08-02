@@ -35,7 +35,7 @@ struct SocialView: View {
         
         clubsViewModel.GetUserClubs()
     }
-    
+    //TODO: Update join forums view
     var body: some View {
         VStack(spacing: 1){
             //Text("My Clubs")

@@ -34,7 +34,7 @@ class CoordinatorViewModel:ObservableObject{
     private var coordinatorIDs:[Int] = []
     
     init(){
-        AddNewStaffMemberDocument(staffID: GetNewStaffID(), Name: "Eben Kok", ContatNumber: 27765552533, ImageURL: "https://cbsnews1.cbsistatic.com/hub/i/2017/08/22/1611291e-8783-4d73-a86d-5760a3dd781e/gettyimages-699007336.jpg")
+        //AddNewStaffMemberDocument(staffID: GetNewStaffID(), Name: "Eben Kok", ContatNumber: 27765552533, ImageURL: "https://cbsnews1.cbsistatic.com/hub/i/2017/08/22/1611291e-8783-4d73-a86d-5760a3dd781e/gettyimages-699007336.jpg")
         GetAllCoordinators()
     }
     
