@@ -12,13 +12,17 @@ import SwiftUI
 //TODO: ENDLIST
 struct ClubView: View {
     @State var club:Clubs
+    @State var coordinator:Coordinator
     @EnvironmentObject var taskModel: TaskViewModel
+    @EnvironmentObject var clubViewModel:ClubsViewModel
+    @EnvironmentObject var staffViewModel: CoordinatorViewModel
+    
     
     var body: some View {
         ScrollView(.vertical) {
             VStack{
                 HStack{
-                    Text("Club Coordinator: \(club.Coordinator!)")
+                    Text("Club Coordinator: \(coordinator.name!)")
                         .padding()
                         .font(.subheadline)
                         .foregroundColor(.gray)
@@ -26,7 +30,7 @@ struct ClubView: View {
                             0
                         }
                     
-                    AsyncImage(url: URL(string: "https://a57.foxnews.com/a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2018/09/640/320/1862/1048/georgeclooney640.jpg?ve=1&tl=1?ve=1&tl=1")) { image in
+                    AsyncImage(url: URL(string: coordinator.image!)) { image in
                         image.resizable()
                             
                     } placeholder: {
@@ -101,7 +105,7 @@ struct ClubView: View {
                         .padding()
                        
                     
-                    UpcomingClubsTaskView().environmentObject(taskModel)
+                    UpcomingClubsTaskView().environmentObject(clubViewModel).environmentObject(taskModel)
                         .frame(width: screen.width, height: screen.height*0.10, alignment: .center)
                         .background(.background)
                         .padding()
@@ -141,9 +145,9 @@ struct ClubView: View {
         }
     }
 }
-
+/*
 struct ClubView_Previews: PreviewProvider {
     static var previews: some View {
-        ClubView(club: Clubs(id: "", Coordinator: "", ClubDescription: "", Helpful_Information: [], Meetups: [], RequiredEquipment: [], forumID: -1, members: []))
+        //ClubView(club: Clubs(id: "", Coordinator: 1195143, ClubDescription: "", Helpful_Information: [], Meetups: [], RequiredEquipment: [], forumID: -1, members: []), coordinator: )
     }
-}
+}*/

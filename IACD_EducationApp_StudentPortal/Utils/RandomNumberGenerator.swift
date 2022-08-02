@@ -44,7 +44,29 @@ struct RandomNumberGenerator{
         {
             print("Re-running number generation. Current Number Generated \(randomNumberGenerated)")
             GenerateRanodmNumber(numberOfDigits: numberOfDigits, arrayToCheck: arrayToCheck)
-        }        
+        }
+    }
+    
+    public static func GenerateRanodmNumberReturn(numberOfDigits:Int, arrayToCheck:[Int]) -> Int{
+                
+        let min = GenerateRequiredDigits(iToEdit: 1, numberOfDigitsRequired: numberOfDigits)
+        let max = GenerateRequiredDigits(iToEdit: 9, numberOfDigitsRequired: numberOfDigits)
+                                
+        let numGen = Int.random(in: min...max)
+        
+        //print("Random Number: \(randomNumberGenerated)")
+        
+        var inArray = true
+        
+        inArray = CheckForInteger(integerToFind: numGen,arrayToCheck: arrayToCheck)
+        
+        if(inArray)
+        {
+            print("Re-running number generation. Current Number Generated \(numGen)")
+            GenerateRanodmNumber(numberOfDigits: numberOfDigits, arrayToCheck: arrayToCheck)
+        }
+        
+        return numGen
     }
     
     private static func GenerateRequiredDigits(iToEdit:Int, numberOfDigitsRequired:Int) -> Int{

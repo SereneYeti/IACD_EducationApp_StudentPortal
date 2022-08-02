@@ -34,8 +34,6 @@ struct ChatroomListView: View {
             }
             .frame(width:screen.width)
             
-            
-            
             List(forumsViewModel.GetChatroomsInTypes(), id: \.self){ chatrooms in
                 if(chatrooms.count > 0){
                     Section(header: Text(chatrooms[0].section)) {
@@ -53,7 +51,8 @@ struct ChatroomListView: View {
             .sheet(isPresented: $joinModel, content: {
                 JoinChatroomView(isOpen: $joinModel)
             })
-        }        
+        }
+        .background(Color(red: 244/255, green: 243/255, blue: 248/255))
     }
 }
 

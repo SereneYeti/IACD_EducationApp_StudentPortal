@@ -30,12 +30,8 @@ struct MapView: View {
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: (
-                VStack{
-                    Button(action : {
-                        self.mode.wrappedValue.dismiss()
-                    }){
-                        Image(systemName: "arrow.left.circle.fill")
-                    }
+                HStack{
+                   
                     Button(action: {
                         withAnimation {
                             self.showMenu.toggle()
@@ -44,7 +40,13 @@ struct MapView: View {
                         Image(systemName: "line.horizontal.3.circle.fill")
                             .imageScale(.large)
                     }
-                }//
+                    Button(action : {
+                        self.mode.wrappedValue.dismiss()
+                    }){
+                        Image(systemName: "arrow.left.circle.fill")
+                    }
+                
+                }
             ))
         }
     }

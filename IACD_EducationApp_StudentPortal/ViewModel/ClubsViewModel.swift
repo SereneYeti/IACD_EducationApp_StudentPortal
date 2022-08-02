@@ -13,7 +13,7 @@ import SwiftUI
 
 struct Clubs: Codable, Identifiable{
     var id: String?
-    var Coordinator:String?
+    var Coordinator:Int?
     var ClubDescription:String?
     var Helpful_Information:[Helpful_Information]?
     var Meetups:[Timestamp]?
@@ -71,7 +71,7 @@ class ClubsViewModel: ObservableObject{
     private let user = Auth.auth().currentUser
     private var errorMessage:String = ""
     
-    public let joinClub = Clubs(Coordinator: "JoinClub", ClubDescription: "Join a club to meet new people and learn neew things.", Helpful_Information: [], Meetups: [], RequiredEquipment: [],Images: [], forumID: -1, members: [])
+    public let joinClub = Clubs(Coordinator: -1, ClubDescription: "Join a club to meet new people and learn neew things.", Helpful_Information: [], Meetups: [], RequiredEquipment: [],Images: [], forumID: -1, members: [])
     
     func fetchDataForClub(clubID:String){
         var ans:Clubs?
@@ -108,8 +108,23 @@ class ClubsViewModel: ObservableObject{
                     }
                 }
             }
-        }       
+        }
+    }
+    
+    func AddNewClubDocument(id:String, Coordinator: Int, ClubDescription:String, Helpful_Information: [Helpful_Information], Meetups: [Timestamp], RequiredEquipment: [String], Images: [Images], forumID: Int, members: [String]){
         
+        let newClub = Clubs(id: id, Coordinator: Coordinator, ClubDescription: ClubDescription, Helpful_Information: Helpful_Information, Meetups: Meetups, RequiredEquipment: RequiredEquipment, Images: Images, forumID: forumID, members: members)
+        
+        do {
+            try db.collection("Clubs").document(String(id)).setData(from: newClub)
+            print("New Club created \(newClub.id ?? "error") added!")
+        } catch let error {
+            print("Error writing new club to Firestore: \(error)")
+        }
+    }
+    
+    func GetNewForumID(forumIDs:[Int]){
+        RandomNumberGenerator.GenerateRanodmNumber(numberOfDigits: 5, arrayToCheck: forumIDs)
     }
     
     func GetAllClubs(){

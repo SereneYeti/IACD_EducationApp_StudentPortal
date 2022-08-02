@@ -35,7 +35,7 @@ struct JoinChatroomView: View {
                         .font(.title)
                     TextField("Enter a new title", text: $newTitle)
                     Button(action: {
-                        viewModel.createChatroom(title: newTitle, handler: {
+                        viewModel.createStudentChatroom(title: newTitle, handler: {
                             self.isOpen = false
                         })
                     }, label: {
