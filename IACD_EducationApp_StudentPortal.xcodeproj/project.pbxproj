@@ -105,7 +105,7 @@
 		5A8D790B2880472600CFA3F5 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		5A8D790F28804F2700CFA3F5 /* CurrentModulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentModulesView.swift; sourceTree = "<group>"; };
 		5A8D791128804F6200CFA3F5 /* UpcomingProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingProjectsView.swift; sourceTree = "<group>"; };
-		5AC2E0C2286338BB009A0CA2 /* IACD_EducationApp_StudentPortal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IACD_EducationApp_StudentPortal.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AC2E0C2286338BB009A0CA2 /* Tyro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tyro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AC2E0C5286338BB009A0CA2 /* IACD_EducationApp_StudentPortalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IACD_EducationApp_StudentPortalApp.swift; sourceTree = "<group>"; };
 		5AC2E0C7286338BB009A0CA2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5AC2E0C9286338BC009A0CA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -241,7 +241,7 @@
 		5AC2E0C3286338BB009A0CA2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5AC2E0C2286338BB009A0CA2 /* IACD_EducationApp_StudentPortal.app */,
+				5AC2E0C2286338BB009A0CA2 /* Tyro.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -385,7 +385,7 @@
 			packageProductDependencies = (
 			);
 			productName = IACD_EducationApp_StudentPortal;
-			productReference = 5AC2E0C2286338BB009A0CA2 /* IACD_EducationApp_StudentPortal.app */;
+			productReference = 5AC2E0C2286338BB009A0CA2 /* Tyro.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -682,7 +682,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vieyra01.IACD-EducationApp-StudentPortal";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Tyro;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -712,7 +712,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vieyra01.IACD-EducationApp-StudentPortal";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Tyro;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
