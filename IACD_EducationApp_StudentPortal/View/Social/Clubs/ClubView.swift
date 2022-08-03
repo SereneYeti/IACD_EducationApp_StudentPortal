@@ -134,10 +134,22 @@ struct ClubView: View {
                     }
                 }
             }
-            .navigationTitle(club.id!)
-            
+          
         }
+        .navigationTitle(club.id!)
+        .background(
+            Image("bg1")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .overlay(
+                    LinearGradient(gradient: Gradient(colors: [Color.clear, Color.black]), startPoint: .top, endPoint: .bottom)
+                        .offset(y:100)
+                )
+                .hueRotation(Angle(degrees: -170))
+        )
+        //.ignoresSafeArea(.all)
     }
+    
 }
 /*
 struct ClubView_Previews: PreviewProvider {

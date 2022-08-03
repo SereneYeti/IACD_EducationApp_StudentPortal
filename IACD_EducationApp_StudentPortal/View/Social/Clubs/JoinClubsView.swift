@@ -39,9 +39,18 @@ struct JoinClubsView: View {
                     
                 }
             }
-            
         }
-        .background(Color(red: 32/255, green: 32/255, blue: 32/255))
+        .background(
+            Image("bg1")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .overlay(
+                    LinearGradient(gradient: Gradient(colors: [Color.clear, Color.black]), startPoint: .top, endPoint: .bottom)
+                        .offset(y:100)
+                )
+                .hueRotation(Angle(degrees: -170))
+        )
+        
         //.background(.ultraThinMaterial)
         //.edgesIgnoringSafeArea(.all)
         .navigationTitle("Available Clubs")        
@@ -61,13 +70,15 @@ struct ListCellView:View{
                 RoundedRectangle(cornerRadius: 15)
                     .stroke(lineWidth: 2)
                     //.foregroundColor(.white)
-                    .foregroundColor(Color(red: 32/255, green: 32/255, blue: 32/255))
+                    //.foregroundColor(Color(red: 32/255, green: 32/255, blue: 32/255))
+                    .foregroundColor(.clear)
                     .frame(width: screen.width * 0.5, height: screen.height*0.30, alignment: .center)
                     .padding(1)
                     .overlay {
                         VStack(spacing: 1){
                             Text(leftClub.id!)
                                 .fontWeight(.bold)
+                                .foregroundColor(.blue)
                                 .font(.title)
                                 .lineLimit(1)
                                 .frame(width: screen.width*0.50, alignment: .center)
@@ -92,7 +103,8 @@ struct ListCellView:View{
                     RoundedRectangle(cornerRadius:  15)
                         .stroke(lineWidth: 2)
                         //.foregroundColor(.white)
-                        .foregroundColor(Color(red: 32/255, green: 32/255, blue: 32/255))
+                        //.foregroundColor(Color(red: 32/255, green: 32/255, blue: 32/255))
+                        .foregroundColor(.clear)
                         .frame(width: screen.width * 0.5, height: screen.height*0.30, alignment: .center)
                         .padding(1)
                         .overlay {
@@ -100,10 +112,11 @@ struct ListCellView:View{
                                 Text(rightClub!.id!)
                                     .fontWeight(.bold)
                                     .font(.title)
+                                    .foregroundColor(.blue)
                                     .lineLimit(1)
                                     .padding(.trailing, 1)
                                     .frame(width: screen.width*0.50, alignment: .center)
-                                    .minimumScaleFactor(0.4)
+                                    .minimumScaleFactor(0.2)
                                     //.offset(x: -8, y: 0)
                                     //.multilineTextAlignment(.center)
                                     //.padding()
@@ -135,6 +148,7 @@ struct ListCellView:View{
                  */
             }
         }
+        //.background( BlurBG(style: .systemUltraThinMaterialDark))
     }
 }
 

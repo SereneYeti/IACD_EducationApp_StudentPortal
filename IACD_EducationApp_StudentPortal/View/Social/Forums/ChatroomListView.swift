@@ -49,7 +49,7 @@ struct ChatroomListView: View {
                 }
             }
             .sheet(isPresented: $joinModel, content: {
-                JoinChatroomView(isOpen: $joinModel)
+                JoinChatroomView(isOpen: $joinModel).environmentObject(forumsViewModel)
             })
         }
         .background(Color(red: 244/255, green: 243/255, blue: 248/255))

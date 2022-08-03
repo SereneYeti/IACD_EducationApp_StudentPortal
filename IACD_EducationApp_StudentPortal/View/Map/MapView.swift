@@ -13,6 +13,7 @@ struct MapView: View {
     @State private var currentFloor: Int = 0
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
+    
     var body: some View {
         //NavigationView {
         GeometryReader { geometry in
