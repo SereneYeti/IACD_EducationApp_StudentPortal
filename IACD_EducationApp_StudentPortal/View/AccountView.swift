@@ -11,26 +11,7 @@ struct AccountView: View {
     @EnvironmentObject var viewModel: AppViewModel
     
     var body: some View{
-        HStack{
-            Text("User signed in")
-            
-            Spacer()
-            
-            Button(action:{
-                if viewModel.signedIn {
-                    viewModel.unbind()
-                    viewModel.signOut()
-                    
-                }
-            }){
-                Text("Sign out")
-                    .foregroundColor(Color.white)
-                    .frame(width: 100, height: 50)
-                    .cornerRadius(8)
-                    .background(Color.blue)
-            }
-            .padding()
-        }
+       Text("")
     }
 }
 
