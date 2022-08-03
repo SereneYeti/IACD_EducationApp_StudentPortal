@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct SignInMockUp: View {
-    @State var userName: String = ""
     @State var email: String = ""
     @State var password: String = ""
-    @State var passwordReEnter: String = ""
     var body: some View {
         
             //MARK: Sign Up

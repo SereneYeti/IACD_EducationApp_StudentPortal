@@ -59,6 +59,7 @@
 		6A2F982D2881A71E001844CC /* NewTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2F98292881A71E001844CC /* NewTask.swift */; };
 		6A2F982E2881A71E001844CC /* DynamicFilteredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2F982A2881A71E001844CC /* DynamicFilteredView.swift */; };
 		6A3F9F04289A89BF004CEFBE /* SignInMockUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3F9F03289A89BF004CEFBE /* SignInMockUp.swift */; };
+		6A3F9F07289A8AF8004CEFBE /* StartPageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3F9F06289A8AF8004CEFBE /* StartPageMock.swift */; };
 		6A6B2FE5289A51AE006CDA15 /* SignUpMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6B2FE4289A51AE006CDA15 /* SignUpMock.swift */; };
 		6A6B2FE7289A7B78006CDA15 /* SignUpLoginMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6B2FE6289A7B78006CDA15 /* SignUpLoginMock.swift */; };
 		6AC20F2F2889A2370037076C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC20F2E2889A2370037076C /* ProfileView.swift */; };
@@ -127,6 +128,7 @@
 		6A2F98292881A71E001844CC /* NewTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTask.swift; sourceTree = "<group>"; };
 		6A2F982A2881A71E001844CC /* DynamicFilteredView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicFilteredView.swift; sourceTree = "<group>"; };
 		6A3F9F03289A89BF004CEFBE /* SignInMockUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInMockUp.swift; sourceTree = "<group>"; };
+		6A3F9F06289A8AF8004CEFBE /* StartPageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPageMock.swift; sourceTree = "<group>"; };
 		6A6B2FE4289A51AE006CDA15 /* SignUpMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpMock.swift; sourceTree = "<group>"; };
 		6A6B2FE6289A7B78006CDA15 /* SignUpLoginMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpLoginMock.swift; sourceTree = "<group>"; };
 		6AC20F2E2889A2370037076C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -335,12 +337,21 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
+		6A3F9F05289A8AD3004CEFBE /* Signing */ = {
+			isa = PBXGroup;
+			children = (
+				6A6B2FE6289A7B78006CDA15 /* SignUpLoginMock.swift */,
+				6A3F9F03289A89BF004CEFBE /* SignInMockUp.swift */,
+				6A3F9F06289A8AF8004CEFBE /* StartPageMock.swift */,
+			);
+			path = Signing;
+			sourceTree = "<group>";
+		};
 		6A6B2FE1289A4FCC006CDA15 /* Mockups */ = {
 			isa = PBXGroup;
 			children = (
+				6A3F9F05289A8AD3004CEFBE /* Signing */,
 				6A6B2FE4289A51AE006CDA15 /* SignUpMock.swift */,
-				6A6B2FE6289A7B78006CDA15 /* SignUpLoginMock.swift */,
-				6A3F9F03289A89BF004CEFBE /* SignInMockUp.swift */,
 			);
 			path = Mockups;
 			sourceTree = "<group>";
@@ -535,6 +546,7 @@
 				5A8A97F62898432C00DD5A1A /* MessagesView.swift in Sources */,
 				5A71A9E32886F43F006CC56B /* MapMenuView.swift in Sources */,
 				5A8A980B289843EE00DD5A1A /* ModuleModel.swift in Sources */,
+				6A3F9F07289A8AF8004CEFBE /* StartPageMock.swift in Sources */,
 				5A8A97E9289842C900DD5A1A /* CoordinatorViewModel.swift in Sources */,
 				6A2F981F2881A6B6001844CC /* Persistence.swift in Sources */,
 				5A8D790C2880472600CFA3F5 /* MapView.swift in Sources */,
