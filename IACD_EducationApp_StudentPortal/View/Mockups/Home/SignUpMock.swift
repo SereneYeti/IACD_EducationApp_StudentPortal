@@ -30,7 +30,7 @@ struct HomeViewMockUp: View {
                             .bold()
                     }
                     Spacer()
-                    Image(systemName: "person.fill")
+                    Image(systemName:profileClick ? "x.circle.fill":"person.fill")
                         .font(.system(size: 25, weight: .light))
                         .background(
                             BlurBG(style: .systemUltraThinMaterialDark)
@@ -152,7 +152,7 @@ struct HomeViewMockUp: View {
             showWelcomeScreen = viewModel.firstTimeSignIn
         }
         .overlay(
-            Verificationview(profileClicked: $profileClick)
+            Verificationview()
                 .offset(y: profileClick ? 0: 1000)
                 .animation(.spring(response: 0.25, dampingFraction: 0.3, blendDuration: 0), value: profileClick)
         )
@@ -173,6 +173,8 @@ struct HomeViewMockUp: View {
 struct HomeViewMockUp_Previews: PreviewProvider {
     static var previews: some View {
         HomeViewMockUp(verified: .constant(true))
+            .environmentObject(AppViewModel())
+            .environmentObject(TaskViewModel())
     }
 }
 //MARK: News Related Items

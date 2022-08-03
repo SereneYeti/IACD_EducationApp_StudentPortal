@@ -10,7 +10,7 @@ import SwiftUI
 struct Verificationview: View {
     @State var verificationText: String = ""
     @State var verifiedStatus: Bool = false
-    @Binding var profileClicked: Bool
+    
     var body: some View {
         
         VStack{
@@ -90,14 +90,7 @@ struct Verificationview: View {
                 .padding()
                 .padding(.bottom)
             
-            Button {
-                self.profileClicked.toggle()
-            } label: {
-                Image(systemName: "x.circle.fill")
-                    .font(.system(size: 35, weight: .black))
-                    .tint(.black)
-                    .offset(y:50)
-            }
+
 
                 
         }
@@ -107,16 +100,11 @@ struct Verificationview: View {
                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
         )
         .padding()
-        .background(
-            BlurBG(style: .systemUltraThinMaterialDark)
-                .frame(width: screen.width, height: screen.height)
-                .ignoresSafeArea(.all)
-        )
     }
 }
 
 struct Verificationview_Previews: PreviewProvider {
     static var previews: some View {
-        Verificationview(profileClicked: .constant(true))
+        Verificationview()
     }
 }
