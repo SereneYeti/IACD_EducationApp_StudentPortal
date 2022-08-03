@@ -35,8 +35,9 @@ struct SocialView: View {
         
         clubsViewModel.GetUserClubs()
     }
+    
     //TODO: integrate forum & degree, create game design student
-    //TODO: Update join forums view
+    
     var body: some View {
         VStack(spacing: 1){
             //Text("My Clubs")
@@ -63,9 +64,10 @@ struct SocialView: View {
                 .frame(width: screen.width)
                 //.background(.background)
                 .background(Color(red: 244/255, green: 243/255, blue: 248/255))
-                .ignoresSafeArea(.all, edges: .bottom)
+                //.ignoresSafeArea(.all, edges: .bottom)
                 
         }
+        //.background(Color(red: 244/255, green: 243/255, blue: 248/255))
         .background(Color(red: 32/255, green: 32/255, blue: 32/255))
         .navigationBarHidden(true)
     }

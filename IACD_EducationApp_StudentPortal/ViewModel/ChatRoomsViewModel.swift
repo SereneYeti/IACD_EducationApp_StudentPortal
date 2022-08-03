@@ -21,6 +21,7 @@ struct Chatroom: Codable, Identifiable, Hashable{
 class ChatroomsViewModel: ObservableObject{
     
     @Published var chatrooms = [Chatroom]()
+    @Published var allChatrooms = [Chatroom]()
     private let db = Firestore.firestore()
     private let user = Auth.auth().currentUser
     private var chatroomJoinCodes:[Int] = []
@@ -34,6 +35,31 @@ class ChatroomsViewModel: ObservableObject{
                 }
                 
                 self.chatrooms = documents.map({docSnapshot -> Chatroom in
+                    let data = docSnapshot.data()
+                    let docId = docSnapshot.documentID
+                    let title = data["title"] as? String ?? "Chatroom"
+                    let joinCode = data["joinCode"] as? Int ?? -1
+                    let type = data["type"] as? Int ?? -1
+                    let section = data["section"] as? String ?? ""
+                    return Chatroom(id: docId, title: title, joinCode: joinCode,type: type, section: section)
+                })
+            })
+        }
+        
+        print("JOIN CODE: \(createJoinCode())")
+        //RandomNumberGenerator.GenerateRanodmNumber(numberOfDigits: 6, arrayToCheck: [])
+        //print("Staff ID: \(RandomNumberGenerator.randomNumberGenerated)")
+    }
+    
+    func fetchAllData(){
+        if(user != nil){
+            db.collection("chatrooms").getDocuments(completion: { [self](snapshot,error) in
+                guard let documents = snapshot?.documents else {
+                    print("No docs returned!")
+                    return
+                }
+                
+                self.allChatrooms = documents.map({docSnapshot -> Chatroom in
                     let data = docSnapshot.data()
                     let docId = docSnapshot.documentID
                     let title = data["title"] as? String ?? "Chatroom"
@@ -143,6 +169,29 @@ class ChatroomsViewModel: ObservableObject{
         chatrooms.forEach { chatroom in
             ans[chatroom.type].append(chatroom)
         }
+        
+        return ans
+    }
+    
+    func GetAllChatroomsInTypes() -> [[Chatroom]]{
+        var ans:[[Chatroom]] = [[],[],[]]
+        var chat1:[Chatroom] = []
+        var chat2:[Chatroom] = []
+        var chat3:[Chatroom] = []
+        allChatrooms.forEach { chatroom in
+            if(chatroom.type == 0){
+                chat1.append(chatroom)
+            }
+            if(chatroom.type == 1){
+                chat2.append(chatroom)
+            }
+            if(chatroom.type == 2){
+                chat3.append(chatroom)
+            }
+        }
+        ans[0].append(contentsOf: chat1)
+        ans[1].append(contentsOf: chat2)
+        ans[2].append(contentsOf: chat3)
         
         return ans
     }

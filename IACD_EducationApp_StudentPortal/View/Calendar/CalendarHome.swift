@@ -43,6 +43,7 @@ struct CalendarHome: View {
                                         .frame(width: 8, height: 8)
                                         .opacity(taskModel.isToday(date: day) ? 1 : 0)
                                     
+                                    
                                 }
                                     //MARK: Foreground Style
                                 .foregroundStyle(taskModel.isToday(date: day) ? .primary : .secondary)
