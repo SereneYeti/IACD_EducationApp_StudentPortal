@@ -120,6 +120,11 @@ struct ModulesListView: View{
     @EnvironmentObject var moduleViewModel : ModuleViewModule
     var body: some View{
         ForEach(moduleViewModel.modules) { item in
+//            NavigationLink{
+//                
+//            }label: {
+//                
+//            }
             ModulesCardView(previewModule: item)
                 .padding()
         }
