@@ -78,63 +78,22 @@ struct HomeViewMockUp: View {
                     NewsCardView(newsTemp: newsItems[1])
                         .padding()
                 }
-          
-                
                 .tabViewStyle(.page(indexDisplayMode: .always))
                 .frame(width:350, height: 380)
                 
-                    //MARK: where the events will go
+                    //MARK:  Events
                 Text("Events")
                     .hLeading()
                     .padding()
                     .padding(.leading)
                     .font(.system(size: 25,weight: .bold))
                     .foregroundColor(.white)
-                VStack {
-                    HStack{
-                        Image(systemName: "record.circle.fill")
-                            .font(.system(size: 20))
-                        Text("Brand Challenge")
-                            .font(.system(size: 25))
-                            .bold()
-                    }.hLeading()
-                        .padding(.bottom, 2)
-                    Text("This will have students from all dregrees working together and using thier skills to elevate a given brand")
-                        .font(.footnote)
-                        .lineLimit(2)
-                        .frame(width: 200)
-                        .hLeading()
-                    Button {
-                        
-                    } label: {
-                        Text("Read More")
-                            .font(.footnote)
-                            .padding(.top,5)
-                            .hLeading()
-                        
-                    }
-                    
+                TabView{
+                    EventAppIconsCardView(eventIcon: eventIconList[0])
+                    EventAppIconsCardView(eventIcon: eventIconList[1])
                 }
-                .padding()
-                .hLeading()
+                .tabViewStyle(.page(indexDisplayMode: .always))
                 .frame(width:350, height: 180)
-                .background(
-                    RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .foregroundColor(Color(hex: "f8f9fa"))
-                        .overlay(
-                            Image(systemName: "books.vertical.fill")
-                                .font(.system(size: 100))
-                                .foregroundColor(Color(hex: "f8f9fa"))
-                                .background(
-                                    Color(hex: "d8f3dc")
-                                        .clipShape(Circle())
-                                        .frame(width: 200, height: 250)
-                                )
-                                .hTrailing()
-                                .offset(x:30)
-                        )
-                        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                )
                 
                     //MARK: Where the map will go and calendar
                 Text("Apps")
@@ -146,7 +105,6 @@ struct HomeViewMockUp: View {
                 ScrollView(.horizontal,showsIndicators: false) {
                     HStack(spacing: 20) {
                         homeAppIconsView(homeIcons: homeIcons[0])
-                        
                         homeAppIconsView(homeIcons: homeIcons[1])
                     }
                 }
@@ -182,6 +140,77 @@ struct HomeViewMockUp_Previews: PreviewProvider {
         HomeViewMockUp(verified: .constant(true))
             .environmentObject(AppViewModel())
             .environmentObject(TaskViewModel())
+    }
+}
+//MARK: Event Items
+struct EventAppIcons: Identifiable{
+    var id = UUID()
+    var icon : String
+    var eventTitle: String
+    var eventBody: String
+    var iconColor : String
+    var iconBackground : String
+}
+var eventIconList = [
+EventAppIcons(icon: "books.vertical",
+              eventTitle: "Brand Challenge",
+              eventBody: "This will be putting all the skills of the multiple degrees together to see how well you can work together to reach on brands vision",
+              iconColor: "00b4d8",
+              iconBackground: "f4f3ee"),
+EventAppIcons(icon: "display",
+              eventTitle: "Ludum Dare 50",
+              eventBody: "Ludum Dare is an online event where games are made from scratch in a weekend. Check us out every April and October! ",
+              iconColor: "eb5e28",
+              iconBackground: "f4f3ee")
+]
+struct EventAppIconsCardView: View{
+    var eventIcon : EventAppIcons
+    var body: some View{
+        VStack {
+            HStack{
+                Image(systemName: "record.circle.fill")
+                    .font(.system(size: 20))
+                Text(eventIcon.eventTitle)
+                    .font(.system(size: 25))
+                    .bold()
+            }.hLeading()
+                .padding(.bottom, 2)
+            Text(eventIcon.eventBody)
+                .font(.footnote)
+                .lineLimit(2)
+                .frame(width: 200)
+                .hLeading()
+            Button {
+                
+            } label: {
+                Text("Read More")
+                    .font(.footnote)
+                    .padding(.top,5)
+                    .hLeading()
+                
+            }
+            
+        }
+        .padding()
+        .hLeading()
+        .frame(width:350, height: 180)
+        .background(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .foregroundColor(Color(hex: eventIcon.iconBackground))
+                .overlay(
+                    Image(systemName: eventIcon.icon)
+                        .font(.system(size: 100))
+                        .foregroundColor(Color(hex: eventIcon.iconBackground))
+                        .background(
+                            Color(hex: eventIcon.iconColor)
+                                .clipShape(Circle())
+                                .frame(width: 200, height: 250)
+                        )
+                        .hTrailing()
+                        .offset(x:30)
+                )
+                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        )
     }
 }
     //MARK: Scrolling Icons
