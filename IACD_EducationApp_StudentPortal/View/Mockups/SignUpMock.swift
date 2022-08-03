@@ -158,14 +158,14 @@ struct HomeViewMockUp: View {
             }
     }
         .background(
-            Image("bg1")
+            Image("bg3")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .overlay(
                     LinearGradient(gradient: Gradient(colors: [Color.clear, Color.black]), startPoint: .top, endPoint: .bottom)
                         .offset(y:100)
                 )
-                .hueRotation(Angle(degrees: -170))
+                .hueRotation(Angle(degrees: 20))
         )
         .ignoresSafeArea(.all)
     }

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct StartPageMock: View {
-    @State var email: String = ""
-    @State var password: String = ""
+    @EnvironmentObject var viewModel:AppViewModel
+    
     var body: some View {
         
             //MARK: Sign Up
@@ -30,10 +30,6 @@ struct StartPageMock: View {
             }
             .padding(.bottom,30)
             .padding([.leading,.trailing])
-            Rectangle()
-                .frame(width: 300, height: 1)
-                .foregroundColor(.secondary)
-                .padding(.bottom,20)
             
             
             Button {
@@ -67,11 +63,19 @@ struct StartPageMock: View {
                    
             }
             .padding()
-            
+            Rectangle()
+                .frame(width: 300, height: 1)
+                .foregroundColor(.secondary)
+                .padding([.top,.bottom],10)
+            Text("If your a new student please sign up, all returning students please sign in  ")
+                .font(.footnote)
+                .padding()
+                .padding(.bottom)
+                
         }
         .background(
             BlurBG(style: .systemUltraThinMaterial)
-                .frame(width: 380, height: 320)
+                .frame(width: 370, height: 350)
                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
         )
         .padding()
@@ -85,5 +89,7 @@ struct StartPageMock: View {
 struct StartPageMock_Previews: PreviewProvider {
     static var previews: some View {
         StartPageMock()
+            .environmentObject(AppViewModel())
+            
     }
 }
