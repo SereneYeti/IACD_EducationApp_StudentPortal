@@ -42,7 +42,7 @@ struct JoinChatroomView: View {
                 }
                 .frame(width:screen.width, alignment: .topLeading)
                 List(viewModel.allChatrooms, id: \.self){ chatroom in
-                    if(chatroom.type == 2){
+                    if(chatroom.type == 2 || chatroom.type == 1){
                         
                         HStack {
                                 Text(chatroom.title)
