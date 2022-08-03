@@ -13,11 +13,11 @@ struct StartView: View {
     var body: some View{
         NavigationView{
             if viewModel.signedIn{
-                ContentView()
+                ContentView().environmentObject(viewModel)
             }
             else
             {
-                StartPageMock()
+                StartPageMock().environmentObject(viewModel)
             }
         }.onAppear{
             viewModel.signedIn = viewModel.isSignedIn
