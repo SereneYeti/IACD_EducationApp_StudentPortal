@@ -41,19 +41,27 @@ struct JoinClubsView: View {
             }
         }
         .background(
-            Image("bg1")
+            Image("bk_jc2")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
+                .ignoresSafeArea()
                 .overlay(
-                    LinearGradient(gradient: Gradient(colors: [Color.clear, Color.black]), startPoint: .top, endPoint: .bottom)
-                        .offset(y:100)
+                    LinearGradient(gradient: Gradient(colors: [Color.clear, Color.gray]), startPoint: .top, endPoint: .bottom)
+                        //.offset(y:100)
                 )
-                .hueRotation(Angle(degrees: -170))
+                .hueRotation(Angle(degrees: -90))
         )
         
         //.background(.ultraThinMaterial)
         //.edgesIgnoringSafeArea(.all)
-        .navigationTitle("Available Clubs")        
+        .navigationBarItems(trailing:
+                                Text("Available Clubs")
+            .font(.title)
+            .fontWeight(.bold)
+            .frame(width:screen.width,alignment: .center)
+            .foregroundColor(.white)
+        )
+        
     }
 }
 
@@ -82,6 +90,7 @@ struct ListCellView:View{
                                 .font(.title)
                                 .lineLimit(1)
                                 .frame(width: screen.width*0.50, alignment: .center)
+                                .minimumScaleFactor(0.2)
                                 //.padding()
                             AsyncImage(url: URL(string: leftClub.Images![0].URL!)) { image in
                                 image.resizable()
@@ -121,7 +130,7 @@ struct ListCellView:View{
                                     //.multilineTextAlignment(.center)
                                     //.padding()
                                 AsyncImage(url: URL(string: rightClub!.Images![0].URL!)) { image in
-                                    image.resizable()                                        
+                                    image.resizable()
                                         
                                 } placeholder: {
                                     ProgressView()
