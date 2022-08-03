@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct HomeViewMockUp: View {
-    @Binding var verified:Bool
     @State var profileClick : Bool = false
     @EnvironmentObject var viewModel: AppViewModel
     @EnvironmentObject var taskModel:TaskViewModel
-    
+    @Binding var verified:Bool
     @State private var showWelcomeScreen: Bool = false
     @State private var showCalendarView: Bool = false
     @State private var showMap: Bool = false
@@ -37,13 +36,15 @@ struct HomeViewMockUp: View {
                                 .frame(width: 45, height: 45)
                                 .clipShape(Circle())
                         )
-                        .onTapGesture {
-                            profileClick.toggle()
-                        }
+                       
                     
                 }
                 .padding(20)
                 .padding(.top,40)
+                .onTapGesture {
+                    print("tapped")
+                    self.profileClick.toggle()
+                }
                 
                 Spacer()
                     .frame(height: 200)
@@ -246,11 +247,16 @@ struct NewsCardView: View {
             Spacer()
             
         }
+        .navigationBarHidden(true)
         .frame(width:350, height: 380)
         .background(
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .foregroundColor(Color(hex: "f8f9fa"))
         )
+        //.sheet(isPresented: $showWelcomeScreen, content: {OnboardingView() })
+        //.sheet(isPresented: $showMap, content: {MapView() })
+        //.sheet(isPresented: $showNewsletterView, content: {NewsletterView() })
+        //.sheet(isPresented: $showCalendarView, content: { CalendarView().environmentObject(taskModel) })
         .padding()
     }
 }

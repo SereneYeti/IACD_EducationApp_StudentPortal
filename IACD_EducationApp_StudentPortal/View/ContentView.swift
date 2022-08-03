@@ -17,21 +17,20 @@ public enum tabs : Hashable{
 }
     //NavigationLink("Go to Other Page", destination: //ContenvtViewB()).tabItem
 struct ContentView: View {
-    @EnvironmentObject var viewModel: AppViewModel
+    @ObservedObject var viewModel: AppViewModel = AppViewModel()
     @State var selectedItem:tabs = .Home
     @State var verified:Bool = false
     @StateObject var taskModel: TaskViewModel = TaskViewModel()
-    @ObservedObject var forumsViewModel =  AppViewModel()
     @ObservedObject var staffViewModel:CoordinatorViewModel = CoordinatorViewModel()
     
     init() {
-        forumsViewModel.listen()
+        viewModel.listen()
     }
     
     var body: some View {
         
         TabView(selection: $selectedItem) {
-            HomeViewMockUp(verified: $verified).environmentObject(taskModel).tabItem
+            HomeViewMockUp(verified: $verified).environmentObject(viewModel).environmentObject(taskModel).tabItem
             {
                 Image(systemName: "house.fill")
                 Text("Home").bold()
