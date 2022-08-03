@@ -108,7 +108,10 @@ struct StudentProfileView: View{
                 case .tasks:
                     ModuleTasksListView()
                 case .dueDates:
-                    Text("No Events")
+                    VStack(spacing: 20){
+                        EventAppIconsCardView(eventIcon: eventIconList[0])
+                        EventAppIconsCardView(eventIcon: eventIconList[1])
+                    }
                 }
                 
             }
