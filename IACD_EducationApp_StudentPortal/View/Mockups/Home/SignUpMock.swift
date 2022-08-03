@@ -8,7 +8,16 @@
 import SwiftUI
 
 struct HomeViewMockUp: View {
+    @Binding var verified:Bool
     @State var profileClick : Bool = false
+    @EnvironmentObject var viewModel: AppViewModel
+    @EnvironmentObject var taskModel:TaskViewModel
+    
+    @State private var showWelcomeScreen: Bool = false
+    @State private var showCalendarView: Bool = false
+    @State private var showMap: Bool = false
+    @State private var showNewsletterView: Bool = false
+    
     var body: some View {
         ScrollView {
                 //MARK: Top Bar + Today
@@ -138,10 +147,14 @@ struct HomeViewMockUp: View {
             }
        
     }
+        .onAppear{
+                
+            showWelcomeScreen = viewModel.firstTimeSignIn
+        }
         .overlay(
             Verificationview(profileClicked: $profileClick)
                 .offset(y: profileClick ? 0: 1000)
-                .animation(.spring(response: 0.5, dampingFraction: 0.3, blendDuration: 0), value: profileClick)
+                .animation(.spring(response: 0.25, dampingFraction: 0.3, blendDuration: 0), value: profileClick)
         )
         .background(
             Image("bg3")
@@ -159,7 +172,7 @@ struct HomeViewMockUp: View {
 
 struct HomeViewMockUp_Previews: PreviewProvider {
     static var previews: some View {
-        HomeViewMockUp()
+        HomeViewMockUp(verified: .constant(true))
     }
 }
 //MARK: News Related Items

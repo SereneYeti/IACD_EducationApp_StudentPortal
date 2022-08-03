@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Verificationview: View {
     @State var verificationText: String = ""
-    @State var verifiedStatus: Bool = true
+    @State var verifiedStatus: Bool = false
     @Binding var profileClicked: Bool
     var body: some View {
         
@@ -39,7 +39,7 @@ struct Verificationview: View {
                 TextField("", text: $verificationText)
                     .padding()
                     .placeholder(when: verificationText.isEmpty) {
-                        Text("Enter Degree Code")
+                        Text("Enter Student Number")
                             .foregroundColor(.black)
                             .padding()
                     }
@@ -48,9 +48,9 @@ struct Verificationview: View {
                     .padding()
                 Button {
                     //MARK: Verify Action
-                    verifiedStatus.toggle()
+                    self.verifiedStatus.toggle()
                 } label: {
-                    Text("Verify Degree Code")
+                    Text("Verify Student Number")
                         .tint(.black)
                         .background(
                             RoundedRectangle(cornerRadius: 15, style: .continuous)

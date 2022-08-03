@@ -20,7 +20,6 @@ struct ContentView: View {
     @EnvironmentObject var viewModel: AppViewModel
     @State var selectedItem:tabs = .Home
     @State var verified:Bool = false
-    
     @StateObject var taskModel: TaskViewModel = TaskViewModel()
     @ObservedObject var forumsViewModel =  AppViewModel()
     @ObservedObject var staffViewModel:CoordinatorViewModel = CoordinatorViewModel()
@@ -32,13 +31,13 @@ struct ContentView: View {
     var body: some View {
         
         TabView(selection: $selectedItem) {
-            HomeView(verified: $verified).environmentObject(taskModel).tabItem
+            HomeViewMockUp(verified: $verified).environmentObject(taskModel).tabItem
             {
                 Image(systemName: "house.fill")
                 Text("Home").bold()
                 
             }.tag(tabs.Home)
-            if(verified){
+            if(self.verified){
                 SocialView().environmentObject(taskModel).environmentObject(staffViewModel).tabItem{
                     Image(systemName: "newspaper.circle.fill")
                     Text("Social").bold()

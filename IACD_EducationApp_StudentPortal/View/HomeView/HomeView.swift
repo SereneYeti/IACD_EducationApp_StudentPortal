@@ -9,12 +9,13 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var viewModel: AppViewModel
+    @EnvironmentObject var taskModel:TaskViewModel  
     
     @State private var showWelcomeScreen: Bool = false
     @State private var showCalendarView: Bool = false
     @State private var showMap: Bool = false
     @State private var showNewsletterView: Bool = false
-    @EnvironmentObject var taskModel:TaskViewModel    
+      
     @Binding var verified:Bool
     
     var testStu = testData[0]
