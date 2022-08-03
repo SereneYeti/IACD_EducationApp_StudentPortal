@@ -17,6 +17,7 @@ struct HomeViewMockUp: View {
     @State private var showMap: Bool = false
     @State private var showNewsletterView: Bool = false
     
+    
     var body: some View {
         ScrollView {
                 //MARK: Top Bar + Today
@@ -36,7 +37,7 @@ struct HomeViewMockUp: View {
                                 .frame(width: 45, height: 45)
                                 .clipShape(Circle())
                         )
-                       
+                    
                     
                 }
                 .padding(20)
@@ -68,12 +69,19 @@ struct HomeViewMockUp: View {
                     .foregroundColor(.white)
                 
                 TabView{
-                    ForEach(newsItems){ newItems in
-                        NewsCardView(newsTemp: newItems)
-                            .padding()
-                    }
-                }.tabViewStyle(.page(indexDisplayMode: .always))
-                    .frame(width:350, height: 380)
+                    NewsCardView(newsTemp: newsItems[0])
+                        .onTapGesture {
+                            showNewsletterView.toggle()
+                            print("Showing News")
+                        }
+                        .padding()
+                    NewsCardView(newsTemp: newsItems[1])
+                        .padding()
+                }
+          
+                
+                .tabViewStyle(.page(indexDisplayMode: .always))
+                .frame(width:350, height: 380)
                 
                     //MARK: where the events will go
                 Text("Events")
@@ -138,17 +146,15 @@ struct HomeViewMockUp: View {
                 ScrollView(.horizontal,showsIndicators: false) {
                     HStack(spacing: 20) {
                         homeAppIconsView(homeIcons: homeIcons[0])
+                        
                         homeAppIconsView(homeIcons: homeIcons[1])
                     }
                 }
-                
-                
                 .padding()
             }
-            
+            .padding(.bottom,100)
         }
         .onAppear{
-            
             showWelcomeScreen = viewModel.firstTimeSignIn
         }
         .overlay(
@@ -166,6 +172,7 @@ struct HomeViewMockUp: View {
                 )
                 .hueRotation(Angle(degrees: 20))
         )
+        .sheet(isPresented: $showNewsletterView, content: {NewsletterView()})
         .ignoresSafeArea(.all)
     }
 }
@@ -253,10 +260,10 @@ struct NewsCardView: View {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .foregroundColor(Color(hex: "f8f9fa"))
         )
-        //.sheet(isPresented: $showWelcomeScreen, content: {OnboardingView() })
-        //.sheet(isPresented: $showMap, content: {MapView() })
-        //.sheet(isPresented: $showNewsletterView, content: {NewsletterView() })
-        //.sheet(isPresented: $showCalendarView, content: { CalendarView().environmentObject(taskModel) })
+        
+            //.sheet(isPresented: $showWelcomeScreen, content: {OnboardingView() })
+            //.sheet(isPresented: $showMap, content: {MapView() })
+            //.sheet(isPresented: $showCalendarView, content: { CalendarView().environmentObject(taskModel) })
         .padding()
     }
 }
