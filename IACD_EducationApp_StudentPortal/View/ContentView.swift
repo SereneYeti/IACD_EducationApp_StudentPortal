@@ -19,7 +19,7 @@ public enum tabs : Hashable{
 struct ContentView: View {
     @ObservedObject var viewModel: AppViewModel = AppViewModel()
     @State var selectedItem:tabs = .Home
-    @State var verified:Bool = true
+    @State var verified:Bool = false
     @StateObject var taskModel: TaskViewModel = TaskViewModel()
     @ObservedObject var staffViewModel:CoordinatorViewModel = CoordinatorViewModel()
     
