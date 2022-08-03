@@ -22,7 +22,11 @@ struct StartView: View {
                 StartPageMock()//.environmentObject(viewModel)
             }
         }.onAppear{
+            if(viewModel.isSignedIn){
+                viewModel.verified = true
+            }
             viewModel.signedIn = viewModel.isSignedIn
+            
             //print("viewModel: \(viewModel.signedIn)")
         }
     }

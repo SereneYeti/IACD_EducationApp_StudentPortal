@@ -122,7 +122,7 @@ struct HomeViewMockUp: View {
             showWelcomeScreen = viewModel.firstTimeSignIn
         }
         .overlay(
-            Verificationview()
+            Verificationview(verifiedStatus: $verified)
                 .offset(y: profileClick ? 0: 1000)
                 .animation(.spring(response: 0.25, dampingFraction: 0.3, blendDuration: 0), value: profileClick)
         )

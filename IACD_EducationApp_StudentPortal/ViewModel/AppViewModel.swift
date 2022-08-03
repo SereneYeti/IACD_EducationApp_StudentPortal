@@ -22,6 +22,8 @@ class AppViewModel:ObservableObject {
     @Published var session: User?
     @Published var isAnon: Bool = false
     
+    @Published var verified:Bool = false
+    
     var handle: AuthStateDidChangeListenerHandle?
     
     
@@ -40,7 +42,9 @@ class AppViewModel:ObservableObject {
                 self?.signedIn = true
                 self?.firstTimeSignIn = false;
                 print("Sign In successfull...")
+                self?.verified = true
             }
+            
         }
     }
     
@@ -54,7 +58,9 @@ class AppViewModel:ObservableObject {
                 self?.signedIn = true
                 self?.firstTimeSignIn = true;
                 print("Sign Up successfull...")
+                self?.verified = false
             }
+            
         }
     }
     

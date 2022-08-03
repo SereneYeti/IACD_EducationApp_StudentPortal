@@ -10,7 +10,7 @@ import SwiftUI
 struct Verificationview: View {
     @EnvironmentObject var viewModel: AppViewModel
     @State var verificationText: String = ""
-    @State var verifiedStatus: Bool = false
+    @Binding var verifiedStatus: Bool
     
     var body: some View {
         
@@ -110,6 +110,6 @@ struct Verificationview: View {
 
 struct Verificationview_Previews: PreviewProvider {
     static var previews: some View {
-        Verificationview()
+        Verificationview(verifiedStatus: .constant(true))
     }
 }
