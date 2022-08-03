@@ -14,14 +14,14 @@ struct StudentCardView: View {
         VStack {
             VStack{
                 HStack{
-                    Button {
-                        //MARK: ADD student Card and generate QR code
-                    } label: {
-                        Image(systemName: "plus.app")
-                            .foregroundColor(.primary)
-                            .font(.system(size: 35, weight: .light))
-                    }
-                    .padding(.leading,10)
+//                    Button {
+//                        //MARK: ADD student Card and generate QR code
+//                    } label: {
+//                        Image(systemName: "plus.app")
+//                            .foregroundColor(.primary)
+//                            .font(.system(size: 35, weight: .light))
+//                    }
+//                    .padding(.leading,10)
                     Spacer()
                     VStack(alignment: .trailing){
                         Text("Student ID")

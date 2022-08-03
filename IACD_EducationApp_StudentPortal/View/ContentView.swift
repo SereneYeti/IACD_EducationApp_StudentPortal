@@ -31,7 +31,10 @@ struct ContentView: View {
     var body: some View {
         
         TabView(selection: $selectedItem) {
-            HomeViewMockUp(verified: $viewModel.verified).environmentObject(viewModel).environmentObject(taskModel).tabItem
+            HomeViewMockUp(verified: $viewModel.verified)
+                .environmentObject(viewModel)
+                .environmentObject(taskModel)
+                .tabItem
             {
                 Image(systemName: "house.fill")
                 Text("Home").bold()

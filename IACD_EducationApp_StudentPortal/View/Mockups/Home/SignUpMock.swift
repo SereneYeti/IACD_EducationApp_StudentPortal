@@ -11,6 +11,7 @@ struct HomeViewMockUp: View {
     @State var profileClick : Bool = false
     @EnvironmentObject var viewModel: AppViewModel
     @EnvironmentObject var taskModel:TaskViewModel
+//    @EnvironmentObject var moduleViewModule:ModuleViewModule
     @Binding var verified:Bool
     @State private var showWelcomeScreen: Bool = false
     @State private var showCalendarView: Bool = false
@@ -94,6 +95,11 @@ struct HomeViewMockUp: View {
                 }
                 .tabViewStyle(.page(indexDisplayMode: .always))
                 .frame(width:350, height: 180)
+                //MARK: Modules
+                
+//                ModuleTasksTabView()
+//                    .environmentObject(ModuleViewModule())
+                    
                 
                     //MARK: Where the map will go and calendar
                 Text("Apps")
@@ -147,9 +153,32 @@ struct HomeViewMockUp_Previews: PreviewProvider {
     static var previews: some View {
         HomeViewMockUp(verified: .constant(true))
             .environmentObject(AppViewModel())
+//            .environmentObject(ModuleViewModule())
             .environmentObject(TaskViewModel())
+           
     }
 }
+//MARK: Modules Items
+struct ModulesTabListView: View{
+    var moduleViewModel : ModuleViewModule
+    var body: some View{
+        TabView{
+        ForEach(moduleViewModel.modules) { item in
+            NavigationLink{
+                ModulesDetailView(previewModule: item, moduleViewModel: moduleViewModel)
+            }label: {
+                ModulesCardView(previewModule: item)
+                    .padding()
+            }
+           
+        }
+    }
+        .frame(width:350, height: 180)
+        .tabViewStyle(.page(indexDisplayMode: .always))
+    }
+}
+
+
 //MARK: Event Items
 struct EventAppIcons: Identifiable{
     var id = UUID()

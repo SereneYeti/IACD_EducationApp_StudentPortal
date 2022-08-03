@@ -105,5 +105,6 @@ struct ModulesDetailView: View {
 struct ModulesDetailView_Previews: PreviewProvider {
     static var previews: some View {
         ModulesDetailView(previewModule: .sample, moduleViewModel: ModuleViewModule())
+            .environmentObject(ModuleViewModule())
     }
 }
