@@ -20,7 +20,7 @@ struct HomeViewMock: View {
                             .bold()
                     }
                     Spacer()
-                    Image(systemName: "bell")
+                    Image(systemName: "person.fill")
                         .font(.system(size: 25, weight: .light))
                         .background(
                             BlurBG(style: .systemUltraThinMaterialDark)
