@@ -12,6 +12,27 @@ struct SignUpLoginMock: View {
     @State var email: String = ""
     @State var password: String = ""
     @State var passwordReEnter: String = ""
+    
+    @EnvironmentObject var viewModel:AppViewModel
+    
+    
+    fileprivate func btnSignUp() {
+        
+        viewModel.signUp(email: email, password: password)
+        
+        if(viewModel.signedIn)
+        {
+            print("Loading Home Page Now...")
+            email = ""
+            password = ""
+            ContentView()
+        }
+        else
+        {print("An error occured.")}
+    }
+    
+   
+    
     var body: some View {
         
             //MARK: Sign Up
@@ -96,6 +117,13 @@ struct SignUpLoginMock: View {
                 .padding()
             
             Button {
+                guard !email.isEmpty, !password.isEmpty else {
+                    return
+                }
+                
+                if(password == passwordReEnter){
+                    self.btnSignUp()
+                }
                 
             } label: {
                 Text("Sign Up")

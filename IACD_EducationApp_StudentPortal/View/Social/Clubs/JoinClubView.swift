@@ -19,8 +19,7 @@ struct JoinClubView: View {
     
     var body: some View {
         ScrollView(.vertical){
-            VStack {
-                
+            VStack{
                 HStack{
                     Text("Club Coordinator: \(coordinator.name!)")
                         .padding()
@@ -33,6 +32,7 @@ struct JoinClubView: View {
                     AsyncImage(url: URL(string: coordinator.image!)) { image in
                         image.resizable()
                         
+                            
                     } placeholder: {
                         ProgressView()
                     }
@@ -57,67 +57,95 @@ struct JoinClubView: View {
                 }
                 .frame(width: screen.width*1.0, height: screen.height*0.42)
                 .tabViewStyle(.page(indexDisplayMode: .always))
+                //.cornerRadius(15)
                 
-                Group{
-                    Divider()
+                Divider()
+                
+                Text("Club Description: \(club!.ClubDescription!)")
+                    .font(.body)
+                    .fontWeight(.regular)
+                    .frame(width: screen.width*0.95, alignment: .center)
+                    .padding()
                     
-                    Text("Club Description: \(club!.ClubDescription!)")
-                        .font(.body)
-                        .fontWeight(.regular)
-                        .padding()
-                        .alignmentGuide(HorizontalAlignment.leading) { _ in
-                            0
-                        }
-                }
                 
                 
-                Group{
+                VStack{
                     Text("Equipment Needed:")
                         .font(.headline)
                         .fontWeight(.semibold)
-                        .padding()
-                        .alignmentGuide(HorizontalAlignment.leading) { _ in
-                            0
-                        }
+                        .frame(width: screen.width , alignment: .center)
                     
                     ForEach(club!.RequiredEquipment!.indices) { index in
                         Text("  - \(club!.RequiredEquipment![index])")
                             .font(.body)
                             .fontWeight(.regular)
-                            .frame(width: screen.width,alignment: .leading)
+                            .frame(width: screen.width,alignment: .center)
                             .padding(2)
-                        
+                            
                     }
                 }
+                .padding(.bottom)
                 
+                
+                HStack {
+                    
+                    Text("Create Club Meetup")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .padding()
+                    
+                    UpcomingClubsTaskView(currentClub: club)
+                    
+                }
+                .frame(width: screen.width*0.75, alignment: .top)
+                .background(.ultraThinMaterial)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.indigo, lineWidth: 2)
+                        .opacity(0.7)
+                        .shadow(color: .blue, radius: 3, x: 3, y: 3)
+                        
+                )
+                
+
                 Spacer()
                 
                 VStack{
                     Text("Useful Information ")
                         .font(.headline)
-                        .bold()
+                        .underline()
                         .frame(width: screen.width,alignment: .center)
+                        //.shadow(color: .gray, radius: 5, x: 10, y: 0)
                         .padding()
+                   
                     ForEach(club!.Helpful_Information!.indices){index in
                         VStack(spacing: 2.5){
                             Text("\(club!.Helpful_Information![index].name)")
                                 .font(.subheadline)
                                 .bold()
                                 .foregroundColor(.gray)
-                                .frame(width: screen.width,alignment: .center)
+                                .frame(width: screen.width*0.94,alignment: .center)
                                 .offset(CGSize(width: 0, height: -2))
                                 .padding(.top)
                             Text("  - Description : \(club!.Helpful_Information![index].infoDescription)")
                                 .font(.subheadline)
                                 .fontWeight(.regular)
-                                .frame(width: screen.width,alignment: .center)
+                                .frame(width: screen.width*0.92,alignment: .center)
                                 .padding(2)
                             Link("Open website", destination: URL(string: club!.Helpful_Information![index].link) ?? URL(string: "www.google.com")!)
                                 .padding(2)
-                            
+                                .padding(.bottom)
+                                
                         }
-                        .frame(width: screen.width)
-                        .border(.indigo, width: 2)
+                        .frame(width: screen.width*0.95)
+                        .background(.bar)
+                        .cornerRadius(20)
+                        .shadow(color: .purple, radius: 3, x: 3, y: 3)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.indigo, lineWidth: 2)
+                                .opacity(0.7)
+                        )
                     }
                 }
             }

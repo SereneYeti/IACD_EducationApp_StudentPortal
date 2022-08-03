@@ -17,7 +17,7 @@ struct StartView: View {
             }
             else
             {
-                SignInSignUpChoiceView()
+                StartPageMock()
             }
         }.onAppear{
             viewModel.signedIn = viewModel.isSignedIn

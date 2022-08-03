@@ -11,12 +11,12 @@ import SwiftUI
 import SwiftUI
 
 struct SignUpFirebaseAuthView: View {
-    @EnvironmentObject var viewModel:AppViewModel
+    
     
     @State var email = ""
     @State var pass = ""
     
-    
+    @EnvironmentObject var viewModel:AppViewModel
     
     
     fileprivate func btnSignUp() {
