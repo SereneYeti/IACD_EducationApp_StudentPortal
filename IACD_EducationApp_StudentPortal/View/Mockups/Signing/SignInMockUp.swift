@@ -60,6 +60,9 @@ struct SignInMockUp: View {
 
                     //MARK: Email
                 TextField("", text: $email)
+                    .disableAutocorrection(true)
+                    .autocapitalization(.none)
+                    .textCase(.lowercase)
                     .padding()
                     .placeholder(when: email.isEmpty) {
                         Text("Enter Email")
@@ -70,7 +73,7 @@ struct SignInMockUp: View {
                     .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
                 
                     //MARK: Password
-                TextField("", text: $password)
+                SecureField("", text: $password)
                     .padding()
                     .placeholder(when: password.isEmpty) {
                         Text("Enter Password")

@@ -83,7 +83,7 @@ struct SignUpLoginMock: View {
                     .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
                 
                     //MARK: Password
-                TextField("", text: $password)
+                SecureField("", text: $password)
                     .padding()
                     .placeholder(when: password.isEmpty) {
                         Text("Enter Password")
@@ -94,7 +94,7 @@ struct SignUpLoginMock: View {
                     .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
                 
                     //MARK: Re-enter
-                TextField("", text: $passwordReEnter)
+                SecureField("", text: $passwordReEnter)
                     .padding()
                     .placeholder(when: passwordReEnter.isEmpty) {
                         Text("Re-Enter Password")
