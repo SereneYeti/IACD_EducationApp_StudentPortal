@@ -51,7 +51,7 @@ struct HomeViewMockUp: View {
                     Text("Today")
                         .bold()
                     Text(Date().formatted(.dateTime.day().month(.wide).year()))
-                 
+                    
                 }
                 .foregroundColor(.white)
                 .hLeading()
@@ -59,6 +59,12 @@ struct HomeViewMockUp: View {
                 .padding(.leading,10)
                 
                     //MARK: News feed
+                Text("News")
+                    .hLeading()
+                    .padding()
+                    .padding(.leading)
+                    .font(.system(size: 25,weight: .bold))
+                    .foregroundColor(.white)
                 
                 TabView{
                     ForEach(newsItems){ newItems in
@@ -69,6 +75,12 @@ struct HomeViewMockUp: View {
                     .frame(width:350, height: 380)
                 
                     //MARK: where the events will go
+                Text("Events")
+                    .hLeading()
+                    .padding()
+                    .padding(.leading)
+                    .font(.system(size: 25,weight: .bold))
+                    .foregroundColor(.white)
                 VStack {
                     HStack{
                         Image(systemName: "record.circle.fill")
@@ -92,7 +104,7 @@ struct HomeViewMockUp: View {
                             .hLeading()
                         
                     }
-
+                    
                 }
                 .padding()
                 .hLeading()
@@ -116,39 +128,26 @@ struct HomeViewMockUp: View {
                 )
                 
                     //MARK: Where the map will go and calendar
+                Text("Apps")
+                    .hLeading()
+                    .padding()
+                    .padding(.leading)
+                    .font(.system(size: 25,weight: .bold))
+                    .foregroundColor(.white)
                 ScrollView(.horizontal,showsIndicators: false) {
                     HStack(spacing: 20) {
-                        ForEach(0 ..< 2) { item in
-                            VStack{
-                                Image(systemName: "map")
-                                    .font(.system(size: 35))
-                                    .padding()
-                                    .foregroundColor(Color(hex: "a8dadc"))
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                            .foregroundColor(.white)
-                                    )
-                                Text("Campus Map")
-                                    .bold()
-                                    .padding(.top,20)
-                                    .foregroundColor(.white)
-                            }
-                            .frame(width: 165, height: 180)
-                            .background(
-                                Color(hex: "a8dadc")
-                            )
-                            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                        }
+                        homeAppIconsView(homeIcons: homeIcons[0])
+                        homeAppIconsView(homeIcons: homeIcons[1])
                     }
                 }
                 
-              
+                
                 .padding()
             }
-       
-    }
+            
+        }
         .onAppear{
-                
+            
             showWelcomeScreen = viewModel.firstTimeSignIn
         }
         .overlay(
@@ -177,7 +176,45 @@ struct HomeViewMockUp_Previews: PreviewProvider {
             .environmentObject(TaskViewModel())
     }
 }
-//MARK: News Related Items
+    //MARK: Scrolling Icons
+struct homeAppIcons: Identifiable{
+    var id = UUID()
+    var icon : String
+    var color : String
+    var text : String
+    
+}
+
+struct homeAppIconsView: View{
+    var homeIcons : homeAppIcons
+    var body: some View{
+        VStack{
+            Image(systemName: homeIcons.icon)
+                .font(.system(size: 35))
+                .padding()
+                .foregroundColor(Color(hex: homeIcons.color))
+                .background(
+                    RoundedRectangle(cornerRadius: 20, style: .continuous)
+                        .foregroundColor(.white)
+                )
+            Text(homeIcons.text)
+                .bold()
+                .padding(.top,20)
+                .foregroundColor(.white)
+        }
+        .frame(width: 165, height: 180)
+        .background(
+            Color(hex: homeIcons.color)
+        )
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+    }
+}
+
+var homeIcons = [
+    homeAppIcons(icon: "map", color: "a8dadc", text: "Campus Map"),
+    homeAppIcons(icon: "calendar", color: "cbdfbd", text: "Calendar")
+]
+    //MARK: News Related Items
 struct NewsCardView: View {
     var newsTemp : News
     var body: some View {
@@ -185,7 +222,7 @@ struct NewsCardView: View {
             Image(newsTemp.image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-//                .frame(width: 330, height: 200)
+                //                .frame(width: 330, height: 200)
                 .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 .padding()
             
@@ -205,7 +242,7 @@ struct NewsCardView: View {
                 .padding()
                 .font(.footnote)
             
-            //MARK: Expand the view
+                //MARK: Expand the view
             Spacer()
             
         }
@@ -228,9 +265,9 @@ struct News: Identifiable{
 
 var newsItems = [
     News(image: "News",
-              newsHeading: "Stay up to date",
-              newsBody: "This is the latest news and infromation regarding Vega University. Find out when the Important dates are."
-             ),
+         newsHeading: "Stay up to date",
+         newsBody: "This is the latest news and infromation regarding Vega University. Find out when the Important dates are."
+        ),
     News(image: "news2",
          newsHeading: "Vega News",
          newsBody: "There is guest lecture in the auditoruim and attendance will count to ICE")
