@@ -37,7 +37,7 @@ struct Verificationview: View {
                 VStack {
               
                 
-                TextField("", text: $verificationText)
+               /* TextField("", text: $verificationText)
                     .padding()
                     .placeholder(when: verificationText.isEmpty) {
                         Text("Enter Student Number")
@@ -46,7 +46,7 @@ struct Verificationview: View {
                     }
                     .background(Color(hex: "f8f9fa").opacity(0.3))
                     .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                    .padding()
+                    .padding()*/
                 Button {
                     //MARK: Verify Action
                     self.verifiedStatus.toggle()
