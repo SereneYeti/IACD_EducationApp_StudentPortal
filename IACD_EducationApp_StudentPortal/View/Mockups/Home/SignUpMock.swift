@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct HomeViewMockUp: View {
-    
+    @State var profileClick : Bool = false
     var body: some View {
         ScrollView {
+                //MARK: Top Bar + Today
             VStack {
                 HStack {
                     VStack(alignment:.leading) {
@@ -27,9 +28,12 @@ struct HomeViewMockUp: View {
                                 .frame(width: 45, height: 45)
                                 .clipShape(Circle())
                         )
+                        .onTapGesture {
+                            profileClick.toggle()
+                        }
+                    
                 }
-                
-                .padding()
+                .padding(20)
                 .padding(.top,40)
                 
                 Spacer()
@@ -46,38 +50,14 @@ struct HomeViewMockUp: View {
                 .padding(.leading,10)
                 
                     //MARK: News feed
-                VStack{
-                    Image("news2")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 330, height: 200)
-                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                        .padding()
-                    
-                    Text("Vega News")
-                        .font(.system(size: 16,weight: .bold))
-                        .hLeading()
-                        .padding(.leading)
-                        
-                    Spacer()
-                        
-                    Text("There is guest lecture in the auditoruim and attendance will count to ICE")
-                        .font(.caption)
-                        .padding([.leading,.trailing])
-                        .padding(.top,5)
-                    Text("Read More ...")
-                        .hLeading()
-                        .padding()
-                        .font(.footnote)
-                    Spacer()
-                    
-                }
-                .frame(width:350, height: 380)
-                .background(
-                    RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .foregroundColor(Color(hex: "f8f9fa"))
-                    )
-                .padding()
+                
+                TabView{
+                    ForEach(newsItems){ newItems in
+                        NewsCardView(newsTemp: newItems)
+                            .padding()
+                    }
+                }.tabViewStyle(.page(indexDisplayMode: .always))
+                    .frame(width:350, height: 380)
                 
                     //MARK: where the events will go
                 VStack {
@@ -156,7 +136,13 @@ struct HomeViewMockUp: View {
               
                 .padding()
             }
+       
     }
+        .overlay(
+            Verificationview(profileClicked: $profileClick)
+                .offset(y: profileClick ? 0: 1000)
+                .animation(.spring(response: 0.5, dampingFraction: 0.3, blendDuration: 0), value: profileClick)
+        )
         .background(
             Image("bg3")
                 .resizable()
@@ -171,8 +157,69 @@ struct HomeViewMockUp: View {
     }
 }
 
-struct SignUpMock_Previews: PreviewProvider {
+struct HomeViewMockUp_Previews: PreviewProvider {
     static var previews: some View {
         HomeViewMockUp()
     }
 }
+//MARK: News Related Items
+struct NewsCardView: View {
+    var newsTemp : News
+    var body: some View {
+        VStack{
+            Image(newsTemp.image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+//                .frame(width: 330, height: 200)
+                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .padding()
+            
+            Text(newsTemp.newsHeading)
+                .font(.system(size: 16,weight: .bold))
+                .hLeading()
+                .padding(.leading)
+            
+            Spacer()
+            
+            Text(newsTemp.newsBody)
+                .font(.caption)
+                .padding([.leading,.trailing])
+                .padding(.top,5)
+            Text("Read More ...")
+                .hLeading()
+                .padding()
+                .font(.footnote)
+            
+            //MARK: Expand the view
+            Spacer()
+            
+        }
+        .frame(width:350, height: 380)
+        .background(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .foregroundColor(Color(hex: "f8f9fa"))
+        )
+        .padding()
+    }
+}
+
+struct News: Identifiable{
+    var id = UUID()
+    var image: String
+    var newsHeading: String
+    var newsBody: String
+}
+
+
+var newsItems = [
+    News(image: "News",
+              newsHeading: "Stay up to date",
+              newsBody: "This is the latest news and infromation regarding Vega University. Find out when the Important dates are."
+             ),
+    News(image: "news2",
+         newsHeading: "Vega News",
+         newsBody: "There is guest lecture in the auditoruim and attendance will count to ICE")
+    
+]
+
+

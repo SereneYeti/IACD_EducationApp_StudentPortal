@@ -45,21 +45,21 @@ struct HomeView: View {
                         VStack{
                             Button {
                                 self.verified.toggle()
-                                //TODO: Update verified to check                            firestore
+                                    //TODO: Update verified to check                            firestore
                                 print("verified \(verified)")
-                                // TODO: Make profile picture top right for sign out and to                show verification staus, Home       screen background change?
-                                                //TODO: Events, Navigation to modules, link profile name
+                                    // TODO: Make profile picture top right for sign out and to                show verification staus, Home       screen background change?
+                                    //TODO: Events, Navigation to modules, link profile name
                             } label: {
                                 Text("Verify your account now!")
                             }
-
+                            
                             NavigationLink(destination: MapView()) {
-                                //MapView()
+                                    //MapView()
                                 Image("Image")
                                     .resizable()
                                     .frame(width: 150, height: 150)
                                     .aspectRatio(contentMode: .fill)
-                                //.padding()
+                                    //.padding()
                                 
                             }
                             .background(.purple)
@@ -67,7 +67,7 @@ struct HomeView: View {
                             .padding(.init(top: 20, leading: 30, bottom: 0, trailing: 10))
                             .onTapGesture {
                                 print("Tapped on Map")
-                                //showMap = true
+                                    //showMap = true
                             }
                             
                             Text("Map")
@@ -75,15 +75,15 @@ struct HomeView: View {
                         }
                         VStack{
                             NavigationLink(destination: CalendarView()) {
-                                //MapView()
+                                    //MapView()
                                 Image("calendar1")
                                     .resizable()
-                                //added
+                                    //added
                                 
                                     .aspectRatio(contentMode: .fill)
-                                //     .frame(width: screen.width, height: 200)
+                                    //     .frame(width: screen.width, height: 200)
                                     .frame(width: 150, height: 150)
-                                //.padding(.top , 10)
+                                    //.padding(.top , 10)
                                 
                             }
                             .background(.purple)
@@ -91,7 +91,7 @@ struct HomeView: View {
                             .padding(.init(top: 20, leading: 10, bottom: 0, trailing: 20))
                             .onTapGesture {
                                 print("Tapped on Map")
-                                //showMap = true
+                                    //showMap = true
                             }
                             Text("Calendar")
                                 .padding(.bottom, 30)
@@ -133,14 +133,14 @@ struct HomeView: View {
                     
                 }
             }
-            .navigationBarHidden(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+            .navigationBarHidden(true)
             .ignoresSafeArea(edges: .top)
             .sheet(isPresented: $showWelcomeScreen, content: {OnboardingView() })
             .sheet(isPresented: $showMap, content: {MapView() })
             .sheet(isPresented: $showNewsletterView, content: {NewsletterView() })
             .sheet(isPresented: $showCalendarView, content: { CalendarView().environmentObject(taskModel) })
         }.onAppear{
-            //print("View Model First Time Sign In: \(viewModel.firstTimeSignIn)")
+                //print("View Model First Time Sign In: \(viewModel.firstTimeSignIn)")
             showWelcomeScreen = viewModel.firstTimeSignIn
         }
     }
