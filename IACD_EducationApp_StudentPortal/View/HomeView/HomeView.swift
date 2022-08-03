@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+//TODO: Update verified to check firestore
+// TODO: Make profile picture top right for sign out and to                show verification staus, Home       screen background change?
+//TODO: Events, Navigation to modules, link profile name
 
 struct HomeView: View {
     @EnvironmentObject var viewModel: AppViewModel
@@ -45,10 +48,9 @@ struct HomeView: View {
                         VStack{
                             Button {
                                 self.verified.toggle()
-                                //TODO: Update verified to check                            firestore
+                                
                                 print("verified \(verified)")
-                                // TODO: Make profile picture top right for sign out and to                show verification staus, Home       screen background change?
-                                                //TODO: Events, Navigation to modules, link profile name
+                                
                             } label: {
                                 Text("Verify your account now!")
                             }
