@@ -67,7 +67,25 @@ struct Verificationview: View {
             } else {
                 EmptyView()
             }
-            AccountView().environmentObject(viewModel)
+            Button(action:{
+                //print("signing out")
+                if viewModel.signedIn {
+                    viewModel.unbind()
+                    viewModel.signOut()
+                    
+                }
+            }){
+                Text("Sign out")
+                    .tint(.black)
+                    .background(
+                        RoundedRectangle(cornerRadius: 15, style: .continuous)
+                            .frame(width: 350, height: 50)
+                            .foregroundColor(Color(hex: "edf2fb").opacity(0.5))
+                            .shadow(color: .black.opacity(0.7), radius: 1, x: 1, y: 1)
+                            .shadow(color: .white, radius: 1, x: -1, y: -1)
+                    )
+            }
+            .padding()
             Rectangle()
                 .frame(width: 300, height: 1)
                 .foregroundColor(.secondary)
