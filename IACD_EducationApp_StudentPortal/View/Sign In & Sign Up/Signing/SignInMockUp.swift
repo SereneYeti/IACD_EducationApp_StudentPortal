@@ -1,27 +1,45 @@
-    //
-    //  SignUpLoginMock.swift
-    //  IACD_EducationApp_StudentPortal
-    //
-    //  Created by IACD-013 on 2022/08/03.
-    //
+//
+//  SignInMockUp.swift
+//  IACD_EducationApp_StudentPortal
+//
+//  Created by IACD-013 on 2022/08/03.
+//
 
 import SwiftUI
 
-struct SignUpLoginMock: View {
-    @State var userName: String = ""
+struct SignInMockUp: View {
     @State var email: String = ""
     @State var password: String = ""
-    @State var passwordReEnter: String = ""
+    
+    @EnvironmentObject var viewModel:AppViewModel
+    
+    fileprivate func btnSignIn(){
+        
+        viewModel.signIn(email: email, password: password)
+        
+        if(viewModel.signedIn)
+        {
+            print("Loading Home Page Now...")
+            email = ""
+            password = ""
+            //ContentView()
+        }
+        else
+        {print("An error occured.")}
+        
+        
+        
+    }
+    
     var body: some View {
         
             //MARK: Sign Up
         VStack {
             HStack {
                 VStack(alignment: .leading) {
-                    Text("Sign up")
+                    Text("Sign In")
                         .font(.system(size: 45))
                         .bold()
-                    Text("Create a new account")
                 }
                 Spacer()
                 Image("logo1")
@@ -39,19 +57,12 @@ struct SignUpLoginMock: View {
                 .padding(.bottom,50)
             
             VStack(spacing: 20){
-                    //MARK: Username
-                TextField("", text: $userName)
-                    .padding()
-                    .placeholder(when: userName.isEmpty) {
-                        Text("Enter Username")
-                            .foregroundColor(.black)
-                            .padding()
-                    }
-                    .background(Color(hex: "f8f9fa").opacity(0.3))
-                    .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                
+
                     //MARK: Email
                 TextField("", text: $email)
+                    .disableAutocorrection(true)
+                    .autocapitalization(.none)
+                    .textCase(.lowercase)
                     .padding()
                     .placeholder(when: email.isEmpty) {
                         Text("Enter Email")
@@ -62,7 +73,7 @@ struct SignUpLoginMock: View {
                     .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
                 
                     //MARK: Password
-                TextField("", text: $password)
+                SecureField("", text: $password)
                     .padding()
                     .placeholder(when: password.isEmpty) {
                         Text("Enter Password")
@@ -72,16 +83,7 @@ struct SignUpLoginMock: View {
                     .background(Color(hex: "f8f9fa").opacity(0.3))
                     .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
                 
-                    //MARK: Re-enter
-                TextField("", text: $passwordReEnter)
-                    .padding()
-                    .placeholder(when: passwordReEnter.isEmpty) {
-                        Text("Re-Enter Password")
-                            .foregroundColor(.black)
-                            .padding()
-                    }
-                    .background(Color(hex: "f8f9fa").opacity(0.3))
-                    .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+
             }
             .padding(.bottom,40)
             .padding([.leading,.trailing], 2)
@@ -96,14 +98,19 @@ struct SignUpLoginMock: View {
                 .padding()
             
             Button {
+                guard !email.isEmpty, !password.isEmpty else {
+                    return
+                }
+                
+                self.btnSignIn()
                 
             } label: {
-                Text("Sign Up")
+                Text("Sign In")
                     .tint(.black)
                     .background(
                         RoundedRectangle(cornerRadius: 15, style: .continuous)
                             .frame(width: 350, height: 50)
-                            .foregroundColor(Color(hex: "f8f9fa").opacity(0.9))
+                            .foregroundColor(Color(hex: "edf2fb").opacity(0.7))
                             .shadow(color: .black.opacity(0.7), radius: 1, x: 1, y: 1)
                             .shadow(color: .white, radius: 1, x: -1, y: -1)
                     )
@@ -114,7 +121,7 @@ struct SignUpLoginMock: View {
         }
         .background(
             BlurBG(style: .systemUltraThinMaterial)
-                .frame(width: 380, height: 680)
+                .frame(width: 380, height: 520)
                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
         )
         .padding()
@@ -125,8 +132,8 @@ struct SignUpLoginMock: View {
         
 }
 
-struct SignUpLoginMock_Previews: PreviewProvider {
+struct SignInMockUp_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpLoginMock()
+        SignInMockUp()
     }
 }

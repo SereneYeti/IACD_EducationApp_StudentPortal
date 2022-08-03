@@ -54,7 +54,7 @@ class CoordinatorViewModel:ObservableObject{
         
         do {
             try db.collection("Staff").document(String(staffID)).setData(from: newStaff)
-            print("New Staff member \(newStaff.name) added!")
+            //print("New Staff member \(newStaff.name) added!")
         } catch let error {
             print("Error writing staff member to Firestore: \(error)")
         }

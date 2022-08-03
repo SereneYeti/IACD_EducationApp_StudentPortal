@@ -32,9 +32,7 @@ struct StartPageMock: View {
             .padding([.leading,.trailing])
             
             
-            Button {
-                
-            } label: {
+            NavigationLink(destination: SignInMockUp().environmentObject(viewModel)){
                 Text("Sign In")
                     .tint(.black)
                     .background(
@@ -44,13 +42,10 @@ struct StartPageMock: View {
                             .shadow(color: .black.opacity(0.7), radius: 1, x: 1, y: 1)
                             .shadow(color: .white, radius: 1, x: -1, y: -1)
                     )
-                   
             }
             .padding()
             
-            Button {
-                
-            } label: {
+            NavigationLink(destination: SignUpLoginMock().environmentObject(viewModel)){
                 Text("Sign up")
                     .tint(.black)
                     .background(
@@ -60,7 +55,7 @@ struct StartPageMock: View {
                             .shadow(color: .black.opacity(0.7), radius: 1, x: 1, y: 1)
                             .shadow(color: .white, radius: 1, x: -1, y: -1)
                     )
-                   
+
             }
             .padding()
             Rectangle()

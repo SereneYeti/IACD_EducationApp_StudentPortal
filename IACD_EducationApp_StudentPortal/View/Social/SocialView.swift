@@ -23,6 +23,7 @@ struct SocialView: View {
         var isOpen = false
         forumsViewModel.createClubChatroom(title: "Photography",  handler: {
            isOpen = false
+            print(isOpen)
         }, joinCode: forumID)
         clubsViewModel.AddNewClubDocument(id: "Photography", Coordinator:CoordinatorID, ClubDescription: "If you enjoy taking photo's this is the club for you! We regularly take photos around campus and the city and have excursions every weekend! All you need is a smartphone to get started so join us to enhance your cretivity today!", Helpful_Information: hiArr, Meetups: [], RequiredEquipment: RequiredEquipment, Images: Images, forumID: forumID, members: [])
     }

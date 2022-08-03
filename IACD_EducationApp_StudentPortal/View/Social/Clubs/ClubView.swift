@@ -67,10 +67,9 @@ struct ClubView: View {
                 Text("Club Description: \(club.ClubDescription!)")
                     .font(.body)
                     .fontWeight(.regular)
+                    .frame(width: screen.width*0.95, alignment: .center)
                     .padding()
-                    .alignmentGuide(HorizontalAlignment.leading) { _ in
-                        0
-                    }
+                    
                 
                 
                 VStack{
@@ -79,7 +78,7 @@ struct ClubView: View {
                         .fontWeight(.semibold)
                         .frame(width: screen.width , alignment: .center)
                     
-                    ForEach(club.RequiredEquipment!.indices) { index in
+                    ForEach(club.RequiredEquipment!.indices, id: \.self) { index in
                         Text("  - \(club.RequiredEquipment![index])")
                             .font(.body)
                             .fontWeight(.regular)
@@ -101,14 +100,14 @@ struct ClubView: View {
                     UpcomingClubsTaskView(currentClub: club)
                     
                 }
-                .padding(.top)
-                .frame(width: screen.width*0.75, alignment: .center)
-                .background(.ultraThinMaterial)
+                .frame(width: screen.width*0.75, alignment: .top)
+                .background(.ultraThinMaterial)                
                 .overlay(
                     RoundedRectangle(cornerRadius: 20)
                         .stroke(Color.indigo, lineWidth: 2)
                         .opacity(0.7)
                         .shadow(color: .blue, radius: 3, x: 3, y: 3)
+                        
                 )
                 
 
@@ -119,10 +118,10 @@ struct ClubView: View {
                         .font(.headline)
                         .underline()
                         .frame(width: screen.width,alignment: .center)
-                        .shadow(color: .gray, radius: 5, x: 10, y: 10)
+                        //.shadow(color: .gray, radius: 5, x: 10, y: 0)
                         .padding()
                    
-                    ForEach(club.Helpful_Information!.indices){index in
+                    ForEach(club.Helpful_Information!.indices, id: \.self){index in
                         VStack(spacing: 2.5){
                             Text("\(club.Helpful_Information![index].name)")
                                 .font(.subheadline)
