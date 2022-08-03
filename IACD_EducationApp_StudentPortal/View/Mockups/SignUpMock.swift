@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeViewMock: View {
+struct HomeViewMockUp: View {
     
     var body: some View {
         ScrollView {
@@ -173,6 +173,6 @@ struct HomeViewMock: View {
 
 struct SignUpMock_Previews: PreviewProvider {
     static var previews: some View {
-        HomeViewMock()
+        HomeViewMockUp()
     }
 }
