@@ -51,6 +51,7 @@ struct JoinChatroomView: View {
                                 viewModel.joinChatroom(code: chatroom.joinCode) {
                                     self.joinModel = false
                                 }
+                                self.mode.wrappedValue.dismiss()
                             } label: {
                                 Image(systemName: "plus.message")
                             }
@@ -92,6 +93,9 @@ struct JoinChatroomView: View {
             .background(Color(red: 244/255, green: 243/255, blue: 248/255))
             //.navigationBarTitle("Join or create")
             .navigationBarHidden(true)
+            .onAppear{
+                viewModel.fetchAllData()
+            }
         }
     }
 }

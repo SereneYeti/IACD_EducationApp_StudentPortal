@@ -30,7 +30,7 @@ struct SocialView: View {
     init(){
 
         forumsViewModel.fetchData()
-        forumsViewModel.fetchAllData()
+        
         //MakeNewClub()
         
         clubsViewModel.GetUserClubs()
