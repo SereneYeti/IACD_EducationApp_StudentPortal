@@ -104,8 +104,14 @@ struct HomeViewMockUp: View {
                     .foregroundColor(.white)
                 ScrollView(.horizontal,showsIndicators: false) {
                     HStack(spacing: 20) {
-                        homeAppIconsView(homeIcons: homeIcons[0])
+                        NavigationLink(destination: MapView()){
+                            homeAppIconsView(homeIcons: homeIcons[0])
+                        }
+                        
                         homeAppIconsView(homeIcons: homeIcons[1])
+                            .onTapGesture{
+                                showCalendarView.toggle()
+                            }
                     }
                 }
                 .padding()
@@ -130,6 +136,8 @@ struct HomeViewMockUp: View {
                 )
                 .hueRotation(Angle(degrees: 20))
         )
+        .sheet(isPresented: $showWelcomeScreen, content: {OnboardingView() })
+        .sheet(isPresented: $showCalendarView, content: { CalendarView().environmentObject(taskModel) })
         .sheet(isPresented: $showNewsletterView, content: {NewsletterView()})
         .ignoresSafeArea(.all)
     }
@@ -289,10 +297,6 @@ struct NewsCardView: View {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .foregroundColor(Color(hex: "f8f9fa"))
         )
-        
-            //.sheet(isPresented: $showWelcomeScreen, content: {OnboardingView() })
-            //.sheet(isPresented: $showMap, content: {MapView() })
-            //.sheet(isPresented: $showCalendarView, content: { CalendarView().environmentObject(taskModel) })
         .padding()
     }
 }
