@@ -47,7 +47,7 @@ struct ContentView: View {
                     .environmentObject(ModuleViewModule())
                     .tabItem{
                     Image(systemName: "person.crop.circle.fill")
-                    Text("Account").bold()
+                    Text("Profile").bold()
                 }.tag(tabs.Account)
             }
         }.onAppear(){
