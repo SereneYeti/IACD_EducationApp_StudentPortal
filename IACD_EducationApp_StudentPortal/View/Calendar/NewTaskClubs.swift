@@ -75,7 +75,7 @@ struct NewTaskClubs: View {
                             
                         }else {
                             //MARK: Create a new entity , which will create our new object in core Date
-                            let task = CreateTask()
+                            _ = CreateTask()
                         }
                         //Saving
                         

@@ -25,7 +25,7 @@ struct SignUpLoginMock: View {
             print("Loading Home Page Now...")
             email = ""
             password = ""
-            ContentView()
+            //ContentView()
         }
         else
         {print("An error occured.")}

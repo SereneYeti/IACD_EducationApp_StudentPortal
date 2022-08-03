@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		18447A0828983B0E001280A9 /* NewsletterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18447A0728983B0D001280A9 /* NewsletterView.swift */; };
-		5A3015DF288DC34A00D63571 /* ChatRoomsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3015DE288DC34A00D63571 /* ChatRoomsViewModel.swift */; };
 		5A3015E5288DD60700D63571 /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3015E4288DD60600D63571 /* MessagesViewModel.swift */; };
-		5A54AFD02890263C0096AC91 /* ClubsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A54AFCF2890263C0096AC91 /* ClubsViewModel.swift */; };
 		5A71A9DB288591A1006CC56B /* SelectedModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A71A9DA288591A1006CC56B /* SelectedModuleView.swift */; };
 		5A71A9E12886D094006CC56B /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A71A9E02886D094006CC56B /* AccountView.swift */; };
 		5A71A9E32886F43F006CC56B /* MapMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A71A9E22886F43F006CC56B /* MapMenuView.swift */; };
@@ -73,9 +71,7 @@
 /* Begin PBXFileReference section */
 		18447A0728983B0D001280A9 /* NewsletterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsletterView.swift; sourceTree = "<group>"; };
 		1BF643E09FB5B438EE4DBD33 /* Pods-IACD_EducationApp_StudentPortal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IACD_EducationApp_StudentPortal.release.xcconfig"; path = "Target Support Files/Pods-IACD_EducationApp_StudentPortal/Pods-IACD_EducationApp_StudentPortal.release.xcconfig"; sourceTree = "<group>"; };
-		5A3015DE288DC34A00D63571 /* ChatRoomsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomsViewModel.swift; sourceTree = "<group>"; };
 		5A3015E4288DD60600D63571 /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
-		5A54AFCF2890263C0096AC91 /* ClubsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubsViewModel.swift; sourceTree = "<group>"; };
 		5A71A9DA288591A1006CC56B /* SelectedModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedModuleView.swift; sourceTree = "<group>"; };
 		5A71A9E02886D094006CC56B /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		5A71A9E22886F43F006CC56B /* MapMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMenuView.swift; sourceTree = "<group>"; };
@@ -295,8 +291,6 @@
 				6AC20F332889A4480037076C /* StudentViewModel.swift */,
 				5A8A97E62898423B00DD5A1A /* ModuleViewModel.swift */,
 				5A3015E4288DD60600D63571 /* MessagesViewModel.swift */,
-				5A3015DE288DC34A00D63571 /* ChatRoomsViewModel.swift */,
-				5A54AFCF2890263C0096AC91 /* ClubsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -516,7 +510,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A54AFD02890263C0096AC91 /* ClubsViewModel.swift in Sources */,
 				6A6B2FE5289A51AE006CDA15 /* SignUpMock.swift in Sources */,
 				5A8D788A287F116700CFA3F5 /* StartView.swift in Sources */,
 				5A8A97FB2898432C00DD5A1A /* JoinClubsView.swift in Sources */,
@@ -541,7 +534,6 @@
 				6AC20F3C288C07F70037076C /* StudentCardView.swift in Sources */,
 				6A2F982C2881A71E001844CC /* CalendarHeaderView.swift in Sources */,
 				5AC2E0D6286340FD009A0CA2 /* CalendarView.swift in Sources */,
-				5A3015DF288DC34A00D63571 /* ChatRoomsViewModel.swift in Sources */,
 				5A8A97E42898422D00DD5A1A /* ClubsViewModel.swift in Sources */,
 				5A8A97F62898432C00DD5A1A /* MessagesView.swift in Sources */,
 				5A71A9E32886F43F006CC56B /* MapMenuView.swift in Sources */,

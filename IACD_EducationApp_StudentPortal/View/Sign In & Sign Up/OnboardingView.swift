@@ -36,7 +36,7 @@ struct OnboardingView: View {
             }
             
             TabView(selection: $currentStep) {
-                ForEach(0..<onBoardingSteps.count) {it in
+                ForEach(0..<onBoardingSteps.count, id: \.self) {it in
         VStack {
             Image(onBoardingSteps[it].image)
                 .resizable()
@@ -57,7 +57,7 @@ struct OnboardingView: View {
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             
             HStack{
-                ForEach(0..<onBoardingSteps.count) {it in
+                ForEach(0..<onBoardingSteps.count,id: \.self) {it in
                     if it == currentStep{
                         Rectangle()
                             .frame(width: 20, height: 10)

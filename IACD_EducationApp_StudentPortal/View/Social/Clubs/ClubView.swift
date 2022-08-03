@@ -78,7 +78,7 @@ struct ClubView: View {
                         .fontWeight(.semibold)
                         .frame(width: screen.width , alignment: .center)
                     
-                    ForEach(club.RequiredEquipment!.indices) { index in
+                    ForEach(club.RequiredEquipment!.indices, id: \.self) { index in
                         Text("  - \(club.RequiredEquipment![index])")
                             .font(.body)
                             .fontWeight(.regular)
@@ -121,7 +121,7 @@ struct ClubView: View {
                         //.shadow(color: .gray, radius: 5, x: 10, y: 0)
                         .padding()
                    
-                    ForEach(club.Helpful_Information!.indices){index in
+                    ForEach(club.Helpful_Information!.indices, id: \.self){index in
                         VStack(spacing: 2.5){
                             Text("\(club.Helpful_Information![index].name)")
                                 .font(.subheadline)
