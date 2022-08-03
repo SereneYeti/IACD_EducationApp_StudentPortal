@@ -17,7 +17,7 @@ struct HomeViewMockUp: View {
     @State private var showCalendarView: Bool = false
     @State private var showMap: Bool = false
     @State private var showNewsletterView: Bool = false
-    
+    @State var testStu = testData[0]
     
     var body: some View {
         ScrollView {
@@ -26,7 +26,7 @@ struct HomeViewMockUp: View {
                 HStack {
                     VStack(alignment:.leading) {
                         Text("Good Morning")
-                        Text("Student")
+                        Text(testStu.firstName)
                             .font(.system(size: 35))
                             .bold()
                     }
