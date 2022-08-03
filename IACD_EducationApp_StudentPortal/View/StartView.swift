@@ -10,14 +10,16 @@ import SwiftUI
 struct StartView: View {
     @EnvironmentObject var viewModel:AppViewModel
     
+   
+    
     var body: some View{
         NavigationView{
             if viewModel.signedIn{
-                ContentView().environmentObject(viewModel)
+                ContentView()//.environmentObject(viewModel)
             }
             else
             {
-                StartPageMock().environmentObject(viewModel)
+                StartPageMock()//.environmentObject(viewModel)
             }
         }.onAppear{
             viewModel.signedIn = viewModel.isSignedIn

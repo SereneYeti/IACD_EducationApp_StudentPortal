@@ -17,14 +17,16 @@ public enum tabs : Hashable{
 }
     //NavigationLink("Go to Other Page", destination: //ContenvtViewB()).tabItem
 struct ContentView: View {
-    @ObservedObject var viewModel: AppViewModel = AppViewModel()
+    @EnvironmentObject var viewModel: AppViewModel
     @State var selectedItem:tabs = .Home
     @State var verified:Bool = false
     @StateObject var taskModel: TaskViewModel = TaskViewModel()
+    @ObservedObject var forumsViewModel =  AppViewModel()
     @ObservedObject var staffViewModel:CoordinatorViewModel = CoordinatorViewModel()
     
     init() {
-        viewModel.listen()
+        print("listening")
+        forumsViewModel.listen()
     }
     
     var body: some View {
@@ -43,6 +45,7 @@ struct ContentView: View {
                 }.tag(tabs.Forums)
                 ProfileView()
                     .environmentObject(ModuleViewModule())
+                    //.environmentObject(viewModel)
                     .tabItem{
                     Image(systemName: "person.crop.circle.fill")
                     Text("Profile").bold()

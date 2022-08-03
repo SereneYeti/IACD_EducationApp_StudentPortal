@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Verificationview: View {
+    @EnvironmentObject var viewModel: AppViewModel
     @State var verificationText: String = ""
     @State var verifiedStatus: Bool = false
     
@@ -66,21 +67,7 @@ struct Verificationview: View {
             } else {
                 EmptyView()
             }
-            Button {
-                //MARK: Sign Out Action
-            } label: {
-                Text("Sign Out")
-                    .tint(.black)
-                    .background(
-                        RoundedRectangle(cornerRadius: 15, style: .continuous)
-                            .frame(width: 350, height: 50)
-                            .foregroundColor(Color(hex: "edf2fb").opacity(0.5))
-                            .shadow(color: .black.opacity(0.7), radius: 1, x: 1, y: 1)
-                            .shadow(color: .white, radius: 1, x: -1, y: -1)
-                    )
-                   
-            }
-            .padding()
+            AccountView().environmentObject(viewModel)
             Rectangle()
                 .frame(width: 300, height: 1)
                 .foregroundColor(.secondary)

@@ -193,12 +193,12 @@ class ClubsViewModel: ObservableObject{
             self.GetAllClubs()
             
             self.allClubs.forEach { club in
-                print("User uid: \(self.user!.uid)")
-                print("Members: \(club.members!)")
+                //print("User uid: \(self.user!.uid)")
+                //print("Members: \(club.members!)")
                 if(club.members!.contains(self.user!.uid)){
                     self.userClubs.append(club)
-                    print(club)
-                    print("User uid: \(self.user!.uid)")
+                    //print(club)
+                    //print("User uid: \(self.user!.uid)")
                 }
             }
         }
