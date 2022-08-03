@@ -1,27 +1,34 @@
-    //
-    //  SignUpLoginMock.swift
-    //  IACD_EducationApp_StudentPortal
-    //
-    //  Created by IACD-013 on 2022/08/03.
-    //
+//
+//  UserInfoMock.swift
+//  IACD_EducationApp_StudentPortal
+//
+//  Created by IACD-013 on 2022/08/03.
+//
 
 import SwiftUI
 
-struct SignUpLoginMock: View {
-    @State var userName: String = ""
-    @State var email: String = ""
-    @State var password: String = ""
+struct UserInfoMock: View {
+    var contactTypes = ["Home","Emergency","Personal"]
+    @State var selectedContact: String = "Home"
+    
+    var sexTypes = ["Male","Female"]
+    @State var selectedSex: String = "Male"
+    
+    @State var firstName: String = ""
+    @State var lastName: String = ""
+    @State var contactNumber: String = ""
     @State var passwordReEnter: String = ""
     var body: some View {
         
             //MARK: Sign Up
         VStack {
             HStack {
-                VStack(alignment: .leading) {
-                    Text("Sign up")
+                VStack(alignment: .leading,spacing: 10) {
+                    Text("Info")
                         .font(.system(size: 45))
                         .bold()
-                    Text("Create a new account")
+                    Text("Enter Personal Information")
+                        
                 }
                 Spacer()
                 Image("logo1")
@@ -39,49 +46,77 @@ struct SignUpLoginMock: View {
                 .padding(.bottom,50)
             
             VStack(spacing: 20){
-                    //MARK: Username
-                TextField("", text: $userName)
+                    //MARK: first Name
+                TextField("", text: $firstName)
                     .padding()
-                    .placeholder(when: userName.isEmpty) {
-                        Text("Enter Username")
+                    .placeholder(when: firstName.isEmpty) {
+                        Text("Enter First Name")
                             .foregroundColor(.black)
                             .padding()
                     }
                     .background(Color(hex: "f8f9fa").opacity(0.3))
                     .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
                 
-                    //MARK: Email
-                TextField("", text: $email)
+                    //MARK: Last name
+                TextField("", text: $lastName)
                     .padding()
-                    .placeholder(when: email.isEmpty) {
-                        Text("Enter Email")
+                    .placeholder(when: lastName.isEmpty) {
+                        Text("Enter Last Name")
                             .foregroundColor(.black)
                             .padding()
                     }
                     .background(Color(hex: "f8f9fa").opacity(0.3))
                     .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
                 
-                    //MARK: Password
-                TextField("", text: $password)
-                    .padding()
-                    .placeholder(when: password.isEmpty) {
-                        Text("Enter Password")
-                            .foregroundColor(.black)
-                            .padding()
+                    //MARK: Sex Selected
+                HStack {
+                    TextField("", text: $selectedSex)
+                        .padding()
+                        .placeholder(when: selectedSex.isEmpty) {
+                            Text("Select a Sex")
+                                .foregroundColor(.black)
+                                .padding()
+                        }
+                        .background(Color(hex: "f8f9fa").opacity(0.3))
+                        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                    Picker("Type",selection: $selectedSex){
+                        ForEach(sexTypes, id:\.self){
+                            Text($0)
+                        }
+                        .pickerStyle(.wheel)
                     }
-                    .background(Color(hex: "f8f9fa").opacity(0.3))
+                    .frame(width: 180, height: 55)
+                    .background(Color(hex: "000814").opacity(0.6))
+                 
                     .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                    
+                }
                 
-                    //MARK: Re-enter
-                TextField("", text: $passwordReEnter)
-                    .padding()
-                    .placeholder(when: passwordReEnter.isEmpty) {
-                        Text("Re-Enter Password")
-                            .foregroundColor(.black)
-                            .padding()
+                    //MARK: Contact Info
+                HStack {
+                    TextField("", text: $contactNumber)
+                        .padding()
+                        .placeholder(when: contactNumber.isEmpty) {
+                            Text("Enter a Contact")
+                                .foregroundColor(.black)
+                                .padding()
+                        }
+                        .background(Color(hex: "f8f9fa").opacity(0.3))
+                        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                    Picker("Type",selection: $selectedContact){
+                        ForEach(contactTypes, id:\.self){
+                            Text($0)
+                        }
+                        .pickerStyle(.wheel)
                     }
-                    .background(Color(hex: "f8f9fa").opacity(0.3))
+                    .frame(width: 80, height: 55)
+                    .background(Color(hex: "000814").opacity(0.6))
+                 
                     .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                    
+                }
+                
+        
             }
             .padding(.bottom,40)
             .padding([.leading,.trailing], 2)
@@ -125,8 +160,8 @@ struct SignUpLoginMock: View {
         
 }
 
-struct SignUpLoginMock_Previews: PreviewProvider {
+struct UserInfoMock_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpLoginMock()
+        UserInfoMock()
     }
 }
