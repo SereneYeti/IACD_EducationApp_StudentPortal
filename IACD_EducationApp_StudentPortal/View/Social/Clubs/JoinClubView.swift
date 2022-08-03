@@ -163,10 +163,14 @@ struct JoinClubView: View {
                     
                 } label: {
                     Text("Join Club")
+                        .font(.headline)
+                        .fontWeight(.bold)
                         .padding(2)
+                        .frame(width: screen.width*0.75,alignment: .center)
                         .background(.blue)
                         .cornerRadius(15)
                         .foregroundColor(.white)
+                        .shadow(color: .indigo, radius: 8, x: 0, y: 0)
                     
                 }
                 .padding()
