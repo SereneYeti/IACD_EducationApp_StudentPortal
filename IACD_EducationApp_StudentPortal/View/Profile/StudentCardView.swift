@@ -75,7 +75,7 @@ struct StudentCardView: View {
                                     .rotationEffect(Angle(degrees: showCard ? 360 : 180))
                             }
                         }
-                        .offset(y: showCard ? -20 : -50)
+                        .offset(y: showCard ? -30 : -50)
                         .padding()
                     }
                 }
