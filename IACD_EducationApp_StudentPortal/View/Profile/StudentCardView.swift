@@ -38,9 +38,9 @@ struct StudentCardView: View {
                     
                     VStack(alignment: .leading) {
                         Text(testStu.firstName)
-                            .font(.system(size: 80, weight: .bold))
+                            .font(.system(size: 70, weight: .bold))
                         Text(testStu.lastName)
-                            .font(.system(size: 50))
+                            .font(.system(size: 40))
                     }
                     .hLeading()
                 }
@@ -75,7 +75,7 @@ struct StudentCardView: View {
                                     .rotationEffect(Angle(degrees: showCard ? 360 : 180))
                             }
                         }
-                        .offset(y: showCard ? 5 : -50)
+                        .offset(y: showCard ? -30 : -50)
                         .padding()
                     }
                 }
