@@ -56,6 +56,7 @@
 		6A3F9F12289ABDEB004CEFBE /* SignInMockUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3F9F0F289ABDEB004CEFBE /* SignInMockUp.swift */; };
 		6A3F9F13289ABDEB004CEFBE /* SignUpLoginMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3F9F10289ABDEB004CEFBE /* SignUpLoginMock.swift */; };
 		6A3F9F14289ABDEB004CEFBE /* StartPageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3F9F11289ABDEB004CEFBE /* StartPageMock.swift */; };
+		6A3F9F16289B8B4A004CEFBE /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3F9F15289B8B4A004CEFBE /* EventDetailView.swift */; };
 		6A6B2FE5289A51AE006CDA15 /* SignUpMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6B2FE4289A51AE006CDA15 /* SignUpMock.swift */; };
 		6AC20F2F2889A2370037076C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC20F2E2889A2370037076C /* ProfileView.swift */; };
 		6AC20F322889A3590037076C /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC20F312889A3590037076C /* Student.swift */; };
@@ -120,6 +121,7 @@
 		6A3F9F0F289ABDEB004CEFBE /* SignInMockUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInMockUp.swift; sourceTree = "<group>"; };
 		6A3F9F10289ABDEB004CEFBE /* SignUpLoginMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpLoginMock.swift; sourceTree = "<group>"; };
 		6A3F9F11289ABDEB004CEFBE /* StartPageMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartPageMock.swift; sourceTree = "<group>"; };
+		6A3F9F15289B8B4A004CEFBE /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		6A6B2FE4289A51AE006CDA15 /* SignUpMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpMock.swift; sourceTree = "<group>"; };
 		6AC20F2E2889A2370037076C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		6AC20F312889A3590037076C /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 				6AEE181C288DC3AA00B3AD1F /* Tab Bar Options */,
 				6AC20F2E2889A2370037076C /* ProfileView.swift */,
 				6AC20F3B288C07F70037076C /* StudentCardView.swift */,
+				6A3F9F15289B8B4A004CEFBE /* EventDetailView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 				5A8A980B289843EE00DD5A1A /* ModuleModel.swift in Sources */,
 				5A8A97E9289842C900DD5A1A /* CoordinatorViewModel.swift in Sources */,
 				6A2F981F2881A6B6001844CC /* Persistence.swift in Sources */,
+				6A3F9F16289B8B4A004CEFBE /* EventDetailView.swift in Sources */,
 				5A8D790C2880472600CFA3F5 /* MapView.swift in Sources */,
 				5A8A97FA2898432C00DD5A1A /* UpcomingClubsTaskView.swift in Sources */,
 				6A2F982D2881A71E001844CC /* NewTask.swift in Sources */,

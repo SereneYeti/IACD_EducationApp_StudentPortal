@@ -39,8 +39,7 @@ struct StudentCardView: View {
                     VStack(alignment: .leading) {
                         Text(testStu.firstName)
                             .font(.system(size: 80, weight: .bold))
-                        Text(testStu.lastName)
-                            .font(.system(size: 55, weight: .bold))
+                    
                     }
                     .hLeading()
                 }

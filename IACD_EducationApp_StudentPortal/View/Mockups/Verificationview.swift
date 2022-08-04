@@ -11,13 +11,13 @@ struct Verificationview: View {
     @EnvironmentObject var viewModel: AppViewModel
     @State var verificationText: String = ""
     @Binding var verifiedStatus: Bool
-    
+    @State var testStu = testData[0]
     var body: some View {
         
         VStack{
             HStack {
                 VStack(alignment: .leading) {
-                    Text("Student Name")
+                    Text(testStu.firstName)
                         .font(.system(size: 35))
                         .bold()
                 }

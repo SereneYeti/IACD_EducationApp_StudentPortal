@@ -17,6 +17,7 @@ struct HomeViewMockUp: View {
     @State private var showCalendarView: Bool = false
     @State private var showMap: Bool = false
     @State private var showNewsletterView: Bool = false
+    @State private var showEvent: Bool = false
     @State var testStu = testData[0]
     
     var body: some View {
@@ -91,6 +92,9 @@ struct HomeViewMockUp: View {
                     .foregroundColor(.white)
                 TabView{
                     EventAppIconsCardView(eventIcon: eventIconList[0])
+                        .onTapGesture {
+                            showEvent.toggle()
+                        }
                     EventAppIconsCardView(eventIcon: eventIconList[1])
                 }
                 .tabViewStyle(.page(indexDisplayMode: .always))
@@ -142,6 +146,8 @@ struct HomeViewMockUp: View {
                 )
                 .hueRotation(Angle(degrees: 20))
         )
+        //MARK: Sheets
+        .sheet(isPresented: $showEvent, content: {EventDetailView() })
         .sheet(isPresented: $showWelcomeScreen, content: {OnboardingView() })
         .sheet(isPresented: $showCalendarView, content: { CalendarView().environmentObject(taskModel) })
         .sheet(isPresented: $showNewsletterView, content: {NewsletterView()})

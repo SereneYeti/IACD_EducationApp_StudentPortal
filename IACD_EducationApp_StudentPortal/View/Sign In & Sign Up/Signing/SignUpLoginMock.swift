@@ -12,6 +12,7 @@ struct SignUpLoginMock: View {
     @State var email: String = ""
     @State var password: String = ""
     @State var passwordReEnter: String = ""
+    @State var testStu = testData[0]
     
     @EnvironmentObject var viewModel:AppViewModel
     
@@ -124,6 +125,8 @@ struct SignUpLoginMock: View {
                 if(password == passwordReEnter){
                     self.btnSignUp()
                 }
+                
+                testStu.firstName = userName
                 
             } label: {
                 Text("Sign Up")

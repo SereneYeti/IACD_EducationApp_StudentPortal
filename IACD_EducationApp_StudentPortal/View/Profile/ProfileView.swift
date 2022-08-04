@@ -35,6 +35,7 @@ struct ProfileView_Previews: PreviewProvider {
 struct StudentProfileView: View{
     @ObservedObject var moduleViewModel : ModuleViewModule
     @State var selectedSelection: SelectedSelection = .modules
+    @State private var showEvent: Bool = false
     var testStu = testData[0]
     @Namespace var animation
     
@@ -60,7 +61,7 @@ struct StudentProfileView: View{
                         HStack() {
                             Text(testStu.firstName)
                                 .bold()
-                            Text(testStu.lastName)
+                            
                         }
                         .font(.system(size: 25))
                         Text("Game Design")
@@ -110,12 +111,16 @@ struct StudentProfileView: View{
                 case .dueDates:
                     VStack(spacing: 20){
                         EventAppIconsCardView(eventIcon: eventIconList[0])
+                            .onTapGesture {
+                                showEvent.toggle()
+                            }
                         EventAppIconsCardView(eventIcon: eventIconList[1])
                     }
                 }
                 
             }
         }
+        .sheet(isPresented: $showEvent, content: {EventDetailView() })
     }
 }
 

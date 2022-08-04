@@ -14,7 +14,6 @@ struct ContentBlockView: View {
             HStack(spacing: 30) {
                 ForEach(moduleViewModel.modules){ item in
                     //MARK: Make conditional for clicked content
-                    if item.name == "BnM 1A" {
                         ForEach(item.content!, id:\.self) { cons in
                             VStack{
                                 Text(cons.contentTitle ?? "")
@@ -27,9 +26,6 @@ struct ContentBlockView: View {
                             .shadow(color: Color(hex: item.color ?? "").opacity(0.8), radius: 2, x: 2, y: 1)
                             .shadow(color: Color(hex: item.color ?? "").opacity(0.5), radius: 10, x: 5, y: 10)
                         }
-                    } else {
-                        
-                    }
                 }
             }
             .padding(30)
