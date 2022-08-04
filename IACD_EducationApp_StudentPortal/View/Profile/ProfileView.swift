@@ -61,6 +61,7 @@ struct StudentProfileView: View{
                         HStack() {
                             Text(testStu.firstName)
                                 .bold()
+                            Text(testStu.lastName)
                             
                         }
                         .font(.system(size: 25))

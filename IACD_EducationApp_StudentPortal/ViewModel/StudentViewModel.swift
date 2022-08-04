@@ -45,7 +45,7 @@ class StudentModel: ObservableObject {
 }
 
 let  testData = [
-    Student(id: "559594", studentNum: 2813083, studentID: 38193849, firstName: "Jack", lastName: "LinkerMan"),
-    Student(id: "473947", studentNum: 27492497, studentID: 47924794, firstName: "Tracy", lastName: "Ross"),
-    Student(id: "353463", studentNum: 158941789, studentID: 4289749, firstName: "Jamie", lastName: "Tart")
+    Student(id: "559594", studentNum: 2813083, studentID: 38193849, firstName: "James", lastName: "Vieyra"),
+    Student(id: "473947", studentNum: 27492497, studentID: 47924794, firstName: "Christopher", lastName: "Ladiera"),
+    Student(id: "353463", studentNum: 158941789, studentID: 4289749, firstName: "Mphathi", lastName: "Maapola")
 ]
